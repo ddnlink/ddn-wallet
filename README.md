@@ -1,42 +1,84 @@
-English | [简体中文](./README.zh-CN.md)
+# DDNwallet 
+Based on [electron](https://electronjs.org/)
 
-<h1 align="center">DDN Wallet</h1>
+##### Build cross platform desktop apps with JavaScript, HTML, and CSS
 
-## Features
+### clone from dev branch
+features:
+ - 账户，交易
+ - 转账
+ - 投票，注册受托人，锻造
 
-```
-- Home
-- Transfer
-- MultiSignature
-- Vote
-- Assets
-- Browser
-- User
-  - Login
-  - Create Account
-```
+<br/>
 
-## Usage
+## Install
+
+* **Note: requires a node version >= 7 and an npm version >= 4.**
+
+First, clone the repo via git:
 
 ```bash
-$ git clone
-$ cd ddn-wallet
-$ npm install
-$ npm start         # visit http://localhost:8000
+git clone http://git.ebookchain.net/ddn/ddnwallet.git
 ```
 
-## Browsers support
+And then install dependencies with yarn/npm.
 
-Modern browsers and IE11.
+```bash
+$ cd ddn-wallet
+$ yarn or npm install
+```
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
-| --------- | --------- | --------- | --------- | --------- |
-| IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
+## Run
 
-## Contributing
+Start the app in the `dev` environment. This starts the renderer process in [**hot-module-replacement**](https://webpack.js.org/guides/hmr-react/) mode and starts a webpack dev server that sends hot updates to the renderer process:
 
-Any type of contribution is welcome, here are some examples of how you may contribute to this project:
 
-- Use ddn-wallet in your daily work.
-- Submit to report bugs or ask questions.
-- Propose pull requests to improve our code.
+```bash
+$ npm start                 # Run in browser only
+$ npm run dev               # Run in electron and load with dev (http://localhost:8000)
+$ npm run electron-quick    # Run in electron and load with build pages
+```
+
+
+## build pages
+```bash
+$ npm run build
+```
+
+## Packaging
+
+To package apps for the local platform:
+
+```bash
+$ npm run package           # package with current System
+$ npm run package-quick     # package with built pages , 开发时用，省去重新编译的时间
+$ npm run pack-win32        # package with windows 32bit
+```
+
+To package apps for all platforms:
+
+First, refer to [Multi Platform Build](https://www.electron.build/multi-platform-build) for dependencies.
+
+Then,
+```bash
+$ npm run package-all
+```
+
+To package apps with options:
+
+```bash
+$ npm run package -- --[option]
+```
+
+To run End-to-End Test
+
+```bash
+$ npm run build
+$ npm run test-e2e
+```
+
+:bulb: You can debug your production build with devtools by simply setting the `DEBUG_PROD` env variable:
+```bash
+DEBUG_PROD=true npm run package
+```
+
