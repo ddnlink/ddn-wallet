@@ -1,5 +1,4 @@
 import { stringify } from 'qs';
-import DdnJS from '@/utils/ddn-js';
 import request from '../utils/request';
 // import tokenConfig from '../../config/token.config';
 

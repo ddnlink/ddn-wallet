@@ -8,7 +8,6 @@
 
 import React, { PureComponent } from 'react';
 import { Steps, Button, Icon, Input, Slider, List, message, Alert } from 'antd';
-import DdnJS from '@/utils/ddn-js';
 import { getKeyStore } from '@/utils/authority';
 import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';

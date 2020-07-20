@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { getKeyStore } from '@/utils/authority';
-import DdnJS from '@/utils/ddn-js';
 import { Button, Modal, Form, Input, Alert, message } from 'antd';
 import { formatMessage } from 'umi/locale';
 
@@ -33,7 +32,7 @@ class registeredAssetDealerForm extends PureComponent {
       const keystore = getKeyStore();
       const { phaseKey } = keystore;
       const transaction = DdnJS.aob.createIssuer(values.name, values.des, phaseKey, null);
-      console.log('transaction', transaction, "dispatch", dispatch);
+      console.log('transaction', transaction, 'dispatch', dispatch);
 
       dispatch({
         type: 'assets/postTrans',

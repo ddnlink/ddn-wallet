@@ -11,7 +11,32 @@ features:
 
 <br/>
 
-## Install
+
+## Web Browser Build
+### Install
+First, clone the repo via git: 
+
+```bash
+git clone http://git.ebookchain.net/ddn/ddnwallet.git
+```
+
+And then install dependencies with yarn/npm.
+
+```bash
+$ cd ddn-wallet && cd app
+$ yarn or npm install
+```
+### Run
+```bash
+$ npm start || yarn start      # Run in browser only
+```
+### build Web pages
+```bash
+$ npm run build || yarn build
+```
+
+## Desktop App Build
+### Install
 
 * **Note: requires a node version >= 7 and an npm version >= 4.**
 
@@ -28,7 +53,7 @@ $ cd ddn-wallet
 $ yarn or npm install
 ```
 
-## Run
+### Run
 
 Start the app in the `dev` environment. This starts the renderer process in [**hot-module-replacement**](https://webpack.js.org/guides/hmr-react/) mode and starts a webpack dev server that sends hot updates to the renderer process:
 
@@ -40,12 +65,12 @@ $ npm run electron-quick    # Run in electron and load with build pages
 ```
 
 
-## build pages
+### build pages
 ```bash
 $ npm run build
 ```
 
-## Packaging
+### Packaging
 
 To package apps for the local platform:
 
@@ -81,4 +106,3 @@ $ npm run test-e2e
 ```bash
 DEBUG_PROD=true npm run package
 ```
-

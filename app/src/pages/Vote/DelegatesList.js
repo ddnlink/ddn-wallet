@@ -2,7 +2,6 @@ import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'dva';
 import { Card, Form, Badge, Table, Alert, Modal } from 'antd';
 import { formatMessage } from 'umi/locale';
-import DdnJS from '@/utils/ddn-js';
 
 import { getKeyStore } from '@/utils/authority';
 import DelegateModal from './DelegateModal';

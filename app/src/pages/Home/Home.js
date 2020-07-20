@@ -3,7 +3,6 @@ import { connect } from 'dva';
 import { Row, Col, Card, Table, Radio, Icon } from 'antd';
 import moment from 'moment';
 import { formatMessage } from 'umi/locale';
-import DdnJS from '@/utils/ddn-js';
 import { ChartCard } from '@/components/Charts';
 import { getKeyStore } from '@/utils/authority';
 import styles from './Home.less';

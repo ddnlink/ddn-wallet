@@ -4,7 +4,6 @@ import { Form, Button, Alert, Divider, message } from 'antd';
 import router from 'umi/router';
 // import { digitUppercase } from '@/utils/utils';
 import { formatMessage } from 'umi/locale';
-import DdnJS from '@/utils/ddn-js';
 import { getKeyStore } from '@/utils/authority';
 import styles from './style.less';
 

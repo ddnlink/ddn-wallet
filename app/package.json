@@ -60,7 +60,6 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@ddn/node-sdk": "^0.3.7",
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.6",
     "antd-pro-merge-less": "^0.0.9",

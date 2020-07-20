@@ -3,7 +3,6 @@ import { connect } from 'dva';
 import bip39 from 'bip39';
 import { Button, Modal, Input, Alert, Steps } from 'antd';
 import { formatMessage } from 'umi/locale';
-import DdnJS from '@/utils/ddn-js';
 import styles from './Register.less';
 
 const { Step } = Steps;

@@ -3,7 +3,6 @@ import { connect } from 'dva';
 import { Table, Button, Modal } from 'antd';
 import moment from 'moment';
 import { formatMessage } from 'umi/locale';
-import DdnJS from '@/utils/ddn-js';
 
 class AOBTransaction extends Component {
   state = {

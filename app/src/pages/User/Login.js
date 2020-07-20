@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi/locale';
 import { Checkbox, Alert } from 'antd';
-import DdnJS from '@/utils/ddn-js';
 import Login from '@/components/Login';
 import styles from './Login.less';
 import Register from './Register';
