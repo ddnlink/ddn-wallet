@@ -1,47 +1,50 @@
-import { queryCurrent, query as queryUsers } from '@/services/user';
+import { queryAccount, postTransaction } from '@/services/api';
 
-const UserModel = {
+const initialState = {
+  currentAccount: {},
+  latestBlock: {},
+  version: {},
+}
+
+export default {
   namespace: 'user',
-  state: {
-    currentUser: {},
-  },
+
+  state: {...initialState},
+
   effects: {
-    *fetch(_, { call, put }) {
-      const response = yield call(queryUsers);
+    *fetchAccount({ payload }, { call, put }) {
+      const response = yield call(queryAccount, payload);
       yield put({
-        type: 'save',
+        type: 'saveAccount',
         payload: response,
       });
     },
-
-    *fetchCurrent(_, { call, put }) {
-      const response = yield call(queryCurrent);
-      yield put({
-        type: 'saveCurrentUser',
-        payload: response,
+    *fetchLock({ payload, callback }, { call }) {
+      console.log('payload', payload);
+      const response = yield call(postTransaction, payload);
+      console.log('response', response);
+      callback(response)
+    },
+  },
+  subscriptions: {
+    setup({ dispatch, history }) {
+      history.listen(({ pathname }) => {
+        if (pathname === '/users') {
+          dispatch({
+            type: 'users/fetchAccount',
+          });
+        }
       });
     },
   },
   reducers: {
-    saveCurrentUser(state, action) {
-      return { ...state, currentUser: action.payload || {} };
-    },
-
-    changeNotifyCount(
-      state = {
-        currentUser: {},
-      },
-      action,
-    ) {
+    saveAccount(state, action) {
       return {
         ...state,
-        currentUser: {
-          ...state.currentUser,
-          notifyCount: action.payload.totalCount,
-          unreadCount: action.payload.unreadCount,
-        },
+        currentAccount: action.payload.account,
+        latestBlock: action.payload.latestBlock,
+        version: action.payload.version,
       };
     },
   },
 };
-export default UserModel;

@@ -9,6 +9,7 @@ _roadhog-api-doc
 # production
 /dist
 /.vscode
+/config/deploy
 
 # misc
 .DS_Store
@@ -25,7 +26,8 @@ package-lock.json
 # visual studio code
 .history
 *.log
-functions/*
+
+functions/mock
 .temp/**
 
 # umi
@@ -35,6 +37,3 @@ functions/*
 # screenshot
 screenshot
 .firebase
-.eslintcache
-
-build

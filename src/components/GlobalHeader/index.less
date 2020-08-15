@@ -1,37 +1,67 @@
-@import '~antd/es/style/themes/default.less';
+@import '~antd/lib/style/themes/default.less';
 
 @pro-header-hover-bg: rgba(0, 0, 0, 0.025);
+
+.header {
+  height: 64px;
+  padding: 0 12px 0 0;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  position: relative;
+}
+
+.logo {
+  height: 64px;
+  line-height: 58px;
+  vertical-align: top;
+  display: inline-block;
+  padding: 0 0 0 24px;
+  cursor: pointer;
+  font-size: 20px;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
 
 .menu {
   :global(.anticon) {
     margin-right: 8px;
   }
   :global(.ant-dropdown-menu-item) {
-    min-width: 160px;
+    width: 100%;
+  }
+}
+
+i.trigger {
+  font-size: 20px;
+  height: 64px;
+  cursor: pointer;
+  transition: all 0.3s, padding 0s;
+  padding: 22px 24px;
+  &:hover {
+    background: @pro-header-hover-bg;
   }
 }
 
 .right {
-  display: flex;
   float: right;
-  height: @layout-header-height;
-  margin-left: auto;
+  height: 100%;
   overflow: hidden;
   .action {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding: 0 12px;
     cursor: pointer;
+    padding: 0 12px;
+    display: inline-block;
     transition: all 0.3s;
-    > span {
-      color: @text-color;
+    height: 100%;
+    > i {
       vertical-align: middle;
+      color: @text-color;
     }
     &:hover {
       background: @pro-header-hover-bg;
     }
-    &:global(.opened) {
+    :global(&.ant-popover-open) {
       background: @pro-header-hover-bg;
     }
   }
@@ -43,63 +73,67 @@
   }
   .account {
     .avatar {
-      margin: ~'calc((@{layout-header-height} - 24px) / 2)' 0;
-      margin-right: 8px;
+      margin: 20px 8px 20px 0;
       color: @primary-color;
-      vertical-align: top;
       background: rgba(255, 255, 255, 0.85);
+      vertical-align: middle;
     }
+  }
+  .identIcon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    margin: 0 10px;
+    overflow: hidden;
   }
 }
 
 .dark {
+  height: 64px;
   .action {
     color: rgba(255, 255, 255, 0.85);
-    > span {
+    > i {
       color: rgba(255, 255, 255, 0.85);
     }
     &:hover,
-    &:global(.opened) {
+    &:global(.ant-popover-open) {
       background: @primary-color;
     }
-  }
-}
-
-:global(.ant-pro-global-header) {
-  .dark {
-    .action {
-      color: @text-color;
-      > span {
-        color: @text-color;
-      }
-      &:hover {
-        color: rgba(255, 255, 255, 0.85);
-        > span {
-          color: rgba(255, 255, 255, 0.85);
-        }
-      }
+    :global(.ant-badge) {
+      color: rgba(255, 255, 255, 0.85);
     }
   }
 }
 
 @media only screen and (max-width: @screen-md) {
-  :global(.ant-divider-vertical) {
-    vertical-align: unset;
-  }
-  .name {
-    display: none;
-  }
-  .right {
-    position: absolute;
-    top: 0;
-    right: 12px;
-    .account {
-      .avatar {
-        margin-right: 0;
-      }
+  .header {
+    :global(.ant-divider-vertical) {
+      vertical-align: unset;
     }
-    .search {
+    .name {
       display: none;
+    }
+    i.trigger {
+      padding: 22px 12px;
+    }
+    .logo {
+      padding-left: 12px;
+      padding-right: 12px;
+      position: relative;
+    }
+    .right {
+      position: absolute;
+      right: 12px;
+      top: 0;
+      background: #fff;
+      .account {
+        .avatar {
+          margin-right: 0;
+        }
+      }
     }
   }
 }
