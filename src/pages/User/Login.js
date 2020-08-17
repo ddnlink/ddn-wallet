@@ -62,6 +62,8 @@ class LoginPage extends Component {
   render() {
     const { submitting } = this.props;
     const { type, autoLogin } = this.state;
+    const { nethash, isMobile } = this.context
+    console.log(nethash, isMobile, this.context);
     return (
       <div className={styles.main}>
         <Login
@@ -75,7 +77,7 @@ class LoginPage extends Component {
           <div className={styles.top}>
             <div className={styles.header}>
               <span className={styles.title}>
-                红榜链 {formatMessage({ id: 'layout.user.wallet' })}
+                红榜链 {formatMessage({ id: 'layout.user.wallet' })} 
               </span>
             </div>
             <div className={styles.desc}>{formatMessage({ id: 'layout.user.slogan' })}</div>
