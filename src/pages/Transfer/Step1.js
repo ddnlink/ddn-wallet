@@ -4,7 +4,8 @@ import { Form, Input, Button, Select, Divider } from 'antd';
 import router from 'umi/router';
 import { formatMessage } from 'umi/locale';
 import styles from './style.less';
-import logo from '../../assets/hbllogo_light.jpg';
+// import logo from '../../assets/hbllogo_light.jpg';
+import logo from '../../assets/logo.svg';
 
 const { Option } = Select;
 
@@ -62,7 +63,7 @@ class Step1 extends React.PureComponent {
                 },
                 // [D-E] 需要修改为 tokenPrefix
                 {
-                  pattern: /^([H]{1})([-_a-zA-Z0-9]{30,40})$/,
+                  pattern: /^([D,H]{1})([-_a-zA-Z0-9]{30,40})$/,
                   message: formatMessage({ id: 'app.transfer.address-format-error' }),
                 },
               ],

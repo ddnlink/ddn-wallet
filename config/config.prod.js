@@ -1,7 +1,7 @@
 // https://umijs.org/config/
 export default {
   manifest: {
-    name: 'hbl-wallet',
+    name: 'ddn-wallet',
     background_color: '#FFF',
     description: 'HBL wallet.',
     display: 'standalone',
@@ -16,7 +16,8 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'http://120.221.161.37:8001/api',
+      target: 'http://localhost:8001/api',
+      // target: 'http://120.221.161.37:8001/api',
       changeOrigin: true,
       pathRewrite: { '^/api/': '' },
     },

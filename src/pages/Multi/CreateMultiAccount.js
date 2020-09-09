@@ -102,7 +102,7 @@ class CreateMultiAccount extends PureComponent {
     const { groups } = this.state;
     const { dispatch } = this.props;
     // ’D' tokenPrix
-    if (!value.startsWith('H')) {
+    if (!value.startsWith('H') || !value.startsWith('D')) {
       this.setState({ searchError: formatMessage({ id: 'app.multi.address-error' }) });
       return;
     }

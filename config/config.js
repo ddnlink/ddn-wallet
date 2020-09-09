@@ -3,7 +3,6 @@ import os from 'os';
 import pageRoutes from './router.config';
 import webpackplugin from './plugin.config';
 import defaultSettings from '../src/defaultSettings';
-import site from './site.config';
 
 export default {
   // add for transfer to umi
@@ -93,7 +92,7 @@ export default {
   manifest: {
     name: 'ddn-wallet',
     background_color: '#FFF',
-    description: 'HBL wallet.',
+    description: 'DDN wallet.',
     display: 'standalone',
     start_url: '/index.html',
     icons: [
@@ -106,7 +105,8 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'http://120.221.161.37:8001/api',
+      target: 'http://localhost:8001/api',
+      // target: 'http://106.15.227.133:8001/api',
       changeOrigin: true,
       pathRewrite: { '^/api/': '' },
     },

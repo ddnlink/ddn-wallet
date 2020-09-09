@@ -77,7 +77,7 @@ class LoginPage extends Component {
           <div className={styles.top}>
             <div className={styles.header}>
               <span className={styles.title}>
-                红榜链 {formatMessage({ id: 'layout.user.wallet' })} 
+                {formatMessage({ id: 'layout.user.wallet' })} 
               </span>
             </div>
             <div className={styles.desc}>{formatMessage({ id: 'layout.user.slogan' })}</div>
