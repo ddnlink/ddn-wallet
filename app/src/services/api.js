@@ -1,6 +1,6 @@
 import { stringify } from 'qs';
+// import DdnJS from '@/utils/ddn-js';
 import request from '../utils/request';
-// import tokenConfig from '../../config/token.config';
 
 // --------------------------- login ------------------------ //
 export async function login(params) {
@@ -9,7 +9,7 @@ export async function login(params) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      nethash: DdnJS.options.get('nethash'),
+      nethash: DdnJS.config.nethash,
       version: '',
     },
     body: {
@@ -47,19 +47,18 @@ export async function queryTrans(params) {
 }
 
 // --------------------------- Transaction ------------------------ //
-// 提交转账交易
+// 提交交易（转账、AoB创建等各种交易都可以使用本接口）
 export async function postTransaction(params) {
   return request('/peer/transactions/', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      nethash: DdnJS.options.get('nethash'),
+      nethash: DdnJS.config.nethash,
       version: '',
     },
     body: {
       ...params,
-      method: 'post',
     },
   });
 }
@@ -85,7 +84,7 @@ export async function multiSign(params) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      nethash: DdnJS.options.get('nethash'),
+      nethash: DdnJS.config.nethash,
       version: '',
     },
     body: {
@@ -101,15 +100,16 @@ export async function queryDelegates(params) {
   return request(`/api/delegates?${stringify(params)}`);
 }
 
-// 获取已投票的受托人
+// 获取已投票的受托人(我投过票的)
 export async function queryVotedDelegates(params) {
-  return request(`/api/accounts/delegates?${stringify(params)}`);
+  return request(`/api/votes?${stringify(params)}`);
 }
 
 // 获取给我投票的人
 export async function queryVoters(params) {
   return request(`/api/delegates/voters?${stringify(params)}`);
 }
+
 // 获取受托人详情
 export async function queryDelegateInfo(params) {
   return request(`/api/delegates/get?${stringify(params)}`);
@@ -123,23 +123,37 @@ export async function getIssuerByAddress(params) {
 
 // 获取指定发行商发行的资产
 export async function getAssetsByIssuer(params) {
-  return request(`/api/aob/issuers/${params}/assets`);
+  return request(`/api/aob/assets/issuers/${params}/assets`);
+}
+
+// 获取指定账户所有aob的余额
+export async function getAobList(params) {
+  // console.log('getAobList params', `/api/aob/assets/balances/${params}`);
+
+  return request(`/api/aob/assets/balances/${params}`);
 }
 
 // 获取指定账户所有aob的余额
 export async function getAobBalances(params) {
-  return request(`/api/aob/balances/${params}`);
+  // console.log('getAobBalances params', params);
+
+  return request(`/api/aob/assets/balances/${params}`);
 }
 
 // 获取指定账户指定aob的余额
 export async function getAobBalance(params) {
-  return request(`/api/aob/balances/${params.address}/${params.currency}`);
+  return request(`/api/aob/assets/balances/${params.address}/${params.currency}`);
 }
 
 // 获取指定账户指定资产转账记录
 export async function getAobTransaction(params) {
+  console.log(
+    `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||
+      10}&offset=${params.offset || 0}`
+  );
+
   return request(
-    `/api/aob/transactions/my/${params.address}/${params.currency}?limit=${params.limit ||
+    `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||
       10}&offset=${params.offset || 0}`
   );
 }

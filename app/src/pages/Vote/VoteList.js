@@ -91,16 +91,7 @@ class VoteList extends PureComponent {
     this.handleSelectRows([], []);
   };
 
-  // handleDeleteDelegate = (deleteKey) =>{
-  //   const { selectedRowKeys } = this.state
-  //   const newKeys = [...selectedRowKeys]
-  //   newKeys.splice(newKeys.indexOf(deleteKey), 1 )
-  //   this.setState({
-  //     selectedRowKeys: newKeys
-  //   })
-  // }
-
-  handleVoteDelegate = () => {
+  handleVoteDelegate = async () => {
     const { selectedRows } = this.state;
     const { dispatch } = this.props;
     console.log('selectedRowKeys', selectedRows);
@@ -109,7 +100,7 @@ class VoteList extends PureComponent {
     if (selectedRows.length < 1) return;
     const datap = selectedRows.map(row => `-${row.publicKey}`);
     console.log('datap', datap);
-    const trs = DdnJS.vote.createVote(datap, keyStore.phaseKey);
+    const trs = await DdnJS.vote.createVote(datap, keyStore.phaseKey);
     const payload = { transaction: trs };
     console.log('payload= ', payload);
     dispatch({
@@ -125,7 +116,7 @@ class VoteList extends PureComponent {
   };
 
   handleSetCurDelegate = record => {
-    console.log('record', record);
+    console.log('record。。。。。', record);
     this.setState({
       curDelegate: record,
       visibleDelegate: true,

@@ -4,6 +4,7 @@ import { Form, Input, Button, Select, Divider } from 'antd';
 import router from 'umi/router';
 import { formatMessage } from 'umi/locale';
 import styles from './style.less';
+// import logo from '../../assets/hbllogo_light.jpg';
 import logo from '../../assets/logo.svg';
 
 const { Option } = Select;
@@ -24,7 +25,7 @@ const formItemLayout = {
 class Step1 extends React.PureComponent {
   validateBalance = (rule, value, callback) => {
     const { account } = this.props;
-    console.log('account', account)
+    console.log('account', account);
     if (value && value > account.balance / 100000000) {
       callback(formatMessage({ id: 'app.transfer.insufficient-balance' }));
     }
@@ -49,21 +50,37 @@ class Step1 extends React.PureComponent {
     return (
       <Fragment>
         <Form layout="horizontal" className={styles.stepForm} hideRequiredMark>
-          <Form.Item {...formItemLayout} label={formatMessage({ id: 'app.transfer.receive-address' })}>
+          <Form.Item
+            {...formItemLayout}
+            label={formatMessage({ id: 'app.transfer.receive-address' })}
+          >
             {getFieldDecorator('receiverAccount', {
               initialValue: data.receiverAccount,
               rules: [
-                { required: true, message: formatMessage({ id: 'app.transfer.address-empty-error' }) },
-                { pattern: /^([D-E]{1})([-_a-zA-Z0-9]{30,40})$/, message: formatMessage({ id: 'app.transfer.address-format-error' }) },
+                {
+                  required: true,
+                  message: formatMessage({ id: 'app.transfer.address-empty-error' }),
+                },
+                // [D-E] 需要修改为 tokenPrefix
+                {
+                  pattern: /^([D,H]{1})([-_a-zA-Z0-9]{30,40})$/,
+                  message: formatMessage({ id: 'app.transfer.address-format-error' }),
+                },
               ],
             })(<Input placeholder={formatMessage({ id: 'app.transfer.address-placeholder' })} />)}
           </Form.Item>
-          <Form.Item {...formItemLayout} label={formatMessage({ id: 'app.transfer.transfer-amount' })}>
+          <Form.Item
+            {...formItemLayout}
+            label={formatMessage({ id: 'app.transfer.transfer-amount' })}
+          >
             <Input.Group compact>
               {getFieldDecorator('amount', {
                 initialValue: data.amount,
                 rules: [
-                  { required: true, message: formatMessage({ id: 'app.transfer.amount-empty-error' }) },
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'app.transfer.amount-empty-error' }),
+                  },
                   {
                     pattern: /^(\d+)((?:\.\d+)?)$/,
                     message: formatMessage({ id: 'app.transfer.amount-format-error' }),
@@ -72,7 +89,12 @@ class Step1 extends React.PureComponent {
                     validator: this.validateBalance,
                   },
                 ],
-              })(<Input style={{ width: 'calc(100% - 100px)' }} placeholder={formatMessage({ id: 'app.transfer.amount-placeholder' })} />)}
+              })(
+                <Input
+                  style={{ width: 'calc(100% - 100px)' }}
+                  placeholder={formatMessage({ id: 'app.transfer.amount-placeholder' })}
+                />
+              )}
               <Select defaultValue="DDN" style={{ width: 100 }}>
                 <Option value="DDN">
                   <img src={logo} alt="ddn" className={styles.logo} /> DDN
@@ -86,7 +108,9 @@ class Step1 extends React.PureComponent {
           <Form.Item {...formItemLayout} label={formatMessage({ id: 'app.transfer.message' })}>
             {getFieldDecorator('remark', {
               initialValue: data.remark,
-              rules: [{ required: false, message: formatMessage({ id: 'app.transfer.input-message' }) }],
+              rules: [
+                { required: false, message: formatMessage({ id: 'app.transfer.input-message' }) },
+              ],
             })(<Input placeholder={formatMessage({ id: 'app.transfer.input-message' })} />)}
           </Form.Item>
           <Form.Item

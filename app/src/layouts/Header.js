@@ -4,6 +4,7 @@ import { Layout, message } from 'antd';
 import Animate from 'rc-animate';
 import { connect } from 'dva';
 import router from 'umi/router';
+// import DdnJS from '@/utils/ddn-js';
 import GlobalHeader from '@/components/GlobalHeader';
 import TopNavHeader from '@/components/TopNavHeader';
 import LockModal from '@/components/LockModal';

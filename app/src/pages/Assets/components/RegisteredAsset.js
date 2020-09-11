@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import { getKeyStore } from '@/utils/authority';
 import { Button, Modal, Form, Input, Alert, message } from 'antd';
 import { formatMessage } from 'umi/locale';
+// // import DdnJS from '@/utils/ddn-js';
 
 const FormItem = Form.Item;
 
@@ -30,12 +31,12 @@ class RegisteredAsset extends PureComponent {
   handleCreate = e => {
     e.preventDefault();
     const { issuer, dispatch, form } = this.props;
-    console.log('issuer', issuer);
-    form.validateFields((err, values) => {
+    // console.log('issuer', issuer);
+    form.validateFields(async (err, values) => {
       if (err) {
         return;
       }
-      console.log('values', values);
+      // console.log('values', values);
       // 获取到表单中的数据，并转化格式，发送请求
       const strategy = values.strategy ? values.strategy : '';
       const precision = Number(values.precision);
@@ -47,7 +48,7 @@ class RegisteredAsset extends PureComponent {
       const maximum = parseInt(values.maximum * multi, 10).toString();
       const keystore = getKeyStore();
       const { phaseKey } = keystore;
-      const transaction = DdnJS.aob.createAsset(
+      const transaction = await DdnJS.aob.createAsset(
         name,
         values.des,
         maximum,
@@ -56,21 +57,21 @@ class RegisteredAsset extends PureComponent {
         0,
         0,
         0,
-        phaseKey,
-        null
+        phaseKey
       );
-      console.log('transaction', transaction);
+      // console.log('transaction', transaction);
+
       dispatch({
         type: 'assets/postTrans',
         payload: {
           transaction,
         },
         callback: responese => {
-          console.log('responese', responese);
+          // console.log('responese', responese);
           if (responese.success) {
             form.resetFields();
             this.setState({ visible: false });
-            message.success(`资产${values.name}注册成功`);
+            message.success(`资产 ${values.name} 注册成功`);
           } else {
             this.setState({ errorMessage: responese.error });
           }

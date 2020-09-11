@@ -23,7 +23,7 @@ class registeredAssetDealerForm extends PureComponent {
   handleCreate = e => {
     e.preventDefault();
     const { props } = this;
-    props.form.validateFields((err, values) => {
+    props.form.validateFields(async (err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
       }
@@ -31,8 +31,8 @@ class registeredAssetDealerForm extends PureComponent {
       const { dispatch } = this.props;
       const keystore = getKeyStore();
       const { phaseKey } = keystore;
-      const transaction = DdnJS.aob.createIssuer(values.name, values.des, phaseKey, null);
-      console.log('transaction', transaction, 'dispatch', dispatch);
+      const transaction = await DdnJS.aob.createIssuer(values.name, values.des, phaseKey);
+      console.log('trs', transaction);
 
       dispatch({
         type: 'assets/postTrans',
@@ -43,10 +43,10 @@ class registeredAssetDealerForm extends PureComponent {
           console.log('response', response);
           if (response.success) {
             message.success('注册成功');
+            this.setState({ visible: false });
           } else {
             this.setState({ reponseError: response.error });
           }
-          this.setState({ visible: false });
         },
       });
       props.form.resetFields();
@@ -91,5 +91,5 @@ const WrappedRegisteredAssetDealerForm = Form.create()(registeredAssetDealerForm
 
 export default connect(({ assets, loading }) => ({
   submitting: loading.effects['assets/postTrans'],
-  issuer: assets.issuer,
+  assets,
 }))(WrappedRegisteredAssetDealerForm);

@@ -16,7 +16,7 @@ export default {
   effects: {
     *fetchPeer(action, { call, put }) {
       const res = yield call(queryPeerInfo);
-      console.log("fetchPeer res", res)
+
       yield put({
         type: 'peerState',
         payload: res.version,
@@ -27,8 +27,8 @@ export default {
       const { params } = payload;
       params.offset = (payload.pagination.current - 1) * payload.pagination.pageSize;
       params.limit = payload.pagination.pageSize;
-      // console.log('payload', payload, 'params', params);
       const response = yield call(queryTrans, params);
+
       const result = {
         list: response.transactions,
         pagination: {
@@ -46,7 +46,6 @@ export default {
 
   reducers: {
     saveTrans(state, { payload }) {
-      // console.log('payload4', payload);
       return {
         ...state,
         transData: payload,

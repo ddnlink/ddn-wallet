@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import { getKeyStore } from '@/utils/authority';
 import { Button, Modal, Form, Input, message, Alert } from 'antd';
 import { formatMessage } from 'umi/locale';
+// import DdnJS from '@/utils/ddn-js';
 
 const FormItem = Form.Item;
 
@@ -26,23 +27,23 @@ class IssueAssets extends PureComponent {
   handleCreate = e => {
     e.preventDefault();
     const { asset, form, dispatch } = this.props;
-    form.validateFields((err, values) => {
+    form.validateFields(async (err, values) => {
       if (err) {
         return;
       }
-      console.log('Received values of form: ', values);
+      // console.log('Received values of form: ', values);
       // 获取到表单中的数据，并转化格式，发送请求
       const keystore = getKeyStore();
       const { phaseKey } = keystore;
       const amount = parseInt(values.amount * 10 ** asset.precision, 10).toString();
       const currency = asset.currency || asset.name;
-      const transaction = DdnJS.aob.createIssue(currency, amount, phaseKey, null);
-      console.log('transaction', transaction);
+      const transaction = await DdnJS.aob.createIssue(currency, amount, phaseKey);
+      // console.log('transaction', transaction);
       dispatch({
         type: 'assets/postTrans',
         payload: { transaction },
         callback: response => {
-          console.log('response', response);
+          // console.log('response', response);
           if (response.success) {
             this.setState({ visible: false });
             message.success('发行成功');

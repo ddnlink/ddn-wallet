@@ -64,7 +64,8 @@ class Step3 extends React.PureComponent {
             </Col>
             <Col xs={24} sm={16}>
               <a
-                href={`http://testnet.ebookchain.org/transactions/${data.transId}`}
+              // TODO：抽取为常量
+                href={`http://testnet.ddn.link/transactions/${data.transId}`}
                 target="_blank"
                 rel="noreferrer noopener"
               >

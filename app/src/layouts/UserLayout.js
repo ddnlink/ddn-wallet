@@ -7,7 +7,7 @@ import styles from './UserLayout.less';
 
 const copyright = (
   <Fragment>
-    Copyright <Icon type="copyright" /> 2018 Powered by DDN team
+    Copyright <Icon type="copyright" /> 2018 Powered by DDN FOUNDATION
   </Fragment>
 );
 

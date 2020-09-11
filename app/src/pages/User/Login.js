@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi/locale';
 import { Checkbox, Alert } from 'antd';
+// import DdnJS from '@ddn/js-sdk'
 import Login from '@/components/Login';
 import styles from './Login.less';
 import Register from './Register';
@@ -28,11 +29,15 @@ class LoginPage extends Component {
     const keyPair = DdnJS.crypto.getKeys(values.phaseKey.trim());
 
     const curAddress = DdnJS.crypto.generateAddress(keyPair.publicKey);
+
     const keyStore = {
       address: curAddress,
       phaseKey: values.phaseKey,
       publicKey: keyPair.publicKey,
     };
+
+    console.log('curAddress', keyStore);
+
     dispatch({
       type: 'login/login',
       payload: {
@@ -40,9 +45,6 @@ class LoginPage extends Component {
         type: 'account',
         currentAuthority: 'address',
         keyStore,
-      },
-      callback: response => {
-        console.log('response', response);
       },
     });
   };
@@ -60,6 +62,8 @@ class LoginPage extends Component {
   render() {
     const { submitting } = this.props;
     const { type, autoLogin } = this.state;
+    const { nethash, isMobile } = this.context
+    console.log(nethash, isMobile, this.context);
     return (
       <div className={styles.main}>
         <Login
@@ -73,10 +77,10 @@ class LoginPage extends Component {
           <div className={styles.top}>
             <div className={styles.header}>
               <span className={styles.title}>
-                DDN {formatMessage({ id: 'layout.user.wallet' })}
+                {formatMessage({ id: 'layout.user.wallet' })} 
               </span>
             </div>
-            <div className={styles.desc}>DDN {formatMessage({ id: 'layout.user.slogan' })}</div>
+            <div className={styles.desc}>{formatMessage({ id: 'layout.user.slogan' })}</div>
           </div>
           <div style={{ margin: '10px 0', color: '#4865FE', fontSize: '16px' }}>
             {formatMessage({ id: 'app.login.wordsLogin' })}

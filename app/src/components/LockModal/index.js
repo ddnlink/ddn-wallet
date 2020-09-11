@@ -52,7 +52,6 @@ class LockModal extends React.Component {
   getModalContent = () => {
     const { lockHeight, heightHelp } = this.state;
     const { height, lockResponse } = this.props;
-    console.log('lockResponse', lockResponse);
     let duration;
     if (lockHeight && lockHeight > height) {
       duration = moment.duration((lockHeight - height) * 10 * 1000).asDays();

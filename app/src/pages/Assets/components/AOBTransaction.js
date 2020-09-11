@@ -21,13 +21,13 @@ class AOBTransaction extends Component {
       width: '16%',
       render: text => <div>{`${text.slice(1, 10)}...${text.slice(-10)}`}</div>,
     },
-    {
-      title: formatMessage({ id: 'app.home.trans.type' }),
-      dataIndex: 'type',
-      sorter: false,
-      width: '8%',
-      render: text => <div>{text}</div>,
-    },
+    // {
+    //   title: formatMessage({ id: 'app.home.trans.type' }),
+    //   dataIndex: 'type',
+    //   sorter: false,
+    //   width: '8%',
+    //   render: text => <div>{text}</div>,
+    // },
     {
       title: formatMessage({ id: 'app.home.trans.senderId' }),
       dataIndex: 'senderId',
@@ -48,16 +48,27 @@ class AOBTransaction extends Component {
       width: '8%',
       render: record => (
         <span>
-          {record.asset.aobTransfer.amountShow} {record.asset.aobTransfer.currency.split('.')[1]}
+          {record.asset.aobTransfer.amount} {record.asset.aobTransfer.currency.split('.')[1]}
         </span>
       ),
     },
     {
-      title: formatMessage({ id: 'app.home.trans.fee' }),
-      dataIndex: 'fee',
+      title: formatMessage({ id: 'app.asset.message' }),
+      dataIndex: 'message',
       sorter: false,
       width: '8%',
-      render: text => <span>{text / 100000000.0}</span>,
+      render: text => <span>{text}</span>,
+    },
+
+    {
+      title: formatMessage({ id: 'app.asset.content' }),
+      sorter: false,
+      width: '16%',
+      render: record => (
+        <span>
+          {record.asset.aobTransfer.content} {record.asset.aobTransfer.content.split('.')[1]}
+        </span>
+      ),
     },
     {
       title: formatMessage({ id: 'app.home.trans.height' }),
@@ -87,6 +98,8 @@ class AOBTransaction extends Component {
 
   getTransactions = async (params = {}) => {
     const { assetInfo, address, dispatch } = this.props;
+    // console.log('assetInfo', assetInfo);
+
     const payload = {
       address,
       currency: assetInfo.currency,
@@ -94,7 +107,7 @@ class AOBTransaction extends Component {
       offset: params.offset,
     };
     dispatch({
-      type: 'assets/fetchTransaction',
+      type: 'assets/getAobTransfers',
       payload,
     });
   };
@@ -122,6 +135,7 @@ class AOBTransaction extends Component {
   render() {
     const { visible, pagination } = this.state;
     const { transactions, loading } = this.props;
+
     return (
       <div>
         <Button size="large" style={{ width: '120px' }} onClick={this.showModal}>
@@ -150,6 +164,6 @@ class AOBTransaction extends Component {
 }
 
 export default connect(({ assets, loading }) => ({
-  loading: loading.effects['assets/fetchTransaction'],
+  loading: loading.effects['assets/getAobTransfers'],
   transactions: assets.transactions,
 }))(AOBTransaction);

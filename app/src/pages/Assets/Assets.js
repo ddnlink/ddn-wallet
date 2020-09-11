@@ -28,14 +28,14 @@ class Assets extends PureComponent {
       },
       {
         title: formatMessage({ id: 'app.asset.asset-limit' }),
-        dataIndex: 'maximumShow',
-        key: 'maximumShow',
+        dataIndex: 'maximum',
+        key: 'maximum',
         width: '20%',
       },
       {
         title: formatMessage({ id: 'app.asset.asset-quality' }),
-        dataIndex: 'quantityShow',
-        key: 'quantityShow',
+        dataIndex: 'quantity',
+        key: 'quantity',
         width: '20%',
       },
       {
@@ -65,6 +65,8 @@ class Assets extends PureComponent {
 
   componentDidMount() {
     const { dispatch } = this.props;
+    // console.log('this.keyStore', this.keyStore);
+
     const params = {
       address: this.keyStore.address,
     };
@@ -75,14 +77,14 @@ class Assets extends PureComponent {
     dispatch({
       type: 'assets/fetchIssuer',
       payload: this.keyStore.address,
-      callback: response => {
-        if (response.success) {
-          dispatch({
-            type: 'assets/fetchMyAssets',
-            payload: response.issuer.name,
-          });
-        }
-      },
+    }).then(issuer => {
+      // console.log('issuerponse.issuer', issuer);
+      if (issuer) {
+        dispatch({
+          type: 'assets/fetchMyAssets',
+          payload: issuer.name,
+        });
+      }
     });
   }
 
@@ -95,7 +97,7 @@ class Assets extends PureComponent {
 
   render() {
     const { issuer, myAob, myIssueAob, loading } = this.props;
-    console.log('issuer', issuer, 'myAob', myAob, 'myIssueAob', myIssueAob, 'loading', loading);
+    console.log('issuer', issuer, 'myAob123', myAob, 'myIssueAob', myIssueAob, 'loading', loading);
     const pageTitle = (
       <div style={{ display: 'flex' }}>
         <div style={{ flex: '1' }}>
@@ -142,7 +144,7 @@ class Assets extends PureComponent {
           <Row gutter={24}>
             {myAob.list.length > 0 &&
               myAob.list.map(item => (
-                <Col span={6} key={item.currency}>
+                <Col span={6} key={item.name}>
                   <Card
                     title={
                       <div>
@@ -161,13 +163,13 @@ class Assets extends PureComponent {
                         <div style={{ flex: '1', textAlign: 'left' }}>
                           {formatMessage({ id: 'app.asset.asset-limit' })}
                         </div>
-                        <div style={{ flex: '1', textAlign: 'right' }}>{item.maximumShow}</div>
+                        <div style={{ flex: '1', textAlign: 'right' }}>{item.maximum}</div>
                       </div>
                       <div style={{ display: 'flex' }}>
                         <div style={{ flex: '1', textAlign: 'left' }}>
                           {formatMessage({ id: 'app.asset.asset-quality' })}
                         </div>
-                        <div style={{ flex: '1', textAlign: 'right' }}>{item.quantityShow}</div>
+                        <div style={{ flex: '1', textAlign: 'right' }}>{item.quantity}</div>
                       </div>
                       <div
                         style={{
@@ -180,7 +182,7 @@ class Assets extends PureComponent {
                           marginTop: '20px',
                         }}
                       >
-                        {item.balanceShow}
+                        {item.balance}
                       </div>
                     </div>
                   </Card>

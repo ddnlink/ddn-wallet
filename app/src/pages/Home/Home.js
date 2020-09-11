@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import { Row, Col, Card, Table, Radio, Icon } from 'antd';
 import moment from 'moment';
 import { formatMessage } from 'umi/locale';
+// import DdnJS from '@ddn/js-sdk'
 import { ChartCard } from '@/components/Charts';
 import { getKeyStore } from '@/utils/authority';
 import styles from './Home.less';
@@ -162,7 +163,6 @@ class Home extends PureComponent {
   render() {
     const { role } = this.state;
     const { transData, account, latestBlock, version, loading, transLoading, peer } = this.props;
-    console.log('peerState', version, peer);
 
     const topColResponsiveProps = {
       xs: 24,
@@ -171,6 +171,7 @@ class Home extends PureComponent {
       lg: 8,
       xl: 8,
     };
+
     const beginEpochTime = DdnJS.utils.slots.beginEpochTime();
     const duration = moment().diff(beginEpochTime, 'days');
 
@@ -205,7 +206,7 @@ class Home extends PureComponent {
               action={
                 <span>
                   <span>{formatMessage({ id: 'app.home.unit' })}: </span>
-                  <span>DDN</span>
+                  <span>HBL</span>
                 </span>
               }
               loading={loading}

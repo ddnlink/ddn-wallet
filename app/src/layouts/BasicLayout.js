@@ -13,6 +13,7 @@ import SiderMenu from '@/components/SiderMenu';
 import Authorized from '@/utils/Authorized';
 import SettingDrawer from '@/components/SettingDrawer';
 import { getKeyStore } from '@/utils/authority';
+// import logo from '../assets/hbllogo_light.jpg';
 import logo from '../assets/logo.svg';
 import Footer from './Footer';
 import Header from './Header';
@@ -175,13 +176,13 @@ class BasicLayout extends React.PureComponent {
     const currRouterData = this.matchParamsPath(pathname);
 
     if (!currRouterData) {
-      return 'DDN Wallet';
+      return formatMessage({ id: 'layout.user.wallet' });
     }
     const message = formatMessage({
       id: currRouterData.locale || currRouterData.name,
       defaultMessage: currRouterData.name,
     });
-    return `${message} - DDN Wallet`;
+    return `${message} - ${formatMessage({ id: 'layout.user.wallet' })}`;
   };
 
   getLayoutStyle = () => {

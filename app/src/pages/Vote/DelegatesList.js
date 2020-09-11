@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'dva';
 import { Card, Form, Badge, Table, Alert, Modal } from 'antd';
 import { formatMessage } from 'umi/locale';
+// import DdnJS from '@/utils/ddn-js';
 
 import { getKeyStore } from '@/utils/authority';
 import DelegateModal from './DelegateModal';
@@ -102,11 +103,7 @@ class DelegatesList extends PureComponent {
   };
 
   handleSelectStandbyRows = (selectedStandbyRowKeys, selectedStandbyRows) => {
-    console.log(
-      'selectedStandbyRows, selectedStandbyRowKeys',
-      selectedStandbyRows,
-      selectedStandbyRowKeys
-    );
+    console.log('handleSelectStandbyRows........', selectedStandbyRows, selectedStandbyRowKeys);
     this.setState({
       selectedStandbyRows,
       selectedStandbyRowKeys,
@@ -138,12 +135,12 @@ class DelegatesList extends PureComponent {
     }
   };
 
-  handleVoteDelegate = selectedRows => {
+  handleVoteDelegate = async selectedRows => {
     const { dispatch } = this.props;
     const keyStore = getKeyStore();
     if (selectedRows.length < 1) return;
     const datap = selectedRows.map(row => (row.voted ? `-${row.publicKey}` : `+${row.publicKey}`));
-    const trs = DdnJS.vote.createVote(datap, keyStore.phaseKey);
+    const trs = await DdnJS.vote.createVote(datap, keyStore.phaseKey);
     const payload = { transaction: trs };
     dispatch({
       type: 'vote/voting',

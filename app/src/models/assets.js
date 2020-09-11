@@ -1,4 +1,11 @@
-import { getIssuerByAddress, getAobBalances, getAssetsByIssuer, postTransaction, getAobTransaction } from '@/services/api';
+import {
+  getIssuerByAddress,
+  // getAobList,
+  getAobBalances,
+  getAssetsByIssuer,
+  postTransaction,
+  getAobTransaction,
+} from '@/services/api';
 
 const initialState = {
   issuer: {},
@@ -10,49 +17,55 @@ const initialState = {
     list: [],
     count: 0,
   },
-  transactions: []
-}
+  transactions: [],
+};
 
 export default {
   namespace: 'assets',
 
-  state: {...initialState},
+  state: { ...initialState },
 
   effects: {
     *fetchIssuer({ payload }, { call, put }) {
       const response = yield call(getIssuerByAddress, payload);
+
       yield put({
         type: 'saveIssuer',
         payload: response,
       });
+
+      return response.result;
     },
     *fetchMyAssets({ payload }, { call, put }) {
       const response = yield call(getAssetsByIssuer, payload);
       yield put({
-        type: 'saveMyAsset',
+        type: 'saveAssetsByIssuer',
         payload: response,
       });
     },
     *getAobList({ payload }, { call, put }) {
       const response = yield call(getAobBalances, payload.address);
-      if(response.success && response.balances.length > 0){
+      // console.log('getAobList response', response);
+
+      if (response.success) {
         yield put({
-          type: 'saveList',
-          payload: response,
-          action: payload
+          type: 'saveAssetsByAddress',
+          payload: response.result,
         });
       }
     },
-    *fetchTransaction({ payload }, { call, put }) {
+    *getAobTransfers({ payload }, { call, put }) {
       const response = yield call(getAobTransaction, payload);
+      console.log('getAobTransfers payload', payload);
+
       yield put({
-        type: 'saveTransactions',
+        type: 'saveAoBTransfers',
         payload: response,
       });
     },
     *postTrans({ payload, callback }, { call }) {
-      const response = yield call(postTransaction, payload);
-      callback(response)
+      const res = yield call(postTransaction, payload);
+      callback(res);
     },
   },
 
@@ -60,31 +73,35 @@ export default {
     saveIssuer(state, { payload }) {
       return {
         ...state,
-        issuer: payload.issuer || {},
+        issuer: payload.result || {},
       };
     },
-    saveMyAsset(state, { payload }) {
+    saveAssetsByIssuer(state, { payload }) {
+      // console.log('saveAssetsByIssuer payload', payload);
+
       return {
         ...state,
         myIssueAob: {
-          list: payload.assets,
-          count: payload.count
+          list: payload.result.rows,
+          count: payload.result.total,
         },
       };
     },
-    saveTransactions(state, { payload }) {
-      console.log("trans payload", payload)
+    saveAoBTransfers(state, { payload }) {
+      console.log('trans payload', payload);
       return {
         ...state,
-        transactions: payload.transactions,
+        transactions: payload.result.rows,
       };
     },
-    saveList(state, { payload }) {
+    saveAssetsByAddress(state, { payload }) {
+      // console.log('payload', payload);
+
       return {
         ...state,
         myAob: {
-          list: payload.balances,
-          count: payload.balances.length,
+          list: payload,
+          count: payload.length,
         },
       };
     },
