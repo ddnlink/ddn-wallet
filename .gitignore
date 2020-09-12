@@ -35,3 +35,7 @@ functions/mock
 # screenshot
 screenshot
 .firebase
+node_modules
+
+# umi
+.umi
