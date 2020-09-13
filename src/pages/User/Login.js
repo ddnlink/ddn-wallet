@@ -9,7 +9,7 @@ import Register from './Register';
 
 const { Wallet, Submit } = Login;
 
-@connect(({ login, global, loading }) => ({
+@connect(({ login, loading }) => ({
   login,
   submitting: loading.effects['login/login'],
 }))
@@ -36,7 +36,7 @@ class LoginPage extends Component {
       publicKey: keyPair.publicKey,
     };
 
-    console.log('curAddress', keyStore);
+    // console.log('curAddress', keyStore);
 
     dispatch({
       type: 'login/login',
@@ -62,8 +62,8 @@ class LoginPage extends Component {
   render() {
     const { submitting } = this.props;
     const { type, autoLogin } = this.state;
-    const { nethash, isMobile } = this.context
-    console.log(nethash, isMobile, this.context);
+    // const { nethash, isMobile } = this.context
+    // console.log(nethash, isMobile, this.context);
     return (
       <div className={styles.main}>
         <Login
@@ -76,9 +76,7 @@ class LoginPage extends Component {
         >
           <div className={styles.top}>
             <div className={styles.header}>
-              <span className={styles.title}>
-                {formatMessage({ id: 'layout.user.wallet' })} 
-              </span>
+              <span className={styles.title}>{formatMessage({ id: 'layout.user.wallet' })}</span>
             </div>
             <div className={styles.desc}>{formatMessage({ id: 'layout.user.slogan' })}</div>
           </div>

@@ -2,8 +2,10 @@ import fetch from 'dva/fetch';
 import { notification } from 'antd';
 import router from 'umi/router';
 import hash from 'hash.js';
-import tokenConfig from '../../config/token.config';
+import peerConfig from '../../config/peer.config';
 import { isAntdPro } from './utils';
+
+const peer = peerConfig[process.env.NODE_ENV];
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -121,7 +123,7 @@ export default function request(
     }
   }
   // fixme
-  const requestUrl = `${tokenConfig.requestUrl}${url}`;
+  const requestUrl = `${peer.requestUrl}${url}`;
 
   return fetch(requestUrl, newOptions)
     .then(checkStatus)

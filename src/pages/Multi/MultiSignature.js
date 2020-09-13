@@ -155,8 +155,8 @@ class MultiSignature extends PureComponent {
     });
   };
 
-  onChange = checked => {
-    console.log(`switch to ${checked}`);
+  onChange = () => {
+    // console.log(`switch to ${checked}`);
     this.setState({ open: true });
   };
 
@@ -175,7 +175,7 @@ class MultiSignature extends PureComponent {
       type: 'multi/createMultiSign',
       payload: params,
       callback: response => {
-        console.log('multi response', response);
+        // console.log('multi response', response);
         if (response.success) {
           dispatch({
             type: 'multi/fetchTransactions',
@@ -191,7 +191,7 @@ class MultiSignature extends PureComponent {
 
   showMultiMembers = (e, record) => {
     e.preventDefault();
-    console.log('record', record);
+    // console.log('record', record);
     const member = record.multisigaccounts.map(item => item.address);
     member.push(record.address);
     this.setState({
@@ -207,7 +207,7 @@ class MultiSignature extends PureComponent {
   render() {
     const { account, multiAccounts, transactions, loadingAccount, loadingTrans } = this.props;
     const { open, show, multisigaccounts } = this.state;
-    console.log('MultiSignature accounts', multiAccounts, 'transactions', transactions);
+    // console.log('MultiSignature accounts', multiAccounts, 'transactions', transactions);
     const pageTitle = (
       <div style={{ display: 'flex' }}>
         <div style={{ flex: '1' }}>
