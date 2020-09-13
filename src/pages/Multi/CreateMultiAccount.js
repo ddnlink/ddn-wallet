@@ -7,11 +7,11 @@
  */
 
 import React, { PureComponent } from 'react';
+import { connect } from 'dva';
 import { Steps, Button, Icon, Input, Slider, List, message, Alert } from 'antd';
 // // import DdnJS from '@/utils/ddn-js';
-import { getKeyStore } from '@/utils/authority';
-import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
+import { getKeyStore } from '@/utils/authority';
 
 const { Step } = Steps;
 const { Search } = Input;
@@ -63,6 +63,16 @@ class CreateMultiAccount extends PureComponent {
     this.keyStore = getKeyStore();
   }
 
+  validateAddress = address => {
+    if (typeof address !== 'string') {
+      return false;
+    }
+    if ([DdnJS.constants.tokenPrefix].indexOf(address[0]) === -1) {
+      return false;
+    }
+    return true;
+  }
+  
   addGroup = (address, publicKey) => {
     const { groups } = this.state;
     const newGroups = [...groups];
@@ -101,8 +111,7 @@ class CreateMultiAccount extends PureComponent {
   getGroup = value => {
     const { groups } = this.state;
     const { dispatch } = this.props;
-    // ’D' tokenPrix
-    if (!value.startsWith('H') || !value.startsWith('D')) {
+    if (!this.validateAddress(value)) {
       this.setState({ searchError: formatMessage({ id: 'app.multi.address-error' }) });
       return;
     }
@@ -287,7 +296,8 @@ class CreateMultiAccount extends PureComponent {
       this.keyStore.phaseKey,
       null
     );
-    console.log('transaction', transaction);
+    // console.log('transaction 。。。。。。。。。', transaction);
+    console.log('DdnJS.config 。。。。。。。。。', DdnJS.constants);
     dispatch({
       type: 'multi/createMultiTansactions',
       payload: { transaction },

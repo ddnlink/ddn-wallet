@@ -61,7 +61,6 @@ export default {
   },
   externals: {
     '@antv/data-set': 'DataSet',
-    '@ddn/node-sdk': 'DdnJS',
   },
   ignoreMomentLocale: true,
   lessLoaderOptions: {
@@ -105,8 +104,7 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'http://localhost:8001/api',
-      // target: 'http://106.15.227.133:8001/api',
+      target: 'http://peer.ebookchain.org/api',
       changeOrigin: true,
       pathRewrite: { '^/api/': '' },
     },
@@ -115,8 +113,4 @@ export default {
   cssnano: {
     mergeRules: false,
   },
-
-  context: {
-    nethash: '232345'
-  }
 };

@@ -23,9 +23,19 @@ const formItemLayout = {
 }))
 @Form.create()
 class Step1 extends React.PureComponent {
+  validateAddress = (rule, address, callback) => {
+    if (typeof address !== 'string') {
+      callback(formatMessage({ id: 'app.transfer.address-format-error' }));
+    }
+    if ([DdnJS.constants.tokenPrefix].indexOf(address[0]) === -1) {
+      callback(formatMessage({ id: 'app.transfer.address-format-error' }));
+    }
+    callback();
+  }
+
   validateBalance = (rule, value, callback) => {
     const { account } = this.props;
-    console.log('account', account);
+    // console.log('account', account);
     if (value && value > account.balance / 100000000) {
       callback(formatMessage({ id: 'app.transfer.insufficient-balance' }));
     }
@@ -61,10 +71,8 @@ class Step1 extends React.PureComponent {
                   required: true,
                   message: formatMessage({ id: 'app.transfer.address-empty-error' }),
                 },
-                // [D-E] 需要修改为 tokenPrefix
                 {
-                  pattern: /^([D,H]{1})([-_a-zA-Z0-9]{30,40})$/,
-                  message: formatMessage({ id: 'app.transfer.address-format-error' }),
+                  validator: this.validateAddress,
                 },
               ],
             })(<Input placeholder={formatMessage({ id: 'app.transfer.address-placeholder' })} />)}
@@ -95,15 +103,15 @@ class Step1 extends React.PureComponent {
                   placeholder={formatMessage({ id: 'app.transfer.amount-placeholder' })}
                 />
               )}
-              <Select defaultValue="DDN" style={{ width: 100 }}>
-                <Option value="DDN">
-                  <img src={logo} alt="ddn" className={styles.logo} /> DDN
+              <Select defaultValue={DdnJS.constants.tokenName} style={{ width: 100 }}>
+                <Option value={DdnJS.constants.tokenName}>
+                  <img src={logo} alt={DdnJS.constants.tokenName} className={styles.logo} /> {DdnJS.constants.tokenName}
                 </Option>
               </Select>
             </Input.Group>
           </Form.Item>
           <Form.Item {...formItemLayout} label={formatMessage({ id: 'app.transfer.fees' })}>
-            <span>0.1 DDN</span>
+            <span>0.1 {DdnJS.constants.tokenName}</span>
           </Form.Item>
           <Form.Item {...formItemLayout} label={formatMessage({ id: 'app.transfer.message' })}>
             {getFieldDecorator('remark', {

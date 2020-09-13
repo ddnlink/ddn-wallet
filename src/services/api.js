@@ -9,7 +9,7 @@ export async function login(params) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      nethash: DdnJS.config.nethash,
+      nethash: DdnJS.constants.nethash,
       version: '',
     },
     body: {
@@ -54,7 +54,7 @@ export async function postTransaction(params) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      nethash: DdnJS.config.nethash,
+      nethash: DdnJS.constants.nethash,
       version: '',
     },
     body: {
@@ -84,7 +84,7 @@ export async function multiSign(params) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      nethash: DdnJS.config.nethash,
+      nethash: DdnJS.constants.nethash,
       version: '',
     },
     body: {

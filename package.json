@@ -1,100 +1,11 @@
 {
   "name": "ddn-wallet",
-<<<<<<< HEAD
-  "productName": "ddn-Wallet-desktop",
-  "version": "2.2.0",
-  "description": "DDN, Data Delivery Network",
-  "main": "./app/main.js",
-  "scripts": {
-    "start": "cd app && npm run start",
-    "start:no-mock": "cd app && npm run start:no-mock",
-    "build": "cd app && npm run build",
-    "analyze": "cd app && npm run analyze",
-    "electron-start": "cross-env NODE_ENV=production cd app && electron . ",
-    "dev": "concurrently \"npm run start\" \"wait-on http://localhost:8000 && cd app && cross-env NODE_ENV=development electron .\"",
-    "package": "npm run build && cross-env NODE_ENV=development DEBUG_PROD=true build --publish never",
-    "package-win32": "npm run build && cross-env NODE_ENV=production build --win --ia32",
-    "package-quick": "cross-env NODE_ENV=production build --publish never"
-  },
-  "browserslist": "electron 1.6",
-  "build": {
-    "productName": "DDNWallet",
-    "appId": "org.develar.ElectronReact",
-    "files": [
-      "dist/**/*",
-      "main.js",
-      "package.json"
-    ],
-    "dmg": {
-      "contents": [
-        {
-          "x": 130,
-          "y": 220
-        },
-        {
-          "x": 410,
-          "y": 220,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
-    },
-    "mac": {
-      "target": [
-        "zip",
-        "dmg"
-      ],
-      "category": "public.app-category.tools",
-      "publish": [
-        {
-          "provider": "generic",
-          "url": "http://otkngwosa.bkt.clouddn.com/ddn/osx/x64"
-        }
-      ]
-    },
-    "win": {
-      "target": [
-        "nsis"
-      ],
-      "icon": "./resources/icon.ico",
-      "publish": [
-        {
-          "provider": "generic",
-          "url": "http://otkngwosa.bkt.clouddn.com/ddn/win32/x32"
-        }
-      ]
-    },
-    "linux": {
-      "target": [
-        "deb",
-        "AppImage"
-      ],
-      "category": "Development"
-    },
-    "directories": {
-      "buildResources": "resources",
-      "output": "release"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ddnlink/ddn-Wallet-desktop.git"
-  },
-  "author": {
-    "name": "DDN Foundation",
-    "email": "support@ddn.link",
-    "url": "https://github.com/ddnlink"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ddnlink/ddn-Wallet-desktop/issues"
-=======
   "version": "2.2.0",
   "description": "A wallet for managing ddn assets",
   "private": true,
   "main": "main.js",
   "scripts": {
-    "precommit:fixme": "npm run lint-staged",
+    "precommit": "npm run lint-staged",
     "presite": "npm run generate-mock && cd functions && npm install",
     "start": "cross-env APP_TYPE=site umi dev",
     "start:no-mock": "cross-env MOCK=none umi dev",
@@ -110,8 +21,7 @@
     "generate-mock": "node ./scripts/generateMock.js",
     "test:component": "umi test ./src/components",
     "test:all": "node ./tests/run-tests.js",
-    "prettier": "prettier --write ./src/**/**/**/*",
-    "deploy": "deploy website"
+    "prettier": "prettier --write ./src/**/**/**/*"
   },
   "dependencies": {
     "@antv/data-set": "^0.9.6",
@@ -148,36 +58,8 @@
     "react-fittext": "^1.0.0",
     "react-router-dom": "^4.3.1",
     "whatwg-fetch": "^3.0.0"
->>>>>>> custom
   },
-  "keywords": [
-    "electron",
-    "boilerplate",
-    "react",
-    "wallet",
-    "ddn"
-  ],
-  "homepage": "https://github.com/ddnlink/ddn-Wallet-desktop#readme",
   "devDependencies": {
-<<<<<<< HEAD
-    "concurrently": "^4.0.1",
-    "cross-env": "^5.2.0",
-    "devtron": "^1.4.0",
-    "electron": "^7.2.4",
-    "electron-builder": "^19.45.4",
-    "electron-connect": "^0.6.2",
-    "wait-on": "^2.1.0"
-  },
-  "dependencies": {
-    "antd-pro-merge-less": "0.0.9",
-    "electron-is-dev": "^0.3.0"
-  },
-  "devEngines": {
-    "node": "^8.10.0 || >=9.10.0",
-    "npm": ">=4.x",
-    "yarn": ">=0.21.3"
-  }
-=======
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.6",
     "antd-pro-merge-less": "^0.0.9",
@@ -205,9 +87,9 @@
     "stylelint": "^9.4.0",
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-standard": "^18.0.0",
-    "umi": "^2.13.13",
-    "umi-plugin-ga": "^1.1.8",
-    "umi-plugin-react": "^1.15.8"
+    "umi": "^2.1.1",
+    "umi-plugin-ga": "^1.0.3",
+    "umi-plugin-react": "^1.1.1"
   },
   "lint-staged": {
     "**/*.{js,jsx,less}": [
@@ -225,5 +107,4 @@
     "last 2 versions",
     "not ie <= 10"
   ]
->>>>>>> custom
 }

@@ -252,7 +252,20 @@ const routes = [
         exact: true,
       },
       {
-        path: 'http://testnet.hbl.lcxf.gov.cn',
+        path: '/dapp',
+        name: 'application',
+        icon: 'appstore',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              component: () => import('../Dapp/Dapp'),
+              LoadingComponent: require('/Users/imfly/projects/DDN/ddn-wallet/src/components/PageLoading/index')
+                .default,
+            })
+          : require('../Dapp/Dapp').default,
+        exact: true,
+      },
+      {
+        path: 'http://mainnet.ddn.link',
         target: '_blank',
         name: 'block',
         icon: 'global',

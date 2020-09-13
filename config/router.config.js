@@ -97,15 +97,15 @@ export default [
         component: './Assets/Assets',
       },
       // Decentrelize application
-      // {
-      //   path: '/dapp',
-      //   name: 'application',
-      //   icon: 'appstore',
-      //   component: './Dapp/Dapp',
-      // },
+      {
+        path: '/dapp',
+        name: 'application',
+        icon: 'appstore',
+        component: './Dapp/Dapp',
+      },
       // block explorer
       {
-        path: 'http://testnet.hbl.lcxf.gov.cn',
+        path: 'http://mainnet.ddn.link',
         target: '_blank',
         name: 'block',
         icon: 'global',

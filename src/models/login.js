@@ -1,6 +1,8 @@
 import { routerRedux } from 'dva/router';
+import { stringify } from 'qs';
 import { getFakeCaptcha, login } from '@/services/api';
 import { setAuthority, setKeyStore } from '@/utils/authority';
+import { getPageQuery } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
 
 export default {
@@ -11,19 +13,22 @@ export default {
   },
 
   effects: {
-    *login({ payload }, { call, put }) {
-      yield call(login, { publicKey: payload.keyStore.publicKey });
+    *login({ payload, callback }, { call, put }) {
+      const response = yield call(login, { publicKey: payload.keyStore.publicKey });
+      callback(response);
       yield put({
         type: 'changeLoginStatus',
         payload,
       });
-
       // Login successfully and redirect
+      console.log('payload', payload);
       if (payload.status === 'ok') {
         reloadAuthorized();
         const urlParams = new URL(window.location.href);
-        // console.log('redirect', redirect);
-        yield put(routerRedux.replace('/'));
+        const params = getPageQuery();
+        const { redirect } = params;
+        console.log('redirect', redirect);
+        yield put(routerRedux.replace(redirect || '/'));
       }
     },
 
