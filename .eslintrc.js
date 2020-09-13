@@ -11,6 +11,9 @@ module.exports = {
   },
   globals: {
     APP_TYPE: true,
+    DDN_ENV: true,
+    NODE_ENV: true,
+    DdnJS: true,
   },
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js'] }],
