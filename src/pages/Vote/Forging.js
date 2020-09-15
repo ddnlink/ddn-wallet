@@ -12,7 +12,6 @@ import styles from './Forging.less';
   currentAccount: user.currentAccount,
   loading: loading.effects['vote/fetchVoters'],
 }))
-
 class Forging extends PureComponent {
   columns = [
     {
@@ -26,24 +25,22 @@ class Forging extends PureComponent {
     {
       title: formatMessage({ id: 'app.vote.weight' }),
       dataIndex: 'weight',
-      render: (text) => (
-        <div>{`${text.toFixed(4)}%`}</div>
-      ),
+      render: text => <div>{`${text}%`}</div>,
     },
-  ]
+  ];
 
   componentDidMount() {
     const { dispatch, currentAccount } = this.props;
-    console.log("currentAccount", currentAccount)
+    console.log('currentAccount', currentAccount);
     dispatch({
       type: 'vote/fetchVoters',
-      payload: { publicKey: currentAccount.publicKey}
+      payload: { publicKey: currentAccount.publicKey },
     });
   }
 
   render() {
-    const { voters, loading, delegateInfo } = this.props
-    console.log("delegateInfo", delegateInfo)
+    const { voters, loading, delegateInfo } = this.props;
+    console.log('delegateInfo', delegateInfo);
     const topColResponsiveProps = {
       xs: 24,
       sm: 8,
@@ -94,7 +91,11 @@ class Forging extends PureComponent {
             </Card>
           </Col>
         </Row>
-        <Card bordered={false} title={formatMessage({ id: 'app.vote.voters' })} style={{marginTop:"20px"}}>
+        <Card
+          bordered={false}
+          title={formatMessage({ id: 'app.vote.voters' })}
+          style={{ marginTop: '20px' }}
+        >
           <Table
             loading={loading}
             bordered
@@ -105,7 +106,7 @@ class Forging extends PureComponent {
           />
         </Card>
       </GridContent>
-    )
+    );
   }
 }
 
