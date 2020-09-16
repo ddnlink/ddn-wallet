@@ -3,9 +3,7 @@ import { Modal } from 'antd';
 import { formatMessage } from 'umi/locale';
 import CreateMultiAccount from './CreateMultiAccount';
 
-
 class OpenMultiModal extends PureComponent {
-
   handleCancel = () => {
     const { close } = this.props;
     close();
@@ -25,7 +23,7 @@ class OpenMultiModal extends PureComponent {
         maskClosable={false}
         onCancel={this.handleCancel}
       >
-        <CreateMultiAccount />
+        <CreateMultiAccount cancel={this.handleCancel} />
       </Modal>
     );
   }

@@ -71,8 +71,8 @@ class CreateMultiAccount extends PureComponent {
       return false;
     }
     return true;
-  }
-  
+  };
+
   addGroup = (address, publicKey) => {
     const { groups } = this.state;
     const newGroups = [...groups];
@@ -297,14 +297,16 @@ class CreateMultiAccount extends PureComponent {
       null
     );
     // console.log('transaction 。。。。。。。。。', transaction);
-    console.log('DdnJS.config 。。。。。。。。。', DdnJS.constants);
+    // console.log('DdnJS.config 。。。。。。。。。', DdnJS.constants);
     dispatch({
       type: 'multi/createMultiTansactions',
       payload: { transaction },
       callback: response => {
-        console.log('response', response);
+        // console.log('response', response);
         if (response.success) {
           message.success(formatMessage({ id: 'app.multi.created-success' }));
+          const { cancel } = this.props;
+          cancel();
         } else {
           this.setState({ submitError: response.error });
         }

@@ -56,7 +56,7 @@ class MultiSignature extends PureComponent {
       {
         title: formatMessage({ id: 'app.multi.timestamp' }),
         key: 'timestamp',
-        width: '10%',
+        width: '15%',
         render: record => (
           <span>
             {moment(DdnJS.utils.slots.getRealTime(Number(record.transaction.timestamp))).format(
@@ -80,7 +80,7 @@ class MultiSignature extends PureComponent {
       {
         title: formatMessage({ id: 'app.multi.confirm-number' }),
         key: 'confirmations',
-        width: '15%',
+        width: '10%',
         render: record => (
           <span>
             {record.transaction.signatures ? record.transaction.signatures.length + 1 : 1}/
@@ -92,7 +92,7 @@ class MultiSignature extends PureComponent {
         title: formatMessage({ id: 'app.multi.action' }),
         dataIndex: '',
         key: 'x',
-        width: '20%',
+        width: '10%',
         render: record => {
           if (!record.signed) {
             return (
@@ -214,6 +214,9 @@ class MultiSignature extends PureComponent {
           <Icon type="deployment-unit" />
           <span style={{ marginLeft: '20px' }}>
             {formatMessage({ id: 'app.multi.multi-signature' })}
+          </span>
+          <span style={{ marginLeft: '10px', fontSize: '8px', color: 'red' }}>
+            {formatMessage({ id: 'app.multi.remind' })}
           </span>
         </div>
         <div style={{ flex: '1', textAlign: 'right' }}>
