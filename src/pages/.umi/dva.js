@@ -20,14 +20,15 @@ export function _onCreate() {
     app.use(plugin);
   });
   
-  app.model({ namespace: 'assets', ...(require('/Users/imfly/projects/DDN/ddn-wallet/src/models/assets.js').default) });
-app.model({ namespace: 'global', ...(require('/Users/imfly/projects/DDN/ddn-wallet/src/models/global.js').default) });
-app.model({ namespace: 'home', ...(require('/Users/imfly/projects/DDN/ddn-wallet/src/models/home.js').default) });
-app.model({ namespace: 'login', ...(require('/Users/imfly/projects/DDN/ddn-wallet/src/models/login.js').default) });
-app.model({ namespace: 'setting', ...(require('/Users/imfly/projects/DDN/ddn-wallet/src/models/setting.js').default) });
-app.model({ namespace: 'transfer', ...(require('/Users/imfly/projects/DDN/ddn-wallet/src/models/transfer.js').default) });
-app.model({ namespace: 'user', ...(require('/Users/imfly/projects/DDN/ddn-wallet/src/models/user.js').default) });
-app.model({ namespace: 'vote', ...(require('/Users/imfly/projects/DDN/ddn-wallet/src/models/vote.js').default) });
+  app.model({ namespace: 'assets', ...(require('/Users/evanlai/code/Github/ddn-wallet/src/models/assets.js').default) });
+app.model({ namespace: 'dapp', ...(require('/Users/evanlai/code/Github/ddn-wallet/src/models/dapp.js').default) });
+app.model({ namespace: 'global', ...(require('/Users/evanlai/code/Github/ddn-wallet/src/models/global.js').default) });
+app.model({ namespace: 'home', ...(require('/Users/evanlai/code/Github/ddn-wallet/src/models/home.js').default) });
+app.model({ namespace: 'login', ...(require('/Users/evanlai/code/Github/ddn-wallet/src/models/login.js').default) });
+app.model({ namespace: 'setting', ...(require('/Users/evanlai/code/Github/ddn-wallet/src/models/setting.js').default) });
+app.model({ namespace: 'transfer', ...(require('/Users/evanlai/code/Github/ddn-wallet/src/models/transfer.js').default) });
+app.model({ namespace: 'user', ...(require('/Users/evanlai/code/Github/ddn-wallet/src/models/user.js').default) });
+app.model({ namespace: 'vote', ...(require('/Users/evanlai/code/Github/ddn-wallet/src/models/vote.js').default) });
   return app;
 }
 

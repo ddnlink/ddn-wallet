@@ -1,65 +1,84 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import router from 'umi/router';
 import { connect } from 'dva';
-import { Row, Col, Card } from 'antd';
+import { Icon } from 'antd';
+import PageHeaderWrapper from '@/components/PageHeaderWrapper';
+import { formatMessage } from 'umi/locale';
+import DappRegister from './DappRegister';
 
-class Dapp extends PureComponent {
+@connect(({ user, dapp }) => ({
+  currentAccount: user.currentAccount,
+  dapps: dapp.dapps,
+}))
+class Dapp extends Component {
   componentDidMount() {
-    this.props.dispatch({
-      type: 'home/fetch',
+    const { dispatch, currentAccount } = this.props;
+    console.log('currentAccount', currentAccount);
+    dispatch({
+      type: 'dapp/fetchDapps',
+      payload: { publicKey: currentAccount.publicKey },
     });
   }
 
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'dapp/reset',
+    });
+  }
+
+  handleTabChange = key => {
+    const { match } = this.props;
+    switch (key) {
+      case 'dapp-list':
+        router.push(`${match.url}/dapp-list`);
+        break;
+      default:
+        break;
+    }
+  };
+
+  handleFormSubmit = value => {
+    // eslint-disable-next-line
+    console.log(value);
+  };
+
   render() {
-    const { home, loading } = this.props;
-    console.log('Dapp home', home, 'loading', loading);
-    return (
-      <div>
-        <h1>Dapp</h1>
-        <Row gutter={24}>
-          <Col span={8}>
-            <Card bordered={false}>
-              <p>卡片内容</p>
-              <p>卡片内容</p>
-              <p>卡片内容</p>
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card bordered={false}>
-              <p>卡片内容</p>
-              <p>卡片内容</p>
-              <p>卡片内容</p>
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card bordered={false}>
-              <p>卡片内容</p>
-              <p>卡片内容</p>
-              <p>卡片内容</p>
-            </Card>
-          </Col>
-        </Row>
-        <Row gutter={24} style={{ marginTop: 24 }}>
-          <Col span={12}>
-            <Card bordered={false}>
-              <p>卡片内容</p>
-              <p>卡片内容</p>
-              <p>卡片内容</p>
-            </Card>
-          </Col>
-          <Col span={12}>
-            <Card bordered={false}>
-              <p>卡片内容</p>
-              <p>卡片内容</p>
-              <p>卡片内容</p>
-            </Card>
-          </Col>
-        </Row>
+    const { match, children, location, delegateInfo } = this.props;
+    const tabList = [
+      {
+        key: 'dapp-list',
+        tab: formatMessage({ id: 'app.dapp.dappList' }),
+      },
+      // {
+      //   key: 'mydapp-list',
+      //   tab: formatMessage({ id: 'app.dapp.myDappList' }),
+      // },
+    ];
+
+    const pageTitle = (
+      <div style={{ display: 'flex' }}>
+        <div style={{ flex: '1' }}>
+          <Icon type="deployment-unit" />
+          <span style={{ marginLeft: '20px' }}>{formatMessage({ id: 'app.dapp.dapp' })}</span>
+        </div>
+        <div style={{ flex: '1', textAlign: 'right' }}>
+          <DappRegister />
+        </div>
       </div>
+    );
+
+    return (
+      <PageHeaderWrapper
+        title={pageTitle}
+        tabList={tabList}
+        tabActiveKey={location.pathname.replace(`${match.path}/`, '')}
+        onTabChange={this.handleTabChange}
+      >
+        {children}
+      </PageHeaderWrapper>
     );
   }
 }
 
-export default connect(({ home, loading }) => ({
-  home,
-  loading: loading.effects['home/fetch'],
-}))(Dapp);
+export default Dapp;

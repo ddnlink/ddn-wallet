@@ -102,6 +102,23 @@ export default [
         name: 'application',
         icon: 'appstore',
         component: './Dapp/Dapp',
+        hideChildrenInMenu: true,
+        routes: [
+          {
+            path: '/dapp',
+            redirect: '/dapp/dapp-list',
+          },
+          {
+            path: '/dapp/dapp-list',
+            name: 'DappList',
+            component: './Dapp/DappList',
+          },
+          {
+            path: '/dapp/dapp-detail',
+            name: 'dappDetail',
+            component: './Dapp/DappDetail',
+          },
+        ],
       },
       // block explorer
       {
