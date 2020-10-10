@@ -157,3 +157,25 @@ export async function getAobTransaction(params) {
       10}&offset=${params.offset || 0}`
   );
 }
+
+// ----------------------------------dao--------------------------------------//
+export async function createOrUpdateOrg(params) {
+  return request('/api/dao/orgs', {
+    method: 'PUT',
+    // headers: {
+    //   Accept: 'application/json',
+    //   'Content-Type': 'application/json',
+    //   nethash: DdnJS.constants.nethash,
+    //   version: '',
+    // },
+    body: {
+      ...params,
+    },
+  });
+}
+export async function getDaos() {
+  return request(`/api/dao/orgs`);
+}
+export async function getMyOrgs(params) {
+  return request(`/api/dao/orgs?address=${params.address}`);
+}
