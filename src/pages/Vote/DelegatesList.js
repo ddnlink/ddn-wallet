@@ -88,11 +88,20 @@ class DelegatesList extends PureComponent {
       type: 'vote/fetchDelegates',
       payload: { address: currentAccount.address },
     });
+    // dispatch({
+    //   type: 'vote/fetchStandbyDelegates',
+    //   payload: { address: currentAccount.address, offset: 101, limit: 10 },
+    // });
+    this.getStandByDelegate(1);
+  }
+
+  getStandByDelegate = page => {
+    const { dispatch, currentAccount } = this.props;
     dispatch({
       type: 'vote/fetchStandbyDelegates',
-      payload: { address: currentAccount.address, offset: 101, limit: 10 },
+      payload: { address: currentAccount.address, offset: 101 + (page - 1) * 10, limit: 10 },
     });
-  }
+  };
 
   handleSelectRows = (selectedRowKeys, selectedRows) => {
     console.log('selectedRowKeys', selectedRowKeys, 'selectedRows', selectedRows);
@@ -277,7 +286,12 @@ class DelegatesList extends PureComponent {
               rowSelection={standbyRowSelection}
               dataSource={standbyDelegates.list}
               columns={this.columns}
-              pagination={standbyDelegates.pagination}
+              pagination={{
+                total: standbyDelegates.pagination.total,
+                onChange: page => {
+                  this.getStandByDelegate(page);
+                },
+              }}
               onChange={this.handleStandardTableChange}
             />
           </div>

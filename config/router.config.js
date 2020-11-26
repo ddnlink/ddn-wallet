@@ -90,19 +90,19 @@ export default [
         ],
       },
       // assets
-      {
-        path: '/assets',
-        name: 'assets',
-        icon: 'bank',
-        component: './Assets/Assets',
-      },
+      // {
+      //   path: '/assets',
+      //   name: 'assets',
+      //   icon: 'bank',
+      //   component: './Assets/Assets',
+      // },
       // Decentrelize application
-      {
-        path: '/dapp',
-        name: 'application',
-        icon: 'appstore',
-        component: './Dapp/Dapp',
-      },
+      // {
+      //   path: '/dapp',
+      //   name: 'application',
+      //   icon: 'appstore',
+      //   component: './Dapp/Dapp',
+      // },
       // block explorer
       {
         path: 'http://mainnet.ddn.link',

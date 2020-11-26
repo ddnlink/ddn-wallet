@@ -19,7 +19,7 @@ export default {
 
       yield put({
         type: 'peerState',
-        payload: res.version,
+        payload: res,
       });
     },
 

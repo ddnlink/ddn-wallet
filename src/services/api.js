@@ -101,8 +101,12 @@ export async function queryDelegates(params) {
 }
 
 // 获取已投票的受托人(我投过票的)
+// export async function queryVotedDelegates(params) {
+//   return request(`/api/votes?${stringify(params)}`);
+// }
+// TODO 获取已投票的受托人(我投过票的),老版本ddn用的是这个接口，新版用的是上一个
 export async function queryVotedDelegates(params) {
-  return request(`/api/votes?${stringify(params)}`);
+  return request(`/api/accounts/delegates?${stringify(params)}`);
 }
 
 // 获取给我投票的人
