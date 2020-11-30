@@ -128,7 +128,6 @@ class HeaderView extends PureComponent {
     const { keyStore, dispatch } = this.props;
     const transaction = DdnJS.transaction.createLock(value, keyStore.phaseKey, undefined);
     const payload = { transaction };
-    console.log('payload transaction', transaction);
     dispatch({
       type: 'user/fetchLock',
       payload,

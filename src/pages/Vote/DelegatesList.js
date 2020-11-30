@@ -104,7 +104,6 @@ class DelegatesList extends PureComponent {
   };
 
   handleSelectRows = (selectedRowKeys, selectedRows) => {
-    console.log('selectedRowKeys', selectedRowKeys, 'selectedRows', selectedRows);
     this.setState({
       selectedRows,
       selectedRowKeys,
@@ -112,7 +111,6 @@ class DelegatesList extends PureComponent {
   };
 
   handleSelectStandbyRows = (selectedStandbyRowKeys, selectedStandbyRows) => {
-    console.log('handleSelectStandbyRows........', selectedStandbyRows, selectedStandbyRowKeys);
     this.setState({
       selectedStandbyRows,
       selectedStandbyRowKeys,
@@ -155,7 +153,6 @@ class DelegatesList extends PureComponent {
       type: 'vote/voting',
       payload,
       callback: response => {
-        console.log('callback starting. ', response);
         this.setState({
           selectedRows: [],
         });
@@ -164,7 +161,6 @@ class DelegatesList extends PureComponent {
   };
 
   handleSetCurDelegate = record => {
-    console.log('record', record);
     this.setState({
       curDelegate: record,
       visibleDelegate: true,
@@ -204,7 +200,6 @@ class DelegatesList extends PureComponent {
       }),
     };
 
-    console.log('standbyRowSelection', standbyRowSelection);
     return (
       <div>
         <Card bordered={false} title={formatMessage({ id: 'app.vote.delegater' })}>

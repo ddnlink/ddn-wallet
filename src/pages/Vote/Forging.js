@@ -31,7 +31,6 @@ class Forging extends PureComponent {
 
   componentDidMount() {
     const { dispatch, currentAccount } = this.props;
-    console.log('currentAccount', currentAccount);
     dispatch({
       type: 'vote/fetchVoters',
       payload: { publicKey: currentAccount.publicKey },
@@ -40,7 +39,6 @@ class Forging extends PureComponent {
 
   render() {
     const { voters, loading, delegateInfo } = this.props;
-    console.log('delegateInfo', delegateInfo);
     const topColResponsiveProps = {
       xs: 24,
       sm: 8,

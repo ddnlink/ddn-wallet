@@ -151,10 +151,10 @@ export async function getAobBalance(params) {
 
 // 获取指定账户指定资产转账记录
 export async function getAobTransaction(params) {
-  console.log(
-    `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||
-      10}&offset=${params.offset || 0}`
-  );
+  // console.log(
+  //   `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||
+  //     10}&offset=${params.offset || 0}`
+  // );
 
   return request(
     `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||

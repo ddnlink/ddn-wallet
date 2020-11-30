@@ -37,7 +37,6 @@ class Step2 extends React.PureComponent {
       remark,
       phaseKey
     );
-    console.log('trs', transaction);
 
     dispatch({
       type: 'transfer/submitTransfer',

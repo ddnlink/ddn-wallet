@@ -13,7 +13,6 @@ class DelegateModal extends PureComponent {
   render() {
     const { curDelegate } = this.props;
 
-    console.log('curDelegate............', curDelegate);
 
     return (
       <div>

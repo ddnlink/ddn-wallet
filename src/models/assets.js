@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import {
   getIssuerByAddress,
   // getAobList,
@@ -56,7 +57,6 @@ export default {
     },
     *getAobTransfers({ payload }, { call, put }) {
       const response = yield call(getAobTransaction, payload);
-      console.log('getAobTransfers payload', payload);
 
       yield put({
         type: 'saveAoBTransfers',
@@ -65,6 +65,11 @@ export default {
     },
     *postTrans({ payload, callback }, { call }) {
       const res = yield call(postTransaction, payload);
+      if (!res.success) {
+        message.error(res.error);
+      } else {
+        message.error('successfull');
+      }
       callback(res);
     },
   },

@@ -19,7 +19,6 @@ export default {
 
   effects: {
     *fetchAccounts({ payload }, { call, put }) {
-      console.log('payload', payload);
       const response = yield call(queryMultiAccounts, payload);
       yield put({
         type: 'saveAccounts',

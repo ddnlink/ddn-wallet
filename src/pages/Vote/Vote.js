@@ -14,7 +14,6 @@ import DelegateRegiste from './DelegateRegiste';
 class Vote extends Component {
   componentDidMount() {
     const { dispatch, currentAccount } = this.props;
-    console.log("currentAccount", currentAccount)
     dispatch({
       type: 'vote/fetchDelegateInfo',
       payload: { publicKey: currentAccount.publicKey}
@@ -47,7 +46,6 @@ class Vote extends Component {
 
   handleFormSubmit = (value) => {
     // eslint-disable-next-line
-    console.log(value);
   }
 
   render() {

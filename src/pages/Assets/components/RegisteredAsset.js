@@ -88,7 +88,6 @@ class RegisteredAsset extends PureComponent {
     const { loading, form } = this.props;
     const { getFieldDecorator } = form;
     const { visible, errorMessage } = this.state;
-    console.log('loading', loading);
     return (
       <div>
         <Button type="primary" onClick={this.showModal}>

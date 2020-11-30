@@ -28,7 +28,7 @@ class LoginPage extends Component {
     const { dispatch } = this.props;
     const keyPair = DdnJS.crypto.getKeys(values.phaseKey.trim());
 
-    const curAddress = DdnJS.crypto.generateAddress(keyPair.publicKey);
+    const curAddress = DdnJS.crypto.getAddress(keyPair.publicKey);
 
     const keyStore = {
       address: curAddress,

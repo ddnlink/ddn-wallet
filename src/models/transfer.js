@@ -23,6 +23,11 @@ export default {
         const newdata = { ...payload };
         delete newdata.transaction;
         newdata.transId = response.transactionId;
+        if (!res.success) {
+          message.error(res.error);
+        } else {
+          message.error('successfull');
+        }
         yield put({
           type: 'saveStepFormData',
           payload: newdata,

@@ -3,6 +3,7 @@ import { Card, Steps, Icon } from 'antd';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { formatMessage } from 'umi/locale';
 import styles from './style.less';
+import { DdnJS } from '@/utils/ddn-js';
 
 const { Step } = Steps;
 
@@ -30,7 +31,9 @@ export default class StepForm extends PureComponent {
         title={
           <div>
             <Icon type="swap" theme="outlined" />
-            <span style={{ marginLeft: '20px' }}>{formatMessage({ id: 'app.transfer.transfer-step' })}</span>
+            <span style={{ marginLeft: '20px' }}>
+              {formatMessage({ id: 'app.transfer.transfer-step' })}
+            </span>
           </div>
         }
         tabActiveKey={location.pathname}

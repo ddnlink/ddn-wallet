@@ -111,7 +111,6 @@ class Register extends PureComponent {
         keyStore,
       },
       callback: response => {
-        console.log('response', response);
       },
     });
   };

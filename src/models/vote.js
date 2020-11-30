@@ -1,11 +1,17 @@
-import { queryDelegates, queryVoters, queryDelegateInfo, queryVotedDelegates, postTransaction } from '@/services/api';
+import {
+  queryDelegates,
+  queryVoters,
+  queryDelegateInfo,
+  queryVotedDelegates,
+  postTransaction,
+} from '@/services/api';
 
 const initialState = {
   delegates: {
     list: [],
     pagination: {},
   },
-  standbyDelegates:{
+  standbyDelegates: {
     list: [],
     pagination: {},
   },
@@ -18,12 +24,12 @@ const initialState = {
     pagination: {},
   },
   delegateInfo: {},
-}
+};
 
 export default {
   namespace: 'vote',
 
-  state: {...initialState},
+  state: { ...initialState },
 
   effects: {
     *fetchDelegates({ payload }, { call, put }) {
@@ -42,8 +48,8 @@ export default {
       const res = {
         list: response.delegates,
         pagination: {
-          total: response.totalCount - 101
-        }
+          total: response.totalCount - 101,
+        },
       };
 
       yield put({
@@ -80,17 +86,23 @@ export default {
         payload: response,
       });
     },
-    *voting({ payload, callback}, { call }) {
-      console.log('add starting. ', payload);
+    *voting({ payload, callback }, { call }) {
       const response = yield call(postTransaction, payload);
-      console.log('response= ', response);
-      callback(response)
+      if (!res.success) {
+        message.error(res.error);
+      } else {
+        message.error('successfull');
+      }
+      callback(response);
     },
-    *postReigster({ payload, callback}, { call }) {
-      console.log('register starting. ', payload);
+    *postReigster({ payload, callback }, { call }) {
       const response = yield call(postTransaction, payload);
-      console.log('response= ', response);
-      callback(response)
+      if (!res.success) {
+        message.error(res.error);
+      } else {
+        message.error('successfull');
+      }
+      callback(response);
     },
   },
 

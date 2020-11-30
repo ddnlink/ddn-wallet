@@ -46,7 +46,6 @@ class VoteModal extends PureComponent {
   render() {
     const { visible } = this.state
     const { selectedRows, deVote } = this.props
-    console.log("selectedRows", selectedRows)
     return (
       <div>
         <Button type='primary' onClick={this.handleOpenModal}><Icon type={deVote ? 'dislike':'like'} theme="outlined" style={{marginRight:"5px"}} />

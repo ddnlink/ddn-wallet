@@ -38,12 +38,10 @@ class DelegateRegiste extends PureComponent {
     const keyStore = getKeyStore();
     const trs = await DdnJS.delegate.createDelegate(delegateName, keyStore.phaseKey, null);
     const payload = { transaction: trs };
-    console.log('payload= ', payload);
     dispatch({
       type: 'vote/postReigster',
       payload,
       callback: response => {
-        console.log('callback starting. ', response);
         if (response.success) {
           this.handleCloseModal();
         } else {
