@@ -68,7 +68,7 @@ export default {
       if (!res.success) {
         message.error(res.error);
       } else {
-        message.error('successfull');
+        message.info('successfull');
       }
       callback(res);
     },

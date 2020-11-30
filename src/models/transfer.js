@@ -1,4 +1,5 @@
 import { routerRedux } from 'dva/router';
+import { message } from 'antd';
 import { postTransaction } from '@/services/api';
 
 const initialState = {
@@ -23,10 +24,10 @@ export default {
         const newdata = { ...payload };
         delete newdata.transaction;
         newdata.transId = response.transactionId;
-        if (!res.success) {
-          message.error(res.error);
+        if (!response.success) {
+          message.error(response.error);
         } else {
-          message.error('successfull');
+          message.info('successfull');
         }
         yield put({
           type: 'saveStepFormData',

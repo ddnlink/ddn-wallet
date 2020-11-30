@@ -36,6 +36,7 @@ class DelegateRegiste extends PureComponent {
     const { delegateName } = this.state;
     const { dispatch } = this.props;
     const keyStore = getKeyStore();
+    console.log(keyStore)
     const trs = await DdnJS.delegate.createDelegate(delegateName, keyStore.phaseKey, null);
     const payload = { transaction: trs };
     dispatch({

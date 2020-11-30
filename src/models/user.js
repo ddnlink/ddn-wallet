@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import { queryAccount, postTransaction } from '@/services/api';
 
 const initialState = {
@@ -21,10 +22,10 @@ export default {
     },
     *fetchLock({ payload, callback }, { call }) {
       const response = yield call(postTransaction, payload);
-      if (!res.success) {
-        message.error(res.error);
+      if (!response.success) {
+        message.error(response.error);
       } else {
-        message.error('successfull');
+        message.info('successfull');
       }
       callback(response);
     },
