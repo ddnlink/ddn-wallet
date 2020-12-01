@@ -4,13 +4,13 @@
  */
 export default {
   development: {
-    requestUrl: 'http://localhost:4096',
-    // requestUrl: 'http://106.15.227.133:8001',
+    requestUrl: 'http://peer.ddn.link:8000',
+    // requestUrl: 'http://localhost:4096',
   },
   test: {
-    requestUrl: 'http://localhost:8001',
+    requestUrl: 'http://116.62.219.11:8000',
   },
   production: {
-    requestUrl: 'http://106.15.227.133:8001',
+    requestUrl: 'http://peer.ddn.link:8000',
   },
 };

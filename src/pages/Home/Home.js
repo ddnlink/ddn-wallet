@@ -206,7 +206,7 @@ class Home extends PureComponent {
               action={
                 <span>
                   <span>{formatMessage({ id: 'app.home.unit' })}: </span>
-                  <span>HBL</span>
+                  <span>DDN</span>
                 </span>
               }
               loading={loading}

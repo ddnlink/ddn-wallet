@@ -29,6 +29,8 @@ class DelegatesList extends PureComponent {
     selectedRows: [],
     selectedRowKeys: [],
     selectedStandbyRows: [],
+    selectedStandbyRowsAll:[],
+    // selectedRowsAll:[],
     selectedStandbyRowKeys: [],
     visibleDelegate: false,
     curDelegate: {},
@@ -104,16 +106,36 @@ class DelegatesList extends PureComponent {
   };
 
   handleSelectRows = (selectedRowKeys, selectedRows) => {
+    // let selectRows=[]
+    // if(selectedRows.length===selectedRowKeys.length){
+    //   selectRows=selectedRows
+    // }else{
+    //  selectRows= selectedRowKeys.map(key => (
+    //     this.state.selectedRowsAll.find((row) => row.publicKey === key)
+    //     || selectedRows.find((row) => row.publicKey === key)  // 必在两者之中，加感叹号断言（js的去掉这个 "!"）
+    //   ))
+    // }
     this.setState({
       selectedRows,
       selectedRowKeys,
+      // selectedRowsAll:[...this.state.selectedRowsAll,...selectRows]
     });
   };
 
   handleSelectStandbyRows = (selectedStandbyRowKeys, selectedStandbyRows) => {
+    let selectRows=[]
+    if(selectedStandbyRows.length===selectedStandbyRowKeys.length){
+      selectRows=selectedStandbyRows
+    }else{
+     selectRows= selectedStandbyRowKeys.map(key => (
+        this.state.selectedStandbyRowsAll.find((row) => row.publicKey === key)
+        || selectedStandbyRows.find((row) => row.publicKey === key)  // 必在两者之中，加感叹号断言（js的去掉这个 "!"）
+      ))
+    }
     this.setState({
-      selectedStandbyRows,
+      selectedStandbyRows:selectRows,
       selectedStandbyRowKeys,
+      selectedStandbyRowsAll:[...this.state.selectedStandbyRowsAll,...selectedStandbyRows]
     });
   };
 
@@ -199,6 +221,8 @@ class DelegatesList extends PureComponent {
         disabled: record.voted,
       }),
     };
+    console.log('selectrows,selectkeys',selectedStandbyRows,
+    selectedStandbyRowKeys,this.state.selectedStandbyRowsAll)
 
     return (
       <div>
