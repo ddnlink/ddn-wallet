@@ -25,6 +25,7 @@ const DappsList = [
     delegates:
       '1e18845d5fbbdf0a6820610e042dcb9a250205964b8075a395453b4a1d1ed10c,c33a9b7a6e51a3fe650fc33d954a56032f722f084442d7aa788cb30ee8fcce5a,dbc795a7359cd301dade11d218e0e2ab4171bde0978e902261f9ffc4d729df04,035b5cdffa3d844108ac1bb1da24b0417ec7803905fda3c19290c03fe6376c48,d07967b16f5af45453dab2c6b832dcc7b9120d88da9b032c96d4680c580002e9',
     unlock_delegates: 3,
+    status: 'uninstalled',
   },
   {
     transaction_id:
@@ -41,6 +42,7 @@ const DappsList = [
     delegates:
       '1e18845d5fbbdf0a6820610e042dcb9a250205964b8075a395453b4a1d1ed10c,c33a9b7a6e51a3fe650fc33d954a56032f722f084442d7aa788cb30ee8fcce5a,dbc795a7359cd301dade11d218e0e2ab4171bde0978e902261f9ffc4d729df04,035b5cdffa3d844108ac1bb1da24b0417ec7803905fda3c19290c03fe6376c48,d07967b16f5af45453dab2c6b832dcc7b9120d88da9b032c96d4680c580002e9',
     unlock_delegates: 3,
+    status: 'installed',
   },
   {
     transaction_id:
@@ -57,6 +59,7 @@ const DappsList = [
     delegates:
       '1e18845d5fbbdf0a6820610e042dcb9a250205964b8075a395453b4a1d1ed10c,c33a9b7a6e51a3fe650fc33d954a56032f722f084442d7aa788cb30ee8fcce5a,dbc795a7359cd301dade11d218e0e2ab4171bde0978e902261f9ffc4d729df04,035b5cdffa3d844108ac1bb1da24b0417ec7803905fda3c19290c03fe6376c48,d07967b16f5af45453dab2c6b832dcc7b9120d88da9b032c96d4680c580002e9',
     unlock_delegates: 3,
+    status: 'installed',
   },
   {
     transaction_id:
@@ -73,6 +76,7 @@ const DappsList = [
     delegates:
       '1e18845d5fbbdf0a6820610e042dcb9a250205964b8075a395453b4a1d1ed10c,c33a9b7a6e51a3fe650fc33d954a56032f722f084442d7aa788cb30ee8fcce5a,dbc795a7359cd301dade11d218e0e2ab4171bde0978e902261f9ffc4d729df04,035b5cdffa3d844108ac1bb1da24b0417ec7803905fda3c19290c03fe6376c48,d07967b16f5af45453dab2c6b832dcc7b9120d88da9b032c96d4680c580002e9',
     unlock_delegates: 3,
+    status: 'installed',
   },
   {
     transaction_id:
@@ -89,6 +93,7 @@ const DappsList = [
     delegates:
       '1e18845d5fbbdf0a6820610e042dcb9a250205964b8075a395453b4a1d1ed10c,c33a9b7a6e51a3fe650fc33d954a56032f722f084442d7aa788cb30ee8fcce5a,dbc795a7359cd301dade11d218e0e2ab4171bde0978e902261f9ffc4d729df04,035b5cdffa3d844108ac1bb1da24b0417ec7803905fda3c19290c03fe6376c48,d07967b16f5af45453dab2c6b832dcc7b9120d88da9b032c96d4680c580002e9',
     unlock_delegates: 3,
+    status: 'installed',
   },
 ];
 
@@ -107,6 +112,7 @@ const DappDetail = {
   delegates:
     '1e18845d5fbbdf0a6820610e042dcb9a250205964b8075a395453b4a1d1ed10c,c33a9b7a6e51a3fe650fc33d954a56032f722f084442d7aa788cb30ee8fcce5a,dbc795a7359cd301dade11d218e0e2ab4171bde0978e902261f9ffc4d729df04,035b5cdffa3d844108ac1bb1da24b0417ec7803905fda3c19290c03fe6376c48,d07967b16f5af45453dab2c6b832dcc7b9120d88da9b032c96d4680c580002e9',
   unlock_delegates: 3,
+  status: 'installed',
 };
 
 const InstalledDapp = [
@@ -125,6 +131,7 @@ const InstalledDapp = [
     delegates:
       '1e18845d5fbbdf0a6820610e042dcb9a250205964b8075a395453b4a1d1ed10c,c33a9b7a6e51a3fe650fc33d954a56032f722f084442d7aa788cb30ee8fcce5a,dbc795a7359cd301dade11d218e0e2ab4171bde0978e902261f9ffc4d729df04,035b5cdffa3d844108ac1bb1da24b0417ec7803905fda3c19290c03fe6376c48,d07967b16f5af45453dab2c6b832dcc7b9120d88da9b032c96d4680c580002e9',
     unlock_delegates: 3,
+    status: 'installed',
   },
   {
     transaction_id:
@@ -141,6 +148,7 @@ const InstalledDapp = [
     delegates:
       '1e18845d5fbbdf0a6820610e042dcb9a250205964b8075a395453b4a1d1ed10c,c33a9b7a6e51a3fe650fc33d954a56032f722f084442d7aa788cb30ee8fcce5a,dbc795a7359cd301dade11d218e0e2ab4171bde0978e902261f9ffc4d729df04,035b5cdffa3d844108ac1bb1da24b0417ec7803905fda3c19290c03fe6376c48,d07967b16f5af45453dab2c6b832dcc7b9120d88da9b032c96d4680c580002e9',
     unlock_delegates: 3,
+    status: 'installed',
   },
 ];
 
@@ -148,12 +156,13 @@ const InstalledDappIds = [
   '7efbd41f9afce5132e87a0ff6c2e6a42adb72dc5bc1028a37f5e159251350688ca996e796dbb8d90ac20d1039020ea33020f542cf2623805a71acc529270c69e',
   '8efbd41f9afce5132e87a0ff6c2e6a42adb72dc5bc1028a37f5e159251350688ca996e796dbb8d90ac20d1039020ea33020f542cf2623805a71acc529270c69e',
 ];
+
 const DappData = {
   catagories: Catagories,
   dapplist: DappsList,
   dappDetail: DappDetail,
   installedDapp: InstalledDapp,
-  InstalledDappIds: InstalledDappIds,
+  installedDappIds: InstalledDappIds,
 };
 
 export default DappData;

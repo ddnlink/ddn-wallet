@@ -282,6 +282,18 @@ const routes = [
             exact: true,
           },
           {
+            path: '/dapp/dapp-installed-list',
+            name: 'DappInstalledList',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () => import('../Dapp/DappList'),
+                  LoadingComponent: require('/Users/evanlai/code/Github/ddn-wallet/src/components/PageLoading/index')
+                    .default,
+                })
+              : require('../Dapp/DappList').default,
+            exact: true,
+          },
+          {
             path: '/dapp/dapp-detail',
             name: 'dappDetail',
             component: __IS_BROWSER

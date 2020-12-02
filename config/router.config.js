@@ -114,6 +114,11 @@ export default [
             component: './Dapp/DappList',
           },
           {
+            path: '/dapp/dapp-installed-list',
+            name: 'DappInstalledList',
+            component: './Dapp/DappList',
+          },
+          {
             path: '/dapp/dapp-detail',
             name: 'dappDetail',
             component: './Dapp/DappDetail',

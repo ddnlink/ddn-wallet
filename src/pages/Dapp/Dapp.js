@@ -13,7 +13,6 @@ import DappRegister from './DappRegister';
 class Dapp extends Component {
   componentDidMount() {
     const { dispatch, currentAccount } = this.props;
-    console.log('currentAccount', currentAccount);
     dispatch({
       type: 'dapp/fetchDapps',
       payload: { publicKey: currentAccount.publicKey },
@@ -33,6 +32,9 @@ class Dapp extends Component {
       case 'dapp-list':
         router.push(`${match.url}/dapp-list`);
         break;
+      case 'dapp-installed-list':
+        router.push(`${match.url}/dapp-indlist`);
+        break;
       default:
         break;
     }
@@ -44,16 +46,16 @@ class Dapp extends Component {
   };
 
   render() {
-    const { match, children, location, delegateInfo } = this.props;
+    const { match, children, location } = this.props;
     const tabList = [
       {
         key: 'dapp-list',
         tab: formatMessage({ id: 'app.dapp.dappList' }),
       },
-      // {
-      //   key: 'mydapp-list',
-      //   tab: formatMessage({ id: 'app.dapp.myDappList' }),
-      // },
+      {
+        key: 'dapp-installed-list',
+        tab: '已安装',
+      },
     ];
 
     const pageTitle = (
