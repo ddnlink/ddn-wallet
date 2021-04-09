@@ -1,16 +1,22 @@
 import {
-  queryDelegates,
-  queryVoters,
-  queryDelegateInfo,
-  queryVotedDelegates,
+  queryDappAll,
+  queryDappInstalledAll,
+  queryDappDetail,
+  queryCatagories,
   postTransaction,
+  runDappApi,
+  postInstall,
+  postUninstall,
+  postLaunched,
 } from '@/services/api';
-import DappData from '@/DappsData';
 
-console.log('DappData', DappData);
 const initialState = {
   catagories: {},
   dapps: {
+    list: [],
+    pagination: {},
+  },
+  dappsInstalled: {
     list: [],
     pagination: {},
   },
@@ -26,34 +32,94 @@ export default {
 
   effects: {
     *fetchCatagories({ payload }, { call, put }) {
-      //   const response = yield call(queryDelegates, payload);
-      yield put({
-        type: 'saveCatagories',
-        payload: DappData.catagories,
-      });
+      const response = yield call(queryCatagories, payload);
+      if (response.success === true) {
+        yield put({
+          type: 'saveCatagories',
+          payload: response.categories,
+        });
+      }
     },
     *fetchDapps({ payload }, { call, put }) {
-      //   const response = yield call(queryDelegates, payload);
-      const res = {
-        list: DappData.dapplist,
-      };
-      yield put({
-        type: 'saveDapps',
-        payload: res,
-      });
+      const response = yield call(queryDappAll, payload);
+      // const res = {
+      //   list: DappData.dapplist,
+      // };
+      if (response.success === true) {
+        yield put({
+          type: 'saveDapps',
+          payload: response.result.rows,
+        });
+      }
+      // yield put({
+      //   type: 'saveDapps',
+      //   payload: res,
+      // });
+    },
+    *fetchDappsInstalled({ payload }, { call, put }) {
+      const response = yield call(queryDappInstalledAll, payload);
+      // const res = {
+      //   list: DappData.dapplist,
+      // };
+      console.log(';;;', response);
+      if (response.success === true) {
+        yield put({
+          type: 'saveDappsInstalled',
+          payload: response.result.rows,
+        });
+      }
+      // yield put({
+      //   type: 'saveDapps',
+      //   payload: res,
+      // });
     },
     *fetchDappDetail({ payload }, { call, put }) {
-      //   const response = yield call(queryDelegates, payload);
-      yield put({
-        type: 'saveDappDetail',
-        payload: DappData.dappDetail,
-      });
+      const response = yield call(queryDappDetail, payload);
+      if (response.success === true) {
+        yield put({
+          type: 'saveDappDetail',
+          payload: response.dapp,
+        });
+      }
     },
     *postReigster({ payload, callback }, { call }) {
       console.log('register starting. ', payload);
       const response = yield call(postTransaction, payload);
       console.log('response= ', response);
       callback(response);
+    },
+    *runDapp({ payload }, { call }) {
+      console.log('register starting. ', payload);
+      const response = yield call(runDappApi, payload);
+      console.log(response);
+      if (response) {
+        window.open(response);
+      }
+    },
+    *install({ payload, callback }, { call }) {
+      console.log('register starting. ', payload);
+      const response = yield call(postInstall, payload);
+      console.log(response);
+      if (response) {
+        callback(response);
+      }
+    },
+    *uninstall({ payload, callback }, { call }) {
+      console.log('register starting. ', payload);
+      const response = yield call(postUninstall, payload);
+      console.log(response);
+      if (response) {
+        // window.open(response)
+        callback(response);
+      }
+    },
+    *launched({ payload, callback }, { call }) {
+      console.log('register starting. ', payload);
+      const response = yield call(postLaunched, payload);
+      console.log(response);
+      if (response) {
+        callback(response);
+      }
     },
   },
 
@@ -70,6 +136,13 @@ export default {
       return {
         ...state,
         dapps: action.payload,
+      };
+    },
+    saveDappsInstalled(state, action) {
+      console.log('saveDappsInstalled', action);
+      return {
+        ...state,
+        dappsInstalled: action.payload,
       };
     },
     saveDappDetail(state, action) {

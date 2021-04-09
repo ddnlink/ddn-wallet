@@ -1,6 +1,6 @@
 import { stringify } from 'qs';
 // import DdnJS from '@/utils/ddn-js';
-import request from '../utils/request';
+import request, { peer } from '../utils/request';
 
 // --------------------------- login ------------------------ //
 export async function login(params) {
@@ -156,4 +156,79 @@ export async function getAobTransaction(params) {
     `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||
       10}&offset=${params.offset || 0}`
   );
+}
+
+// -------------------------------------dapp-------------------------
+// 查询所有dapp
+export async function queryDappAll(params) {
+  console.log(`/api/dapps/uninstalled`, params);
+
+  return request(`/api/dapps?${stringify(params)}`);
+}
+// 查询所有已经安装的dapp
+export async function queryDappInstalledAll(params) {
+  console.log(`/api/dapps/installed`);
+
+  return request(`/api/dapps?${stringify(params)}`);
+}
+
+// 查询dapp详情
+export async function queryDappDetail(params) {
+  console.log(`/api/dapps/dappId/`);
+
+  return request(`/api/dapps/dappId/${params.id}`);
+}
+// 查询dapp类型
+export async function queryCatagories() {
+  return request(`/api/dapps/categories`);
+}
+// 打开dapp
+export async function runDappApi(params) {
+  return `${peer.requestUrl}/dapps/${params.id}`;
+}
+
+// 安装dapp
+export async function postInstall(params) {
+  return request('/api/dapps/install', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      nethash: DdnJS.constants.nethash,
+      version: '',
+    },
+    body: {
+      ...params,
+    },
+  });
+}
+// 卸载dapp
+export async function postUninstall(params) {
+  return request('/api/dapps/uninstall', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      nethash: DdnJS.constants.nethash,
+      version: '',
+    },
+    body: {
+      ...params,
+    },
+  });
+}
+// 运行
+export async function postLaunched(params) {
+  return request('/api/dapps/launch', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      nethash: DdnJS.constants.nethash,
+      version: '',
+    },
+    body: {
+      ...params,
+    },
+  });
 }

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Button, Modal, Input } from 'antd';
+import { Button, Modal, Input, message } from 'antd';
 import { getKeyStore } from '@/utils/authority';
 import { connect } from 'dva';
 // import { formatMessage } from 'umi/locale';
@@ -15,7 +15,7 @@ class DappRegister extends PureComponent {
     this.state = {
       visible: false,
       delegateName: '',
-      inputError: '',
+      // inputError: '',
       currentStep: 1,
       dappInfo: {},
     };
@@ -42,7 +42,7 @@ class DappRegister extends PureComponent {
   handleNameChange = e => {
     this.setState({
       delegateName: e.target.value,
-      inputError: '',
+      // inputError: '',
     });
   };
 
@@ -59,7 +59,8 @@ class DappRegister extends PureComponent {
         if (response.success) {
           this.handleCloseModal();
         } else {
-          this.setState({ inputError: response.error });
+          // this.setState({ inputError: response.error });
+          message.error(response.error);
         }
       },
     });
@@ -71,6 +72,7 @@ class DappRegister extends PureComponent {
       return;
     }
     if (currentStep === 4) {
+      this.handleRegisterDelegate();
       this.done();
     } else {
       this.setState({ currentStep: currentStep + 1 });
@@ -104,6 +106,8 @@ class DappRegister extends PureComponent {
         return 'Dapp源码链接';
       case 4:
         return '信息确认';
+      default:
+        return '';
     }
   };
 
@@ -118,6 +122,8 @@ class DappRegister extends PureComponent {
         return '填写Dapp源码下载链接';
       case 4:
         return '请确认以下内容是否有误';
+      default:
+        return '';
     }
   };
 
@@ -199,7 +205,7 @@ class DappRegister extends PureComponent {
   };
 
   render() {
-    const { visible, delegateName, inputError, currentStep, dappInfo } = this.state;
+    const { visible, currentStep } = this.state;
     return (
       <div>
         <Button type="primary" onClick={this.handleOpenModal}>
@@ -207,7 +213,7 @@ class DappRegister extends PureComponent {
           {/* {formatMessage({ id: 'app.dapp.dapp-register' })} */}
         </Button>
         <Modal
-          title={'注册Dapp'}
+          title="注册Dapp"
           centered
           visible={visible}
           bodyStyle={{ padding: '10px' }}

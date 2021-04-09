@@ -5,12 +5,12 @@ import { Button, Avatar, Badge, Rate, Row, Col, Card } from 'antd';
 import TagSelect from '@/components/TagSelect';
 
 @connect(({ dapp, user, loading }) => ({
-  dapps: dapp.dapps,
+  dapps: dapp.dappsInstalled,
   catagories: dapp.catagories,
   currentAccount: user.currentAccount,
   loading: loading.models.dapp,
 }))
-class DappList extends PureComponent {
+class DappInstalledList extends PureComponent {
   state = {
     curCategory: 'all',
   };
@@ -30,8 +30,8 @@ class DappList extends PureComponent {
   getDapps = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'dapp/fetchDapps',
-      payload: { install: 'false' },
+      type: 'dapp/fetchDappsInstalled',
+      payload: { install: 'true' },
     });
   };
 
@@ -48,16 +48,20 @@ class DappList extends PureComponent {
   };
 
   lokkDetail = item => {
-    router.push(`/dapp/dapp-detail?dappid=${item.transaction_id}`);
+    router.push(`/dapp/dapp-detail?dappid=${item.transaction_id}&installed=true`);
   };
 
-  handleOnTagChange = () => {};
+  handleOnTagChange = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'dapp/fetchDappsInstalled',
+    });
+  };
 
   render() {
     const { dapps, catagories } = this.props;
     const { curCategory } = this.state;
     const catagoryNames = Object.keys(catagories);
-    console.log('catagoryNames', catagoryNames);
     return (
       <div>
         <div style={{ display: 'flex', lineHeight: '30px', margin: '10px' }}>
@@ -97,10 +101,7 @@ class DappList extends PureComponent {
                   </div>
                   <div style={{ marginTop: 10 }}>
                     <div style={{ textAlign: 'center' }}>
-                      <Badge
-                        color={item.status === 'installed' ? 'green' : 'gray'}
-                        text={item.status === 'installed' ? '已安装' : '未安装'}
-                      />
+                      <Badge color={item ? 'green' : 'gray'} text={item ? '已安装' : '未安装'} />
                     </div>
                     <div style={{ padding: '10px 20px' }}>
                       <Button
@@ -122,4 +123,4 @@ class DappList extends PureComponent {
   }
 }
 
-export default DappList;
+export default DappInstalledList;

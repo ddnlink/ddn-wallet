@@ -33,7 +33,7 @@ class Dapp extends Component {
         router.push(`${match.url}/dapp-list`);
         break;
       case 'dapp-installed-list':
-        router.push(`${match.url}/dapp-indlist`);
+        router.push(`${match.url}/dapp-installed-list`);
         break;
       default:
         break;

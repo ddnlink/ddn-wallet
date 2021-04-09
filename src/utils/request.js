@@ -160,3 +160,4 @@ export default function request(
       }
     });
 }
+export { peer };
