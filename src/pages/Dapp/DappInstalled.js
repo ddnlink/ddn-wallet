@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import router from 'umi/router';
 import { connect } from 'dva';
-import { Button, Avatar, Badge, Rate, Row, Col, Card } from 'antd';
+import { Button, Avatar, Pagination, Badge, Rate, Row, Col, Card } from 'antd';
 import TagSelect from '@/components/TagSelect';
 
 @connect(({ dapp, user, loading }) => ({
@@ -12,12 +12,13 @@ import TagSelect from '@/components/TagSelect';
 }))
 class DappInstalledList extends PureComponent {
   state = {
-    curCategory: 'all',
+    curCategory: null,
+    current: '1',
   };
 
   componentDidMount() {
     this.getCatagries();
-    this.getDapps();
+    this.getDapps({ pagesize: 10, pageindex: 1 });
   }
 
   getCatagries = () => {
@@ -27,11 +28,11 @@ class DappInstalledList extends PureComponent {
     });
   };
 
-  getDapps = () => {
+  getDapps = (payload = {}) => {
     const { dispatch } = this.props;
     dispatch({
       type: 'dapp/fetchDappsInstalled',
-      payload: { install: 'true' },
+      payload: { install: 'true', ...payload },
     });
   };
 
@@ -51,16 +52,28 @@ class DappInstalledList extends PureComponent {
     router.push(`/dapp/dapp-detail?dappid=${item.transaction_id}&installed=true`);
   };
 
-  handleOnTagChange = () => {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'dapp/fetchDappsInstalled',
+  handleOnTagChange = value => {
+    const { catagories } = this.props;
+    let payload = {};
+    const category = [];
+    value.map(item => (catagories[item] ? category.push(catagories[item]) : null));
+    payload = { category };
+    this.setState({
+      curCategory: value,
     });
+    this.getDapps(payload);
+  };
+
+  onchangePage = page => {
+    this.setState({
+      current: page,
+    });
+    this.getDapps({ pagesize: 10, pageindex: page });
   };
 
   render() {
     const { dapps, catagories } = this.props;
-    const { curCategory } = this.state;
+    const { curCategory, current } = this.state;
     const catagoryNames = Object.keys(catagories);
     return (
       <div>
@@ -75,8 +88,8 @@ class DappInstalledList extends PureComponent {
         </div>
         <Row gutter={24}>
           {dapps &&
-            dapps.length > 0 &&
-            dapps.map(item => (
+            dapps.list.length > 0 &&
+            dapps.list.map(item => (
               <Col span={6} style={{ margin: '10px 0' }}>
                 <Card bordered={false}>
                   <div
@@ -110,7 +123,7 @@ class DappInstalledList extends PureComponent {
                         shape="round"
                         onClick={() => this.lokkDetail(item)}
                       >
-                        打 开
+                        详情
                       </Button>
                     </div>
                   </div>
@@ -118,6 +131,15 @@ class DappInstalledList extends PureComponent {
               </Col>
             ))}
         </Row>
+        {dapps.pagination.total > 0 ? (
+          <Pagination
+            style={{ textAlign: 'center' }}
+            current={current}
+            onChange={this.onchangePage}
+            defaultCurrent={1}
+            total={dapps.pagination.total}
+          />
+        ) : null}
       </div>
     );
   }

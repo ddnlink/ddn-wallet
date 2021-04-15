@@ -48,7 +48,7 @@ export default {
       if (response.success === true) {
         yield put({
           type: 'saveDapps',
-          payload: response.result.rows,
+          payload: { list: response.result.rows, pagination: { total: response.result.total } },
         });
       }
       // yield put({
@@ -65,7 +65,7 @@ export default {
       if (response.success === true) {
         yield put({
           type: 'saveDappsInstalled',
-          payload: response.result.rows,
+          payload: { list: response.result.rows, pagination: { total: response.result.total } },
         });
       }
       // yield put({
