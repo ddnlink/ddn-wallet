@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { Layout } from 'antd';
 import pathToRegexp from 'path-to-regexp';
 import classNames from 'classnames';
-import Link from 'umi/link';
-import { formatMessage } from 'umi/locale';
+import { Link , formatMessage } from 'umi';
+
 import styles from './index.less';
 import BaseMenu, { getMenuMatches } from './BaseMenu';
 import { urlToList } from '../_utils/pathTools';

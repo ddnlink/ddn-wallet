@@ -1,6 +1,7 @@
 import { routerRedux } from 'dva/router';
 import { getFakeCaptcha, login } from '@/services/api';
 import { setAuthority, setKeyStore } from '@/utils/authority';
+import { clearUser, setUser } from '@/utils/cookies';
 import { getPageQuery } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
 
@@ -54,8 +55,11 @@ export default {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
+      // console.log('changeLoginStatus payload:', payload);
       setKeyStore(payload.keyStore);
       setAuthority(payload.currentAuthority);
+      setUser(payload.data.user);
+
       return {
         ...state,
         state: payload.state,

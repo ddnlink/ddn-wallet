@@ -1,5 +1,5 @@
 import { stringify } from 'qs';
-// import DdnJS from '@/utils/ddn-js';
+import DdnJS from '@ddn/js-sdk';
 import request from '../utils/request';
 
 // --------------------------- login ------------------------ //
@@ -151,13 +151,24 @@ export async function getAobBalance(params) {
 
 // 获取指定账户指定资产转账记录
 export async function getAobTransaction(params) {
-  console.log(
-    `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||
-      10}&offset=${params.offset || 0}`
-  );
+  // console.log(
+  //   `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||
+  //     10}&offset=${params.offset || 0}`
+  // );
 
   return request(
     `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||
       10}&offset=${params.offset || 0}`
   );
+}
+
+// fixme: delete these
+export async function fakeRegister() {
+  return null;
+}
+export async function getFakeCaptcha() {
+  return null;
+}
+export async function queryNotices() {
+  return null;
 }

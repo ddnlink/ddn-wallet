@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { getKeyStore } from '@/utils/authority';
 import { Button, Modal, Form, Input, Alert, message } from 'antd';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi';
 
 const FormItem = Form.Item;
 
@@ -25,14 +25,14 @@ class registeredAssetDealerForm extends PureComponent {
     const { props } = this;
     props.form.validateFields(async (err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
       }
       // 获取到表单中的数据，并转化格式，发送请求
       const { dispatch } = this.props;
       const keystore = getKeyStore();
       const { phaseKey } = keystore;
       const transaction = await DdnJS.aob.createIssuer(values.name, values.des, phaseKey);
-      console.log('trs', transaction);
+      // console.log('trs', transaction);
 
       dispatch({
         type: 'assets/postTrans',
@@ -40,7 +40,7 @@ class registeredAssetDealerForm extends PureComponent {
           transaction,
         },
         callback: response => {
-          console.log('response', response);
+          // console.log('response', response);
           if (response.success) {
             message.success('注册成功');
             this.setState({ visible: false });
@@ -57,7 +57,7 @@ class registeredAssetDealerForm extends PureComponent {
     const { loading, form } = this.props;
     const { visible, reponseError } = this.state;
     const { getFieldDecorator } = form;
-    console.log('loading', loading);
+    // console.log('loading', loading);
     return (
       <div>
         <Button type="primary" onClick={this.showModal}>

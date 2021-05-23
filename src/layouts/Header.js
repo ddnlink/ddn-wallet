@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import { formatMessage } from 'umi/locale';
+import { formatMessage , history } from 'umi';
 import { Layout, message } from 'antd';
 import Animate from 'rc-animate';
 import { connect } from 'dva';
-import router from 'umi/router';
-// import DdnJS from '@/utils/ddn-js';
+
+import DdnJS from '@ddn/js-sdk';
 import GlobalHeader from '@/components/GlobalHeader';
 import TopNavHeader from '@/components/TopNavHeader';
 import LockModal from '@/components/LockModal';
@@ -62,11 +62,11 @@ class HeaderView extends PureComponent {
   handleMenuClick = ({ key }) => {
     const { dispatch } = this.props;
     if (key === 'userCenter') {
-      router.push('/account/center');
+      history.push('/account/center');
       return;
     }
     if (key === 'triggerError') {
-      router.push('/exception/trigger');
+      history.push('/exception/trigger');
       return;
     }
     if (key === 'lock') {
@@ -128,7 +128,7 @@ class HeaderView extends PureComponent {
     const { keyStore, dispatch } = this.props;
     const transaction = DdnJS.transaction.createLock(value, keyStore.phaseKey, undefined);
     const payload = { transaction };
-    console.log('payload transaction', transaction);
+    // console.log('payload transaction', transaction);
     dispatch({
       type: 'user/fetchLock',
       payload,

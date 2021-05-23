@@ -3,10 +3,10 @@ import { connect } from 'dva';
 import { Row, Col, Card, Icon, Switch, Table, Button, message } from 'antd';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { getKeyStore } from '@/utils/authority';
-// import DdnJS from '@/utils/ddn-js';
+import DdnJS from '@ddn/js-sdk';
 
 import moment from 'moment';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi';
 import MultiMember from '@/pages/Multi/MultiMember';
 import OpenMultiModal from './OpenMultiModal';
 

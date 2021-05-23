@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'dva';
 import { Card, Table, Alert, Modal } from 'antd';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi';
 import { getKeyStore } from '@/utils/authority';
 import DelegateModal from './DelegateModal';
 import VoteModal from './VoteModal';
@@ -80,7 +80,7 @@ class VoteList extends PureComponent {
   };
 
   handleSelectRows = (selectedRowKeys, selectedRows) => {
-    console.log('selectedRowKeys', selectedRowKeys, 'selectedRows', selectedRows);
+    // console.log('selectedRowKeys', selectedRowKeys, 'selectedRows', selectedRows);
     this.setState({
       selectedRows,
       selectedRowKeys,
@@ -94,20 +94,20 @@ class VoteList extends PureComponent {
   handleVoteDelegate = async () => {
     const { selectedRows } = this.state;
     const { dispatch } = this.props;
-    console.log('selectedRowKeys', selectedRows);
+    // console.log('selectedRowKeys', selectedRows);
     const keyStore = getKeyStore();
-    console.log('keyStore', keyStore);
+    // console.log('keyStore', keyStore);
     if (selectedRows.length < 1) return;
     const datap = selectedRows.map(row => `-${row.publicKey}`);
-    console.log('datap', datap);
+    // console.log('datap', datap);
     const trs = await DdnJS.vote.createVote(datap, keyStore.phaseKey);
     const payload = { transaction: trs };
-    console.log('payload= ', payload);
+    // console.log('payload= ', payload);
     dispatch({
       type: 'vote/voting',
       payload,
       callback: response => {
-        console.log('callback starting. ', response);
+        // console.log('callback starting. ', response);
         this.setState({
           selectedRows: [],
         });
@@ -116,7 +116,7 @@ class VoteList extends PureComponent {
   };
 
   handleSetCurDelegate = record => {
-    console.log('record。。。。。', record);
+    // console.log('record。。。。。', record);
     this.setState({
       curDelegate: record,
       visibleDelegate: true,

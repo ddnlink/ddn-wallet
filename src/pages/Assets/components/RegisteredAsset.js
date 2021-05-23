@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { getKeyStore } from '@/utils/authority';
 import { Button, Modal, Form, Input, Alert, message } from 'antd';
-import { formatMessage } from 'umi/locale';
-// // import DdnJS from '@/utils/ddn-js';
+import { formatMessage } from 'umi';
+import DdnJS from '@ddn/js-sdk';
 
 const FormItem = Form.Item;
 
@@ -88,7 +88,7 @@ class RegisteredAsset extends PureComponent {
     const { loading, form } = this.props;
     const { getFieldDecorator } = form;
     const { visible, errorMessage } = this.state;
-    console.log('loading', loading);
+    // console.log('loading', loading);
     return (
       <div>
         <Button type="primary" onClick={this.showModal}>

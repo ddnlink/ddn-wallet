@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 export interface IResultProps {
   type: 'success' | 'error';
   title: React.ReactNode;

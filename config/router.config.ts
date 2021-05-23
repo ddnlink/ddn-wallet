@@ -4,11 +4,16 @@ export default [
     path: '/user',
     component: '../layouts/UserLayout',
     routes: [
-      { path: '/user', redirect: '/user/login' },
-      { path: '/user/login', component: './User/Login' },
+      {
+        path: '/user',
+        redirect: '/user/login',
+      },
+      {
+        path: '/user/login',
+        component: './User/Login',
+      },
     ],
-  },
-  // app
+  }, // app
   {
     path: '/',
     component: '../layouts/BasicLayout',
@@ -16,14 +21,16 @@ export default [
     authority: ['address'],
     routes: [
       // home
-      { path: '/', redirect: '/home' },
+      {
+        path: '/',
+        redirect: '/home',
+      },
       {
         path: '/home',
         name: 'home',
         icon: 'home',
         component: './Home/Home',
-      },
-      // transfer
+      }, // transfer
       {
         path: '/transfer',
         name: 'transfer',
@@ -53,6 +60,12 @@ export default [
           },
         ],
       },
+
+      {
+        name: 'signature',
+        path: '/signature',
+        component: './Signature',
+      },
       // MutiSignature
       {
         path: '/multi-signature',
@@ -60,6 +73,7 @@ export default [
         icon: 'deployment-unit',
         component: './Multi/MultiSignature',
       },
+
       // Vote
       {
         path: '/vote',
@@ -96,6 +110,7 @@ export default [
       //   icon: 'bank',
       //   component: './Assets/Assets',
       // },
+
       // Decentrelize application
       // {
       //   path: '/dapp',
@@ -122,7 +137,11 @@ export default [
             name: 'success',
             component: './Result/Success',
           },
-          { path: '/result/fail', name: 'fail', component: './Result/Error' },
+          {
+            path: '/result/fail',
+            name: 'fail',
+            component: './Result/Error',
+          },
         ],
       },
       {
@@ -155,6 +174,7 @@ export default [
           },
         ],
       },
+
       {
         component: '404',
       },

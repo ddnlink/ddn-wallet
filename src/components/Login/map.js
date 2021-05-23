@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'antd';
 import bip39 from 'bip39';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi';
 import styles from './index.less';
 
 function validatorPhasekey(rule, value, callback) {

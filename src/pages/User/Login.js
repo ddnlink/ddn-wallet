@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { formatMessage, FormattedMessage } from 'umi/locale';
+import { formatMessage, FormattedMessage } from 'umi';
 import { Checkbox, Alert } from 'antd';
-// import DdnJS from '@ddn/js-sdk'
+import DdnJS from '@ddn/js-sdk';
 import Login from '@/components/Login';
 import styles from './Login.less';
 import Register from './Register';
@@ -27,8 +27,9 @@ class LoginPage extends Component {
     if (err) return;
     const { dispatch } = this.props;
     const keyPair = DdnJS.crypto.getKeys(values.phaseKey.trim());
+    const curAddress = DdnJS.crypto.generateAddress(keyPair.publicKey, DdnJS.constants.tokenPrefix);
 
-    const curAddress = DdnJS.crypto.generateAddress(keyPair.publicKey);
+    // console.log('curAddress: ', curAddress);
 
     const keyStore = {
       address: curAddress,

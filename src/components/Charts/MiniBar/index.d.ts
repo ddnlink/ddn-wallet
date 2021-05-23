@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 export interface IMiniBarProps {
   color?: string;
   height: number;

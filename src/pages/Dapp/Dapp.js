@@ -11,7 +11,7 @@ class Dapp extends PureComponent {
 
   render() {
     const { home, loading } = this.props;
-    console.log('Dapp home', home, 'loading', loading);
+    // console.log('Dapp home', home, 'loading', loading);
     return (
       <div>
         <h1>Dapp</h1>

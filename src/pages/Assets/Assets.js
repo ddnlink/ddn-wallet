@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Card, Icon, Table } from 'antd';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { getKeyStore } from '@/utils/authority';
 import RegisteredAsset from './components/RegisteredAsset';
@@ -97,7 +97,7 @@ class Assets extends PureComponent {
 
   render() {
     const { issuer, myAob, myIssueAob, loading } = this.props;
-    console.log('issuer', issuer, 'myAob123', myAob, 'myIssueAob', myIssueAob, 'loading', loading);
+    // console.log('issuer', issuer, 'myAob123', myAob, 'myIssueAob', myIssueAob, 'loading', loading);
     const pageTitle = (
       <div style={{ display: 'flex' }}>
         <div style={{ flex: '1' }}>

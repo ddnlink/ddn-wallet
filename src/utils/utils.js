@@ -160,18 +160,7 @@ export function formatWan(val) {
     result = (
       <span>
         {result}
-        <span
-          styles={{
-            position: 'relative',
-            top: -2,
-            fontSize: 14,
-            fontStyle: 'normal',
-            lineHeight: 20,
-            marginLeft: 2,
-          }}
-        >
-          万
-        </span>
+        <span styles={{ position: 'relative', top: -2, fontSize: 14, fontStyle: 'normal', lineHeight: 20, marginLeft: 2 }}> 万 </span>
       </span>
     );
   }

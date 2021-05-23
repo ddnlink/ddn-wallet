@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import Link from 'umi/link';
-import { formatMessage } from 'umi/locale';
+import { Link , formatMessage } from 'umi';
+
 import RightContent from '../GlobalHeader/RightContent';
 import BaseMenu from '../SiderMenu/BaseMenu';
 import styles from './index.less';

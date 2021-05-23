@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Card, Table, Radio, Icon } from 'antd';
 import moment from 'moment';
-import { formatMessage } from 'umi/locale';
-// import DdnJS from '@ddn/js-sdk'
+import { formatMessage } from 'umi';
+import DdnJS from '@ddn/js-sdk';
 import { ChartCard } from '@/components/Charts';
 import { getKeyStore } from '@/utils/authority';
 import styles from './Home.less';
@@ -162,7 +162,7 @@ class Home extends PureComponent {
 
   render() {
     const { role } = this.state;
-    const { transData, account, latestBlock, version, loading, transLoading, peer } = this.props;
+    const { transData, account, latestBlock, version, loading, transLoading } = this.props;
 
     const topColResponsiveProps = {
       xs: 24,
@@ -206,7 +206,7 @@ class Home extends PureComponent {
               action={
                 <span>
                   <span>{formatMessage({ id: 'app.home.unit' })}: </span>
-                  <span>HBL</span>
+                  <span>{DdnJS.constants.tokenName}</span>
                 </span>
               }
               loading={loading}
@@ -257,7 +257,8 @@ class Home extends PureComponent {
                 </span>
               }
               loading={loading}
-              total={() => <div style={{ marginTop: '5px' }}>v{version.version}</div>}
+              // fixme: 这里因为version异步获取到，会导致渲染出错 2021.5.23 imfly
+              // total={() => <div style={{ marginTop: '5px' }}>v{version.version}</div>}
               footer={
                 <div>
                   {formatMessage({ id: 'app.home.peer-start-time' })}: {version.build}
@@ -266,36 +267,34 @@ class Home extends PureComponent {
             />
           </Col>
         </Row>
-        <Row gutter={24} style={{ marginTop: 20 }}>
-          <Col>
-            <Card
-              bordered={false}
-              className={styles.listCard}
-              title={
-                <div style={{ fontSize: 20 }}>
-                  <Icon type="clock-circle" theme="outlined" />
-                  <span style={{ marginLeft: 10 }}>
-                    {formatMessage({ id: 'app.home.translist' })}
-                  </span>
-                </div>
-              }
-              style={{ marginTop: 24 }}
-              bodyStyle={{ padding: '0 32px 40px 32px' }}
-              extra={extraContent}
-            >
-              <div className={styles.tableList}>
-                <Table
-                  loading={transLoading}
-                  rowKey={record => record.id}
-                  dataSource={transData.list}
-                  pagination={transData.pagination}
-                  columns={this.columns}
-                  onChange={this.handleTableChange}
-                />
+        <div>
+          <Card
+            bordered={false}
+            className={styles.listCard}
+            title={
+              <div style={{ fontSize: 20 }}>
+                <Icon type="clock-circle" theme="outlined" />
+                <span style={{ marginLeft: 10 }}>
+                  {formatMessage({ id: 'app.home.translist' })}
+                </span>
               </div>
-            </Card>
-          </Col>
-        </Row>
+            }
+            style={{ marginTop: 24 }}
+            bodyStyle={{ padding: '0 32px 40px 32px' }}
+            extra={extraContent}
+          >
+            <div className={styles.tableList}>
+              <Table
+                loading={transLoading}
+                rowKey={record => record.id}
+                dataSource={transData.list}
+                pagination={transData.pagination}
+                columns={this.columns}
+                onChange={this.handleTableChange}
+              />
+            </div>
+          </Card>
+        </div>
       </div>
     );
   }

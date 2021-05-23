@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Menu, Icon } from 'antd';
-import Link from 'umi/link';
-import { formatMessage } from 'umi/locale';
+import { Link , formatMessage } from 'umi';
+
 import pathToRegexp from 'path-to-regexp';
 import { urlToList } from '../_utils/pathTools';
 import styles from './index.less';
@@ -114,7 +114,7 @@ export default class BaseMenu extends PureComponent {
     // Is it a http link
     const pattern = /\S*http[s]{0,1}:/;
     if (pattern.test(itemPath)) {
-      console.log('itemPath', itemPath);
+      // console.log('itemPath', itemPath);
       return (
         <a href={itemPath.replace(pattern, 'http:/')} target={target}>
           {icon}

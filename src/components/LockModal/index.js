@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Input, Alert, Button } from 'antd';
 import moment from 'moment';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi';
 import Result from '@/components/Result';
 import styles from './index.less';
 

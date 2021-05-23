@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 export interface INoticeIconData {
   avatar?: string|React.ReactNode;
   title?: React.ReactNode;

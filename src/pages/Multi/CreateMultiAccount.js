@@ -9,8 +9,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Steps, Button, Icon, Input, Slider, List, message, Alert } from 'antd';
-// // import DdnJS from '@/utils/ddn-js';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi';
+import DdnJS from '@ddn/js-sdk';
 import { getKeyStore } from '@/utils/authority';
 
 const { Step } = Steps;

@@ -3,7 +3,7 @@ import { Row, Col, Card, Table } from 'antd';
 import { connect } from 'dva';
 import { Pie } from '@/components/Charts';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi';
 import styles from './Forging.less';
 
 @connect(({ vote, user, loading }) => ({
@@ -31,7 +31,7 @@ class Forging extends PureComponent {
 
   componentDidMount() {
     const { dispatch, currentAccount } = this.props;
-    console.log('currentAccount', currentAccount);
+    // console.log('currentAccount', currentAccount);
     dispatch({
       type: 'vote/fetchVoters',
       payload: { publicKey: currentAccount.publicKey },
@@ -40,7 +40,7 @@ class Forging extends PureComponent {
 
   render() {
     const { voters, loading, delegateInfo } = this.props;
-    console.log('delegateInfo', delegateInfo);
+    // console.log('delegateInfo', delegateInfo);
     const topColResponsiveProps = {
       xs: 24,
       sm: 8,

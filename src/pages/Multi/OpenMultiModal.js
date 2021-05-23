@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Modal } from 'antd';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi';
 import CreateMultiAccount from './CreateMultiAccount';
 
 class OpenMultiModal extends PureComponent {

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Row, Col, Icon } from 'antd';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi';
 
 const leftStyle = {
   textAlign: 'left',
@@ -13,7 +13,7 @@ class DelegateModal extends PureComponent {
   render() {
     const { curDelegate } = this.props;
 
-    console.log('curDelegate............', curDelegate);
+    // console.log('curDelegate............', curDelegate);
 
     return (
       <div>
@@ -46,7 +46,8 @@ class DelegateModal extends PureComponent {
               <div style={rightStyle}>{`${curDelegate.publicKey.slice(
                 1,
                 20
-              )}...${curDelegate.publicKey.slice(-20)}`}</div>
+              )}...${curDelegate.publicKey.slice(-20)}`}
+              </div>
             </Col>
           </Row>
           <Row style={{ padding: '10px' }}>

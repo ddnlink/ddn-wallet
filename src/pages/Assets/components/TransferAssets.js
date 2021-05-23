@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { getKeyStore } from '@/utils/authority';
 import { Button, Modal, Form, Input, message, Alert } from 'antd';
-import { formatMessage } from 'umi/locale';
-// import DdnJS from '@/utils/ddn-js';
+import { formatMessage } from 'umi';
+import DdnJS from '@ddn/js-sdk';
 
 const FormItem = Form.Item;
 

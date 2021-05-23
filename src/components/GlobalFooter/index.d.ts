@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 export interface IGlobalFooterProps {
   links?: Array<{
     key?: string;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Form, Button, Alert, Divider, message } from 'antd';
-import router from 'umi/router';
+import { history } from 'umi';
 // import { digitUppercase } from '@/utils/utils';
-import { formatMessage } from 'umi/locale';
-// import DdnJS from '@/utils/ddn-js';
+import { formatMessage } from 'umi';
+import DdnJS from '@ddn/js-sdk';
 import { getKeyStore } from '@/utils/authority';
 import styles from './style.less';
 
@@ -37,7 +37,7 @@ class Step2 extends React.PureComponent {
       remark,
       phaseKey
     );
-    console.log('trs', transaction);
+    // console.log('trs', transaction);
 
     dispatch({
       type: 'transfer/submitTransfer',
@@ -56,7 +56,7 @@ class Step2 extends React.PureComponent {
   render() {
     const { data, submitting } = this.props;
     const onPrev = () => {
-      router.push('/transfer/fill');
+      history.push('/transfer/fill');
     };
     return (
       <Form layout="horizontal" className={styles.stepForm}>

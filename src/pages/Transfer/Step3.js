@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import { Button, Row, Col } from 'antd';
-import router from 'umi/router';
+import { history , formatMessage } from 'umi';
 import Result from '@/components/Result';
-import { formatMessage } from 'umi/locale';
+
 import styles from './style.less';
 
 @connect(({ transfer }) => ({
@@ -13,7 +13,7 @@ class Step3 extends React.PureComponent {
   render() {
     const { data } = this.props;
     const onFinish = () => {
-      router.push('/transfer/fill');
+      history.push('/transfer/fill');
     };
     const information = (
       <div className={styles.information}>
@@ -64,7 +64,7 @@ class Step3 extends React.PureComponent {
             </Col>
             <Col xs={24} sm={16}>
               <a
-              // TODO：抽取为常量
+                // TODO：抽取为常量
                 href={`http://testnet.ddn.link/transactions/${data.transId}`}
                 target="_blank"
                 rel="noreferrer noopener"

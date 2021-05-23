@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { FormattedMessage, formatMessage } from 'umi/locale';
+import { FormattedMessage, formatMessage } from 'umi';
 import jdenticon from 'jdenticon';
 import { Menu, Icon, Dropdown, Tooltip, message, Modal } from 'antd';
 import copy from 'copy-to-clipboard';

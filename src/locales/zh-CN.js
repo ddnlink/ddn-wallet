@@ -68,6 +68,8 @@ export default {
   'menu.assets': '资产',
   'menu.application': '应用',
   'menu.block': '区块',
+  'menu.signature': '签名',
+
   'menu.explorer': '浏览器',
   'menu.dashboard': 'Dashboard',
   'menu.dashboard.analysis': '分析页',
@@ -158,6 +160,7 @@ export default {
   'app.home.peer-start-time': '该节点启动时间',
   'app.home.testnet': '测试网络',
   'app.home.mainnet': '主网络',
+  'app.home.undefined': '未定义',
   'app.home.days': '天',
   'app.vote.delegateList': '受托人列表',
   'app.vote.myvote': '我投票的',

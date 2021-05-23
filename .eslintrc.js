@@ -1,6 +1,8 @@
 module.exports = {
-  parser: 'babel-eslint',
-  extends: ['airbnb', 'prettier', 'plugin:compat/recommended'],
+  // parser: 'babel-eslint',
+  parser:  '@typescript-eslint/parser',
+  extends: ['airbnb', 'prettier', 'plugin:@typescript-eslint/eslint-recommended'],
+  plugins: ["@typescript-eslint", "import"],
   env: {
     browser: true,
     node: true,
@@ -16,7 +18,7 @@ module.exports = {
     DdnJS: true,
   },
   rules: {
-    'react/jsx-filename-extension': [1, { extensions: ['.js'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.ts'] }],
     'react/jsx-wrap-multilines': 0,
     'react/prop-types': 0,
     'react/forbid-prop-types': 0,
@@ -27,8 +29,24 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/anchor-is-valid': 0,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+   ]
   },
   settings: {
     polyfills: ['fetch', 'promises', 'url'],
+    // 解决错误：Using eslint with typescript - Unable to resolve path to module
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   },
 };

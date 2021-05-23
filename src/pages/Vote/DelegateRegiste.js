@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Button, Modal, Alert, Input, Icon } from 'antd';
 import { getKeyStore } from '@/utils/authority';
 import { connect } from 'dva';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi';
 
 @connect(({ vote }) => ({
   vote,
@@ -38,12 +38,12 @@ class DelegateRegiste extends PureComponent {
     const keyStore = getKeyStore();
     const trs = await DdnJS.delegate.createDelegate(delegateName, keyStore.phaseKey, null);
     const payload = { transaction: trs };
-    console.log('payload= ', payload);
+    // console.log('payload= ', payload);
     dispatch({
       type: 'vote/postReigster',
       payload,
       callback: response => {
-        console.log('callback starting. ', response);
+        // console.log('callback starting. ', response);
         if (response.success) {
           this.handleCloseModal();
         } else {

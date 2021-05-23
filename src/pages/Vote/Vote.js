@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
-import router from 'umi/router';
+import { history , formatMessage } from 'umi';
 import { connect } from 'dva';
 import { Icon } from 'antd';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
-import { formatMessage } from 'umi/locale';
+
 import DelegateRegiste from './DelegateRegiste';
 
 @connect(({ user, vote }) => ({
   currentAccount: user.currentAccount,
-  delegateInfo: vote.delegateInfo
+  delegateInfo: vote.delegateInfo,
 }))
-
 class Vote extends Component {
   componentDidMount() {
     const { dispatch, currentAccount } = this.props;
-    console.log("currentAccount", currentAccount)
+    // console.log('currentAccount', currentAccount);
     dispatch({
       type: 'vote/fetchDelegateInfo',
-      payload: { publicKey: currentAccount.publicKey}
+      payload: { publicKey: currentAccount.publicKey },
     });
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     const { dispatch } = this.props;
     dispatch({
       type: 'vote/reset',
@@ -32,26 +31,26 @@ class Vote extends Component {
     const { match } = this.props;
     switch (key) {
       case 'delegate-list':
-        router.push(`${match.url}/delegate-list`);
+        history.push(`${match.url}/delegate-list`);
         break;
       case 'votelist':
-        router.push(`${match.url}/votelist`);
+        history.push(`${match.url}/votelist`);
         break;
       case 'forging':
-        router.push(`${match.url}/forging`);
+        history.push(`${match.url}/forging`);
         break;
       default:
         break;
     }
-  }
+  };
 
-  handleFormSubmit = (value) => {
+  handleFormSubmit = value => {
     // eslint-disable-next-line
     console.log(value);
-  }
+  };
 
   render() {
-    const { match, children, location, delegateInfo} = this.props;
+    const { match, children, location, delegateInfo } = this.props;
     const tabList = [
       {
         key: 'delegate-list',
@@ -74,7 +73,13 @@ class Vote extends Component {
           <span style={{ marginLeft: '20px' }}>{formatMessage({ id: 'app.vote.vote' })}</span>
         </div>
         <div style={{ flex: '1', textAlign: 'right' }}>
-          {delegateInfo.username? <span>{formatMessage({ id: 'app.vote.delegateName' })}: {delegateInfo.username }</span> : <DelegateRegiste />}
+          {delegateInfo.username ? (
+            <span>
+              {formatMessage({ id: 'app.vote.delegateName' })}: {delegateInfo.username}
+            </span>
+          ) : (
+            <DelegateRegiste />
+          )}
         </div>
       </div>
     );

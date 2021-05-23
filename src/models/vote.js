@@ -81,15 +81,15 @@ export default {
       });
     },
     *voting({ payload, callback}, { call }) {
-      console.log('add starting. ', payload);
+      // console.log('add starting. ', payload);
       const response = yield call(postTransaction, payload);
-      console.log('response= ', response);
+      // console.log('response= ', response);
       callback(response)
     },
     *postReigster({ payload, callback}, { call }) {
-      console.log('register starting. ', payload);
+      // console.log('register starting. ', payload);
       const response = yield call(postTransaction, payload);
-      console.log('response= ', response);
+      // console.log('response= ', response);
       callback(response)
     },
   },

@@ -20,9 +20,9 @@ export default {
       });
     },
     *fetchLock({ payload, callback }, { call }) {
-      console.log('payload', payload);
+      // console.log('payload', payload);
       const response = yield call(postTransaction, payload);
-      console.log('response', response);
+      // console.log('response', response);
       callback(response)
     },
   },
