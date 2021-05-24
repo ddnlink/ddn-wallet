@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Button, Modal, Alert, Input, Icon } from 'antd';
+import { InfoCircleFilled, WarningFilled } from '@ant-design/icons';
+import { Button, Modal, Alert, Input } from 'antd';
 import { getKeyStore } from '@/utils/authority';
 import { connect } from 'dva';
 import { formatMessage } from 'umi';
@@ -71,7 +72,7 @@ class DelegateRegiste extends PureComponent {
         >
           <div style={{ display: 'flex', marginBottom: '30px' }}>
             <div style={{ padding: '0 10px' }}>
-              <Icon type="info-circle" theme="filled" />
+              <InfoCircleFilled />
             </div>
             <div>{formatMessage({ id: 'app.vote.set-delegate-info' })}</div>
           </div>
@@ -87,7 +88,7 @@ class DelegateRegiste extends PureComponent {
                 <Alert
                   message={
                     <div>
-                      <Icon type="warning" theme="filled" style={{ marginRight: '5px' }} />
+                      <WarningFilled style={{ marginRight: '5px' }} />
                       <span>{inputError}</span>
                     </div>
                   }

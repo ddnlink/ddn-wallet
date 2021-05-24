@@ -116,6 +116,7 @@ export default {
   'app.login.wordsLogin': '助记词登录',
   'app.login.login': '登录',
   'app.login.phasekey-placeholder': '请输入助记词(单词组)',
+  'app.login.phasekey-required': '请输入您的密钥助记词(单词组)',
   'app.login.phasekey-error': '密钥格式有误',
   'app.register.register': '注册',
   'app.register.create-account': '创建新账户',

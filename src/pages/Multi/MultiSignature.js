@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Card, Icon, Switch, Table, Button, message } from 'antd';
+import { DeploymentUnitOutlined } from '@ant-design/icons';
+import { Row, Col, Card, Switch, Table, Button, message } from 'antd';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { getKeyStore } from '@/utils/authority';
 import DdnJS from '@ddn/js-sdk';
@@ -211,7 +212,7 @@ class MultiSignature extends PureComponent {
     const pageTitle = (
       <div style={{ display: 'flex' }}>
         <div style={{ flex: '1' }}>
-          <Icon type="deployment-unit" />
+          <DeploymentUnitOutlined />
           <span style={{ marginLeft: '20px' }}>
             {formatMessage({ id: 'app.multi.multi-signature' })}
           </span>

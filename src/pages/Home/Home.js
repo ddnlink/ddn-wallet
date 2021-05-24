@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Card, Table, Radio, Icon } from 'antd';
+import { BarChartOutlined, ClockCircleOutlined, PieChartFilled, RadarChartOutlined } from '@ant-design/icons';
+import { Row, Col, Card, Table, Radio } from 'antd';
 import moment from 'moment';
 import { formatMessage } from 'umi';
 import DdnJS from '@ddn/js-sdk';
@@ -197,7 +198,7 @@ class Home extends PureComponent {
               bordered={false}
               title={
                 <div style={{ fontSize: '20px' }}>
-                  <Icon type="pie-chart" theme="filled" />
+                  <PieChartFilled />
                   <span style={{ marginLeft: '10px' }}>
                     {formatMessage({ id: 'app.home.balance' })}
                   </span>
@@ -223,7 +224,7 @@ class Home extends PureComponent {
               bordered={false}
               title={
                 <div style={{ fontSize: '20px' }}>
-                  <Icon type="bar-chart" theme="outlined" />
+                  <BarChartOutlined />
                   <span style={{ marginLeft: '10px' }}>
                     {formatMessage({ id: 'app.home.block-height' })}
                   </span>
@@ -244,7 +245,7 @@ class Home extends PureComponent {
               bordered={false}
               title={
                 <div style={{ fontSize: '20px' }}>
-                  <Icon type="radar-chart" theme="outlined" />
+                  <RadarChartOutlined />
                   <span style={{ marginLeft: '10px' }}>
                     {formatMessage({ id: `app.home.${version.net}` })}
                   </span>
@@ -273,7 +274,7 @@ class Home extends PureComponent {
             className={styles.listCard}
             title={
               <div style={{ fontSize: 20 }}>
-                <Icon type="clock-circle" theme="outlined" />
+                <ClockCircleOutlined />
                 <span style={{ marginLeft: 10 }}>
                   {formatMessage({ id: 'app.home.translist' })}
                 </span>

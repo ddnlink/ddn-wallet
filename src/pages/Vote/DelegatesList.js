@@ -1,6 +1,8 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'dva';
-import { Card, Form, Badge, Table, Alert, Modal } from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Card, Badge, Table, Alert, Modal } from 'antd';
 import { formatMessage } from 'umi';
 import DdnJS from '@ddn/js-sdk';
 

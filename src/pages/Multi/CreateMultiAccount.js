@@ -8,7 +8,8 @@
 
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Steps, Button, Icon, Input, Slider, List, message, Alert } from 'antd';
+import { CloseCircleOutlined } from '@ant-design/icons';
+import { Steps, Button, Input, Slider, List, message, Alert } from 'antd';
 import { formatMessage } from 'umi';
 import DdnJS from '@ddn/js-sdk';
 import { getKeyStore } from '@/utils/authority';
@@ -154,12 +155,10 @@ class CreateMultiAccount extends PureComponent {
     };
     const renderGroups = [...groups, pair];
     const suffix = searchText && (
-      <Icon
-        type="close-circle"
+      <CloseCircleOutlined
         onClick={this.emitEmpty}
         key={currentStep}
-        style={{ marginRight: '10px' }}
-      />
+        style={{ marginRight: '10px' }} />
     );
     switch (currentStep) {
       case 0:
@@ -209,12 +208,10 @@ class CreateMultiAccount extends PureComponent {
                     <div>{item.address}</div>
                     {item.publicKey !== this.keyStore.publicKey && (
                       <div style={{ flex: '1', textAlign: 'right' }}>
-                        <Icon
-                          type="close-circle"
+                        <CloseCircleOutlined
                           onClick={() => this.deleteGroup(item)}
                           key={currentStep}
-                          style={{ marginRight: '10px', cursor: 'pointer' }}
-                        />
+                          style={{ marginRight: '10px', cursor: 'pointer' }} />
                       </div>
                     )}
                   </List.Item>

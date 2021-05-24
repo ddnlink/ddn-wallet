@@ -60,21 +60,17 @@ export default [
           },
         ],
       },
-
       {
         name: 'signature',
         path: '/signature',
         component: './Signature',
-      },
-      // MutiSignature
+      }, // MutiSignature
       {
         path: '/multi-signature',
         name: 'multiSignature',
         icon: 'deployment-unit',
         component: './Multi/MultiSignature',
-      },
-
-      // Vote
+      }, // Vote
       {
         path: '/vote',
         name: 'vote',
@@ -102,15 +98,13 @@ export default [
             component: './Vote/Forging',
           },
         ],
-      },
-      // assets
+      }, // assets
       // {
       //   path: '/assets',
       //   name: 'assets',
       //   icon: 'bank',
       //   component: './Assets/Assets',
       // },
-
       // Decentrelize application
       // {
       //   path: '/dapp',
@@ -174,7 +168,11 @@ export default [
           },
         ],
       },
-
+      {
+        name: '空白页面',
+        path: '/emptypage',
+        component: './EmptyPage',
+      },
       {
         component: '404',
       },

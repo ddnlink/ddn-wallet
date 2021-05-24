@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from 'antd';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import bip39 from 'bip39';
 import { formatMessage } from 'umi';
 import styles from './index.less';
@@ -21,7 +21,7 @@ export default {
   UserName: {
     props: {
       size: 'large',
-      prefix: <Icon type="user" className={styles.prefixIcon} />,
+      prefix: <UserOutlined className={styles.prefixIcon} />,
       placeholder: 'admin',
     },
     rules: [
@@ -34,7 +34,7 @@ export default {
   Password: {
     props: {
       size: 'large',
-      prefix: <Icon type="lock" className={styles.prefixIcon} />,
+      prefix: <LockOutlined className={styles.prefixIcon} />,
       type: 'password',
       placeholder: '888888',
     },

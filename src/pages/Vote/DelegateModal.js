@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Row, Col, Icon } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Row, Col } from 'antd';
 import { formatMessage } from 'umi';
 
 const leftStyle = {
@@ -18,7 +19,7 @@ class DelegateModal extends PureComponent {
     return (
       <div>
         <h2 style={{ textAlign: 'center' }}>
-          <Icon type="user" theme="outlined" style={{ marginRight: '20px' }} />{' '}
+          <UserOutlined style={{ marginRight: '20px' }} />{' '}
           {formatMessage({ id: 'app.vote.detail' })}
         </h2>
         <div>

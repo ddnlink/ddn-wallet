@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Form, Button, Alert, Divider, message } from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Button, Alert, Divider, message } from 'antd';
 import { history } from 'umi';
 // import { digitUppercase } from '@/utils/utils';
 import { formatMessage } from 'umi';

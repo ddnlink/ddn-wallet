@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Popover, Icon, Tabs, Badge, Spin } from 'antd';
+import { BellOutlined } from '@ant-design/icons';
+import { Popover, Tabs, Badge, Spin } from 'antd';
 import classNames from 'classnames';
 import List from './NoticeList';
 import styles from './index.less';
@@ -68,7 +69,7 @@ export default class NoticeIcon extends PureComponent {
     const { className, count, popupAlign, popupVisible, onPopupVisibleChange, bell } = this.props;
     const noticeButtonClass = classNames(className, styles.noticeButton);
     const notificationBox = this.getNotificationBox();
-    const NoticeBellIcon = bell || <Icon type="bell" className={styles.icon} />;
+    const NoticeBellIcon = bell || <BellOutlined className={styles.icon} />;
     const trigger = (
       <span className={noticeButtonClass}>
         <Badge count={count} style={{ boxShadow: 'none' }} className={styles.badge}>

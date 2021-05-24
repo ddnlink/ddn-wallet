@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { Icon, Card } from 'antd';
+import { CopyrightOutlined } from '@ant-design/icons';
+import { Card } from 'antd';
 import GlobalFooter from '@/components/GlobalFooter';
 import SelectLang from '@/components/SelectLang';
 import styles from './UserLayout.less';
@@ -7,7 +8,7 @@ import styles from './UserLayout.less';
 
 const copyright = (
   <Fragment>
-    Copyright <Icon type="copyright" /> 2018 Powered by DDN FOUNDATION
+    Copyright <CopyrightOutlined /> 2018 Powered by DDN FOUNDATION
   </Fragment>
 );
 

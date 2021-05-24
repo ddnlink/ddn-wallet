@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Card, Icon, Table } from 'antd';
+import { DollarOutlined, HomeOutlined } from '@ant-design/icons';
+import { Row, Col, Card, Table } from 'antd';
 import { formatMessage } from 'umi';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { getKeyStore } from '@/utils/authority';
@@ -21,7 +22,7 @@ class Assets extends PureComponent {
         width: '20%',
         render: record => (
           <div>
-            <Icon type="dollar" theme="outlined" style={{ marginRight: '10px' }} />
+            <DollarOutlined style={{ marginRight: '10px' }} />
             {record.name.split('.')[1]}
           </div>
         ),
@@ -101,7 +102,7 @@ class Assets extends PureComponent {
     const pageTitle = (
       <div style={{ display: 'flex' }}>
         <div style={{ flex: '1' }}>
-          <Icon type="home" />
+          <HomeOutlined />
           <span style={{ marginLeft: '20px' }}>{formatMessage({ id: 'app.asset.asset' })}</span>
         </div>
         <div style={{ flex: '1', textAlign: 'right' }}>
@@ -148,7 +149,7 @@ class Assets extends PureComponent {
                   <Card
                     title={
                       <div>
-                        <Icon type="dollar" theme="outlined" style={{ marginRight: '20px' }} />
+                        <DollarOutlined style={{ marginRight: '20px' }} />
                         {item.currency.split('.')[1]}
                       </div>
                     }

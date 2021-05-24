@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi';
-import { Checkbox, Alert } from 'antd';
+import { Form, Input, Button, Checkbox, Alert } from 'antd';
 import DdnJS from '@ddn/js-sdk';
-import Login from '@/components/Login';
-import styles from './Login';
+import Login from './components/Login';
+import styles from './Login.less';
 import Register from './Register';
 
-const { Wallet, Submit } = Login;
+const { Submit } = Login;
 
 @connect(({ login, loading }) => ({
   login,
@@ -17,10 +17,6 @@ class LoginPage extends Component {
   state = {
     type: 'account',
     autoLogin: true,
-  };
-
-  onTabChange = type => {
-    this.setState({ type });
   };
 
   handleSubmit = (err, values) => {
@@ -63,13 +59,10 @@ class LoginPage extends Component {
   render() {
     const { submitting } = this.props;
     const { type, autoLogin } = this.state;
-    // const { nethash, isMobile } = this.context
-    // console.log(nethash, isMobile, this.context);
     return (
       <div className={styles.main}>
         <Login
           defaultActiveKey={type}
-          onTabChange={this.onTabChange}
           onSubmit={this.handleSubmit}
           ref={form => {
             this.loginForm = form;
@@ -84,11 +77,17 @@ class LoginPage extends Component {
           <div style={{ margin: '10px 0', color: '#4865FE', fontSize: '16px' }}>
             {formatMessage({ id: 'app.login.wordsLogin' })}
           </div>
-          <Wallet
-            name="phaseKey"
-            placeholder={formatMessage({ id: 'app.login.phasekey-placeholder' })}
-            style={{ backgroundColor: 'rgba(245,245,245,1)' }}
-          />
+          <Form.Item
+          name="phaseKey"
+          rules={[
+            {
+              required: true,
+              message: formatMessage({id: 'app.login.phasekey-required'}),
+            },
+          ]}
+          >
+           <Input.TextArea placeholder={formatMessage({ id: 'app.login.phasekey-placeholder' })} style={{ backgroundColor: 'rgba(245,245,245,1)' }}/>
+         </Form.Item>
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
               <FormattedMessage id="app.login.remember-me" />

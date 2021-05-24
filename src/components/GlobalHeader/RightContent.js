@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { FormattedMessage, formatMessage } from 'umi';
 import jdenticon from 'jdenticon';
-import { Menu, Icon, Dropdown, Tooltip, message, Modal } from 'antd';
+import { CopyOutlined, LockOutlined, LogoutOutlined, QrcodeOutlined } from '@ant-design/icons';
+import { Menu, Dropdown, Tooltip, message, Modal } from 'antd';
 import copy from 'copy-to-clipboard';
 import QRCode from 'qrcode';
 import SelectLang from '../SelectLang';
@@ -62,11 +63,11 @@ export default class GlobalHeaderRight extends PureComponent {
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
         <Menu.Item key="lock">
-          <Icon type="lock" theme="outlined" />
+          <LockOutlined />
           <FormattedMessage id="menu.account.lock" defaultMessage="lock" />
         </Menu.Item>
         <Menu.Item key="logout">
-          <Icon type="logout" />
+          <LogoutOutlined />
           <FormattedMessage id="menu.account.logout" defaultMessage="logout" />
         </Menu.Item>
       </Menu>
@@ -91,14 +92,14 @@ export default class GlobalHeaderRight extends PureComponent {
           className={styles.action}
           title={formatMessage({ id: 'component.globalHeader.copyAddress' })}
         >
-          <Icon type="copy" onClick={this.onAddressCopyClick} className="iconButton" />
+          <CopyOutlined onClick={this.onAddressCopyClick} className="iconButton" />
         </span>
         <span
           className={styles.action}
           title={formatMessage({ id: 'component.globalHeader.qrcode' })}
           onClick={this.showModal}
         >
-          <Icon type="qrcode" theme="outlined" />
+          <QrcodeOutlined />
         </span>
         <SelectLang className={styles.action} />
         <Modal
@@ -112,7 +113,7 @@ export default class GlobalHeaderRight extends PureComponent {
             <div>{formatMessage({ id: 'component.globalHeader.addressQRcode' })}</div>
             <div style={{ margin: '20px' }}>
               <span>{currentAccount.address ? currentAccount.address : 'address'}</span>
-              <Icon type="copy" onClick={this.onAddressCopyClick} style={{ marginLeft: '20px' }} />
+              <CopyOutlined onClick={this.onAddressCopyClick} style={{ marginLeft: '20px' }} />
             </div>
           </div>
         </Modal>

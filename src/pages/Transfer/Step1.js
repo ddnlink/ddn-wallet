@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import { connect } from 'dva';
-import { Form, Input, Button, Select, Divider } from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Input, Button, Select, Divider } from 'antd';
 import { history, formatMessage } from 'umi';
 import DdnJS from '@ddn/js-sdk';
 import styles from './style.less';

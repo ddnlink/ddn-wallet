@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
-import { Card, Steps, Icon } from 'antd';
+import { SwapOutlined } from '@ant-design/icons';
+import { Card, Steps } from 'antd';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { formatMessage } from 'umi';
 import styles from './style.less';
@@ -29,7 +30,7 @@ export default class StepForm extends PureComponent {
       <PageHeaderWrapper
         title={
           <div>
-            <Icon type="swap" theme="outlined" />
+            <SwapOutlined />
             <span style={{ marginLeft: '20px' }}>
               {formatMessage({ id: 'app.transfer.transfer-step' })}
             </span>

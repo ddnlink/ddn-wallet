@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { getKeyStore } from '@/utils/authority';
-import { Button, Modal, Form, Input, Alert, message } from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Button, Modal, Input, Alert, message } from 'antd';
 import { formatMessage } from 'umi';
 import DdnJS from '@ddn/js-sdk';
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { history , formatMessage } from 'umi';
 import { connect } from 'dva';
-import { Icon } from 'antd';
+import { DeploymentUnitOutlined } from '@ant-design/icons';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 
 import DelegateRegiste from './DelegateRegiste';
@@ -69,7 +69,7 @@ class Vote extends Component {
     const pageTitle = (
       <div style={{ display: 'flex' }}>
         <div style={{ flex: '1' }}>
-          <Icon type="deployment-unit" />
+          <DeploymentUnitOutlined />
           <span style={{ marginLeft: '20px' }}>{formatMessage({ id: 'app.vote.vote' })}</span>
         </div>
         <div style={{ flex: '1', textAlign: 'right' }}>

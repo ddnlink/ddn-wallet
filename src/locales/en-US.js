@@ -113,6 +113,7 @@ export default {
   'app.login.wordsLogin': 'Login with pahseKey',
   'app.login.login': 'Login',
   'app.login.phasekey-placeholder': 'Please input your phaseKey (words group)',
+  'app.login.phasekey-required': 'Please input your phaseKey (words group)！',
   'app.login.phasekey-error': 'The phaseKey format is wrong',
   'app.register.register': 'Register',
   'app.register.create-account': 'Create New Account',

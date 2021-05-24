@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Button, Modal, Icon, Row, Col } from 'antd';
+import { Icon as LegacyIcon } from '@ant-design/compatible';
+import { Button, Modal, Row, Col } from 'antd';
 import { formatMessage } from 'umi';
 
 const leftStyle = {
@@ -49,7 +50,7 @@ class VoteModal extends PureComponent {
     return (
       <div>
         <Button type="primary" onClick={this.handleOpenModal}>
-          <Icon
+          <LegacyIcon
             type={deVote ? 'dislike' : 'like'}
             theme="outlined"
             style={{ marginRight: '5px' }}
