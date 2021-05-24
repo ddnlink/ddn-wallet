@@ -4,7 +4,7 @@ import { formatMessage, FormattedMessage } from 'umi';
 import { Checkbox, Alert } from 'antd';
 import DdnJS from '@ddn/js-sdk';
 import Login from '@/components/Login';
-import styles from './Login.less';
+import styles from './Login';
 import Register from './Register';
 
 const { Wallet, Submit } = Login;

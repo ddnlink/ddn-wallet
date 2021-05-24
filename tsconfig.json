@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "outDir": "build/dist",
-    "module": "esnext",
-    "target": "esnext",
-    "lib": ["esnext", "dom"],
+    "module": "esNext",
+    "target": "ESNext",
+    "lib": ["esNext", "dom"],
     "sourceMap": true,
     "baseUrl": ".",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
