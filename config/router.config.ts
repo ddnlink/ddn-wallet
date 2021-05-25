@@ -63,8 +63,15 @@ export default [
       {
         name: 'signature',
         path: '/signature',
+        icon: 'audit',
         component: './Signature',
-      }, // MutiSignature
+      },
+      {
+        name: 'empty',
+        path: '/emptypage',
+        component: './EmptyPageTwo',
+      },
+      // MutiSignature
       {
         path: '/multi-signature',
         name: 'multiSignature',
@@ -97,6 +104,7 @@ export default [
             name: 'forging',
             component: './Vote/Forging',
           },
+
         ],
       }, // assets
       // {
@@ -114,11 +122,12 @@ export default [
       // },
       // block explorer
       {
-        path: 'http://mainnet.ddn.link',
+        path: 'http://mainnet.ddn.net',
         target: '_blank',
         name: 'block',
         icon: 'global',
       },
+
       {
         name: 'result',
         icon: 'check-circle-o',
@@ -168,11 +177,7 @@ export default [
           },
         ],
       },
-      {
-        name: '空白页面',
-        path: '/emptypage',
-        component: './EmptyPage',
-      },
+
       {
         component: '404',
       },

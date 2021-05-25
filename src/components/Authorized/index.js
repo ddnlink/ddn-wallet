@@ -7,5 +7,6 @@ import renderAuthorize from './renderAuthorize';
 Authorized.Secured = Secured;
 Authorized.AuthorizedRoute = AuthorizedRoute;
 Authorized.check = check;
+console.log('Authorized: ', Authorized);
 
 export default renderAuthorize(Authorized);

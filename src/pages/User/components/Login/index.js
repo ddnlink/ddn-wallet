@@ -29,19 +29,14 @@ class Login extends Component {
     };
   }
 
-  handleSubmit = values => {
-    console.log('values: ', values);
-    // e.preventDefault();
-    // const { active, type } = this.state;
+  handleSubmit = async values => {
     const { onSubmit } = this.props;
-    // const activeFileds = active[type];
-    // form.validateFields(activeFileds, { force: true }, (err, values) => {
-      this.formRef.validateFields().then(values => {
-        onSubmit(null, values);
-      }).catch(err => {
+      try {
+        const result = await this.formRef.current.validateFields();
+        onSubmit(null, result);
+      } catch (err) {
         onSubmit(err);
-      })
-    // });
+      }
   };
 
   onFinishFailed = (errorInfo) => {

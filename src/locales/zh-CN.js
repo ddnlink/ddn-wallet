@@ -68,7 +68,7 @@ export default {
   'menu.assets': '资产',
   'menu.application': '应用',
   'menu.block': '区块',
-  'menu.signature': '签名',
+  'menu.signature': '签名与验证',
 
   'menu.explorer': '浏览器',
   'menu.dashboard': 'Dashboard',
