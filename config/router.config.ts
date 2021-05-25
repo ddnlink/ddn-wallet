@@ -66,11 +66,11 @@ export default [
         icon: 'audit',
         component: './Signature',
       },
-      {
-        name: 'empty',
-        path: '/emptypage',
-        component: './EmptyPageTwo',
-      },
+      // {
+      //   name: 'empty',
+      //   path: '/emptypage',
+      //   component: './EmptyPageTwo',
+      // },
       // MutiSignature
       {
         path: '/multi-signature',
