@@ -1,13 +1,14 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
-// import { Form } from '@ant-design/compatible';
-// import '@ant-design/compatible/assets/index.css';
-import { Form, Button, Card, DatePicker, Input, Select, Tooltip } from 'antd';
+import { Form, Button, Card, Input, Tooltip, message } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi';
 import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { PageContainer } from '@ant-design/pro-layout';
 import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { connect } from 'dva';
+import DdnJS from '@ddn/js-sdk';
+import nacl from 'tweetnacl';
+import { getKeyStore } from '@/utils/authority';
 import styles from './style.less';
 
 const { TextArea } = Input;
@@ -16,18 +17,38 @@ interface SignatureProps extends FormComponentProps {
   dispatch: Dispatch<any>;
 }
 
+function createHash (data: string) {
+  return Buffer.from(nacl.hash(Buffer.from(data)));
+}
+
+function bufToHex (data: any) {
+  return Buffer.from(data).toString('hex')
+}
+
 class Signature extends Component<SignatureProps> {
-  handleSubmit = (e: React.FormEvent) => {
-    const { dispatch, form } = this.props;
-    e.preventDefault();
-    form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        dispatch({
-          type: 'signature/submitRegularForm',
-          payload: values,
-        });
-      }
-    });
+  formRef = React.createRef();
+  handleSubmit = (values: any) => {
+    const keystore = getKeyStore();
+    const { phaseKey, address } = keystore;
+    // 验证地址合法性
+    if (!DdnJS.crypto.isAddress(values.address, DdnJS.constants.tokenPrefix)) {
+      message.error('您请求的地址不是合法地址.'); // D5G1e56SYkori7zAVun7ikHqEpVo9XMXiY
+      return;
+    }
+    // 验证地址是用户钱包地址（不能签名钱包之外的地址）
+    if (address !== values.address) {
+      message.error('在您的钱包没有找到该地址.');
+      return;
+    }
+    const keyPair = DdnJS.crypto.getKeys(phaseKey.trim());
+
+    const hash = createHash(values.content);
+    console.log('hash: ', hash);
+
+    const signature = nacl.sign.detached(hash, Buffer.from(keyPair.privateKey, 'hex'));
+    const sign = bufToHex(signature);
+    console.log('sign: ', sign);
+    this.formRef.current!.setFieldsValue({ sign });
   };
 
   render() {
@@ -72,7 +93,9 @@ class Signature extends Component<SignatureProps> {
     <PageContainer content={<FormattedMessage id="signature.basic.description" />}>
       <Card bordered={false}>
         <Form
-          onSubmit={this.handleSubmit}
+          ref={this.formRef}
+          name="signform"
+          onFinish={this.handleSubmit}
           hideRequiredMark
           style={{
             marginTop: 8,
@@ -99,6 +122,7 @@ class Signature extends Component<SignatureProps> {
 
           <Form.Item {...FormItemLayout}
           label={<FormattedMessage id="signature.content.label"/>}
+          name='content'
           rules={[
             {
               required: true,
@@ -137,7 +161,7 @@ class Signature extends Component<SignatureProps> {
             }
             name='sign'
           >
-            <Input />
+            <TextArea rows={2}/>
           </Form.Item>
 
           <Form.Item
