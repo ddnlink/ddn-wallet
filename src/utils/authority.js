@@ -37,3 +37,18 @@ export function getKeyStore() {
 export function setKeyStore(keyStore) {
   return sessionStorage.setItem('keyStore', JSON.stringify(keyStore));
 }
+
+export function setUser(data) {
+  return sessionStorage.setItem('UserPassword', JSON.stringify(data));
+}
+export function getUser() {
+  const keyStoreString = sessionStorage.getItem('UserPassword');
+  // authorityString could be admin, "admin", ["admin"]
+  let keyStore;
+  try {
+    keyStore = JSON.parse(keyStoreString);
+  } catch (e) {
+    keyStore = {};
+  }
+  return keyStore;
+}

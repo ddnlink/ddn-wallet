@@ -1,15 +1,16 @@
 import { queryAccount, postTransaction } from '@/services/api';
+import { setUser } from '@/utils/authority';
 
 const initialState = {
   currentAccount: {},
   latestBlock: {},
   version: {},
-}
+};
 
 export default {
   namespace: 'user',
 
-  state: {...initialState},
+  state: { ...initialState },
 
   effects: {
     *fetchAccount({ payload }, { call, put }) {
@@ -23,7 +24,7 @@ export default {
       console.log('payload', payload);
       const response = yield call(postTransaction, payload);
       console.log('response', response);
-      callback(response)
+      callback(response);
     },
   },
   subscriptions: {
@@ -39,6 +40,11 @@ export default {
   },
   reducers: {
     saveAccount(state, action) {
+      if (!action.payload.account.second_signature) {
+        setUser({ haveSecondSign: false });
+      } else {
+        setUser({ haveSecondSign: true });
+      }
       return {
         ...state,
         currentAccount: action.payload.account,

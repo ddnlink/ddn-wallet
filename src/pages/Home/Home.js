@@ -14,6 +14,30 @@ class Home extends PureComponent {
     address: '',
   };
 
+  // componentWillMount() {
+  //   this.create();
+  // }
+
+  // create = async () => {
+  //   const evidence = {
+  //     ipid: 'sss',
+  //     title: 'node.randomUsername()',
+  //     description: `$ has been evidence.`,
+  //     hash: 'f082022ee664008a1f15d62514811dfd',
+  //     author: 'Evanlai',
+  //     size: '2448kb',
+  //     type: 'html',
+  //     url:
+  //       'dat://f76e1e82cf4eab4bf173627ff93662973c6fab110c70fb0f86370873a9619aa6+18/public/test.html',
+  //     tags: 'world,cup,test',
+  //   };
+  //   const data = await DdnJS.evidence.createEvidence(
+  //     evidence,
+  //     'nut crater mean palace awful feel mandate winter convince account noise wrestle'
+  //   );
+  //   console.log('evidence', data);
+  // };
+
   columns = [
     {
       title: formatMessage({ id: 'app.home.trans.id' }, {}),
@@ -162,7 +186,7 @@ class Home extends PureComponent {
 
   render() {
     const { role } = this.state;
-    const { transData, account, latestBlock, version, loading, transLoading, peer } = this.props;
+    const { transData, account, latestBlock, version, loading, transLoading } = this.props;
 
     const topColResponsiveProps = {
       xs: 24,

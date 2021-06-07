@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { getKeyStore } from '@/utils/authority';
+import { getKeyStore, getUser } from '@/utils/authority';
 import { Button, Modal, Form, Input, Alert, message } from 'antd';
 import { formatMessage } from 'umi/locale';
+import PasswordModal from '@/components/PasswordModal';
 // // import DdnJS from '@/utils/ddn-js';
 
 const FormItem = Form.Item;
@@ -11,6 +12,7 @@ class RegisteredAsset extends PureComponent {
   state = {
     visible: false,
     errorMessage: '',
+    open: false,
   };
 
   componentDidMount() {
@@ -30,6 +32,69 @@ class RegisteredAsset extends PureComponent {
 
   handleCreate = e => {
     e.preventDefault();
+    this.submit();
+    // const { issuer, dispatch, form } = this.props;
+    // // console.log('issuer', issuer);
+    // form.validateFields(async (err, values) => {
+    //   if (err) {
+    //     return;
+    //   }
+    //   // console.log('values', values);
+    //   // 获取到表单中的数据，并转化格式，发送请求
+    //   const strategy = values.strategy ? values.strategy : '';
+    //   const precision = Number(values.precision);
+    //   const name = `${issuer.name}.${values.name}`;
+    //   let multi = 1;
+    //   for (let i = 0; i < precision; i += 1) {
+    //     multi *= 10;
+    //   }
+    //   const maximum = parseInt(values.maximum * multi, 10).toString();
+    //   const keystore = getKeyStore();
+    //   const { phaseKey } = keystore;
+    //   const transaction = await DdnJS.aob.createAsset(
+    //     name,
+    //     values.des,
+    //     maximum,
+    //     precision,
+    //     strategy,
+    //     0,
+    //     0,
+    //     0,
+    //     phaseKey
+    //   );
+    //   // console.log('transaction', transaction);
+
+    //   dispatch({
+    //     type: 'assets/postTrans',
+    //     payload: {
+    //       transaction,
+    //     },
+    //     callback: responese => {
+    //       // console.log('responese', responese);
+    //       if (responese.success) {
+    //         form.resetFields();
+    //         this.setState({ visible: false });
+    //         message.success(`资产 ${values.name} 注册成功`);
+    //       } else {
+    //         this.setState({ errorMessage: responese.error });
+    //       }
+    //     },
+    //   });
+    // });
+  };
+
+  saveFormRef = formRef => {
+    this.formRef = formRef;
+  };
+
+  handlePassword = async password => {
+    await this.submit(password);
+    this.setState({
+      open: false,
+    });
+  };
+
+  submit = async (password = null) => {
     const { issuer, dispatch, form } = this.props;
     // console.log('issuer', issuer);
     form.validateFields(async (err, values) => {
@@ -57,7 +122,8 @@ class RegisteredAsset extends PureComponent {
         0,
         0,
         0,
-        phaseKey
+        phaseKey,
+        password
       );
       // console.log('transaction', transaction);
 
@@ -80,14 +146,17 @@ class RegisteredAsset extends PureComponent {
     });
   };
 
-  saveFormRef = formRef => {
-    this.formRef = formRef;
+  open = () => {
+    this.setState({
+      open: true,
+    });
   };
 
   render() {
     const { loading, form } = this.props;
     const { getFieldDecorator } = form;
-    const { visible, errorMessage } = this.state;
+    const { visible, errorMessage, open } = this.state;
+    const { haveSecondSign } = getUser();
     console.log('loading', loading);
     return (
       <div>
@@ -98,7 +167,7 @@ class RegisteredAsset extends PureComponent {
           visible={visible}
           title={formatMessage({ id: 'app.asset.asset-registration' })}
           onCancel={this.handleCancel}
-          onOk={this.handleCreate}
+          onOk={haveSecondSign ? this.open : this.handleCreate}
         >
           <Form layout="vertical">
             <FormItem label={formatMessage({ id: 'app.asset.asset-name' })}>
@@ -130,6 +199,7 @@ class RegisteredAsset extends PureComponent {
             {errorMessage && <Alert type="error" message={errorMessage} />}
           </Form>
         </Modal>
+        <PasswordModal open={open} handlePassword={this.handlePassword} />
       </div>
     );
   }

@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Form, Button, Alert, Divider, message } from 'antd';
+import PasswordModal from '@/components/PasswordModal';
 import router from 'umi/router';
 // import { digitUppercase } from '@/utils/utils';
 import { formatMessage } from 'umi/locale';
 // import DdnJS from '@/utils/ddn-js';
-import { getKeyStore } from '@/utils/authority';
+import { getKeyStore, getUser } from '@/utils/authority';
 import styles from './style.less';
 
 const formItemLayout = {
@@ -23,8 +24,45 @@ const formItemLayout = {
 }))
 @Form.create()
 class Step2 extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      open: false,
+    };
+  }
+
   onValidateForm = async e => {
     e.preventDefault();
+    await this.submit();
+    // const { data, dispatch } = this.props;
+    // const keystore = getKeyStore();
+    // const { receiverAccount, amount, remark } = data;
+    // const pureAmount = parseInt(amount * 100000000, 10);
+    // const { phaseKey } = keystore;
+
+    // const transaction = await DdnJS.transaction.createTransaction(
+    //   receiverAccount,
+    //   pureAmount,
+    //   remark,
+    //   phaseKey
+    // );
+    // console.log('trs', transaction);
+
+    // dispatch({
+    //   type: 'transfer/submitTransfer',
+    //   payload: {
+    //     ...data,
+    //     transaction,
+    //   },
+    //   callback: response => {
+    //     if (!response.success) {
+    //       message.error(response.error);
+    //     }
+    //   },
+    // });
+  };
+
+  submit = async (password = null) => {
     const { data, dispatch } = this.props;
     const keystore = getKeyStore();
     const { receiverAccount, amount, remark } = data;
@@ -35,7 +73,8 @@ class Step2 extends React.PureComponent {
       receiverAccount,
       pureAmount,
       remark,
-      phaseKey
+      phaseKey,
+      password
     );
     console.log('trs', transaction);
 
@@ -53,8 +92,23 @@ class Step2 extends React.PureComponent {
     });
   };
 
+  open = () => {
+    this.setState({
+      open: true,
+    });
+  };
+
+  handlePassword = async password => {
+    await this.submit(password);
+    this.setState({
+      open: false,
+    });
+  };
+
   render() {
     const { data, submitting } = this.props;
+    const { haveSecondSign } = getUser();
+    const { open } = this.state;
     const onPrev = () => {
       router.push('/transfer/fill');
     };
@@ -117,10 +171,15 @@ class Step2 extends React.PureComponent {
           <Button onClick={onPrev} style={{ marginRight: 8 }}>
             {formatMessage({ id: 'app.transfer.previous' })}
           </Button>
-          <Button type="primary" onClick={this.onValidateForm} loading={submitting}>
+          <Button
+            type="primary"
+            onClick={haveSecondSign ? this.open : this.onValidateForm}
+            loading={submitting}
+          >
             {formatMessage({ id: 'app.transfer.sure-to-transfer' })}
           </Button>
         </Form.Item>
+        <PasswordModal open={open} handlePassword={this.handlePassword} />
       </Form>
     );
   }

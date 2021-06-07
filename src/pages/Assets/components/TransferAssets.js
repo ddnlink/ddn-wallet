@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { getKeyStore } from '@/utils/authority';
+import { getKeyStore, getUser } from '@/utils/authority';
 import { Button, Modal, Form, Input, message, Alert } from 'antd';
 import { formatMessage } from 'umi/locale';
+import PasswordModal from '@/components/PasswordModal';
 // import DdnJS from '@/utils/ddn-js';
 
 const FormItem = Form.Item;
@@ -11,6 +12,7 @@ class transferAssetForm extends PureComponent {
   state = {
     visible: false,
     errorMessage: '',
+    open: false,
   };
 
   showModal = () => {
@@ -23,6 +25,59 @@ class transferAssetForm extends PureComponent {
 
   handleCreate = e => {
     e.preventDefault();
+    this.submit();
+    // const { form, dispatch, asset } = this.props;
+    // form.validateFields(async (err, values) => {
+    //   if (err) {
+    //     return;
+    //   }
+    //   const remark = values.message ? values.message : '';
+    //   const content = values.content ? values.content : '';
+    //   // 获取到表单中的数据，并转化格式，发送请求
+    //   const keystore = getKeyStore();
+    //   const { phaseKey } = keystore;
+    //   const { amount } = values;
+    //   let pureAmount = amount;
+    //   for (let i = 0; i < asset.precision; i += 1) {
+    //     pureAmount *= 10;
+    //   }
+    //   // console.log('asset.currency', asset.currency);
+    //   const transaction = await DdnJS.aob.createTransfer(
+    //     asset.currency,
+    //     pureAmount,
+    //     values.recipientId,
+    //     remark,
+    //     content,
+    //     phaseKey,
+    //     null
+    //   );
+    //   // console.log('transaction', transaction);
+    //   dispatch({
+    //     type: 'assets/postTrans',
+    //     payload: {
+    //       transaction,
+    //     },
+    //     callback: response => {
+    //       if (response.success) {
+    //         form.resetFields();
+    //         this.setState({ visible: false });
+    //         message.success('转账成功');
+    //       } else {
+    //         this.setState({ errorMessage: response.error });
+    //       }
+    //     },
+    //   });
+    // });
+  };
+
+  handlePassword = async password => {
+    await this.submit(password);
+    this.setState({
+      open: false,
+    });
+  };
+
+  submit = async (password = null) => {
     const { form, dispatch, asset } = this.props;
     form.validateFields(async (err, values) => {
       if (err) {
@@ -46,7 +101,7 @@ class transferAssetForm extends PureComponent {
         remark,
         content,
         phaseKey,
-        null
+        password
       );
       // console.log('transaction', transaction);
       dispatch({
@@ -67,10 +122,17 @@ class transferAssetForm extends PureComponent {
     });
   };
 
+  open = () => {
+    this.setState({
+      open: true,
+    });
+  };
+
   render() {
     const { form, asset } = this.props;
-    const { visible, errorMessage } = this.state;
+    const { visible, errorMessage, open } = this.state;
     const { getFieldDecorator } = form;
+    const { haveSecondSign } = getUser();
     // console.log('asset', asset);
     return (
       <div>
@@ -81,7 +143,7 @@ class transferAssetForm extends PureComponent {
           title={formatMessage({ id: 'app.asset.transfer' })}
           visible={visible}
           onCancel={this.handleCancel}
-          onOk={this.handleCreate}
+          onOk={haveSecondSign ? this.open : this.handleCreate}
         >
           <Form layout="vertical">
             <FormItem label={formatMessage({ id: 'app.asset.asset-name' })}>
@@ -110,6 +172,7 @@ class transferAssetForm extends PureComponent {
             {errorMessage && <Alert type="error" message={errorMessage} />}
           </Form>
         </Modal>
+        <PasswordModal open={open} handlePassword={this.handlePassword} />
       </div>
     );
   }

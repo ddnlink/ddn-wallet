@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Button, Modal, Alert, Input, Icon } from 'antd';
-import { getKeyStore } from '@/utils/authority';
+import { getKeyStore, getUser } from '@/utils/authority';
 import { connect } from 'dva';
 import { formatMessage } from 'umi/locale';
+import PasswordModal from '@/components/PasswordModal';
 
 @connect(({ vote }) => ({
   vote,
@@ -14,6 +15,7 @@ class DelegateRegiste extends PureComponent {
       visible: false,
       delegateName: '',
       inputError: '',
+      open: false,
     };
   }
 
@@ -33,10 +35,14 @@ class DelegateRegiste extends PureComponent {
   };
 
   handleRegisterDelegate = async () => {
+    await this.submit();
+  };
+
+  submit = async (password = null) => {
     const { delegateName } = this.state;
     const { dispatch } = this.props;
     const keyStore = getKeyStore();
-    const trs = await DdnJS.delegate.createDelegate(delegateName, keyStore.phaseKey, null);
+    const trs = await DdnJS.delegate.createDelegate(delegateName, keyStore.phaseKey, password);
     const payload = { transaction: trs };
     console.log('payload= ', payload);
     dispatch({
@@ -53,8 +59,22 @@ class DelegateRegiste extends PureComponent {
     });
   };
 
+  open = async () => {
+    this.setState({
+      open: true,
+    });
+  };
+
+  handlePassword = async password => {
+    await this.submit(password);
+    this.setState({
+      open: false,
+    });
+  };
+
   render() {
-    const { visible, delegateName, inputError } = this.state;
+    const { visible, delegateName, inputError, open } = this.state;
+    const { haveSecondSign } = getUser();
     return (
       <div>
         <Button type="primary" onClick={this.handleOpenModal}>
@@ -66,7 +86,7 @@ class DelegateRegiste extends PureComponent {
           visible={visible}
           bodyStyle={{ padding: '30px 50px' }}
           onCancel={this.handleCloseModal}
-          onOk={this.handleRegisterDelegate}
+          onOk={haveSecondSign ? this.open : this.handleRegisterDelegate}
           destroyOnClose
         >
           <div style={{ display: 'flex', marginBottom: '30px' }}>
@@ -97,6 +117,7 @@ class DelegateRegiste extends PureComponent {
             )}
           </div>
         </Modal>
+        <PasswordModal open={open} handlePassword={this.handlePassword} />
       </div>
     );
   }

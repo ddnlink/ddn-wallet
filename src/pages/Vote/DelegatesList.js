@@ -2,9 +2,10 @@ import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'dva';
 import { Card, Form, Badge, Table, Alert, Modal } from 'antd';
 import { formatMessage } from 'umi/locale';
+import PasswordModal from '@/components/PasswordModal';
 // import DdnJS from '@/utils/ddn-js';
 
-import { getKeyStore } from '@/utils/authority';
+import { getKeyStore, getUser } from '@/utils/authority';
 import DelegateModal from './DelegateModal';
 import VoteModal from './VoteModal';
 import styles from './DelegatesList.less';
@@ -32,6 +33,7 @@ class DelegatesList extends PureComponent {
     selectedStandbyRowKeys: [],
     visibleDelegate: false,
     curDelegate: {},
+    open: false,
   };
 
   columns = [
@@ -136,22 +138,23 @@ class DelegatesList extends PureComponent {
   };
 
   handleVoteDelegate = async selectedRows => {
-    const { dispatch } = this.props;
-    const keyStore = getKeyStore();
-    if (selectedRows.length < 1) return;
-    const datap = selectedRows.map(row => (row.voted ? `-${row.publicKey}` : `+${row.publicKey}`));
-    const trs = await DdnJS.vote.createVote(datap, keyStore.phaseKey);
-    const payload = { transaction: trs };
-    dispatch({
-      type: 'vote/voting',
-      payload,
-      callback: response => {
-        console.log('callback starting. ', response);
-        this.setState({
-          selectedRows: [],
-        });
-      },
-    });
+    await this.submit(null, selectedRows);
+    // const { dispatch } = this.props;
+    // const keyStore = getKeyStore();
+    // if (selectedRows.length < 1) return;
+    // const datap = selectedRows.map(row => (row.voted ? `-${row.publicKey}` : `+${row.publicKey}`));
+    // const trs = await DdnJS.vote.createVote(datap, keyStore.phaseKey);
+    // const payload = { transaction: trs };
+    // dispatch({
+    //   type: 'vote/voting',
+    //   payload,
+    //   callback: response => {
+    //     console.log('callback starting. ', response);
+    //     this.setState({
+    //       selectedRows: [],
+    //     });
+    //   },
+    // });
   };
 
   handleSetCurDelegate = record => {
@@ -169,6 +172,40 @@ class DelegatesList extends PureComponent {
     });
   };
 
+  submit = async (password = null, selectedRows) => {
+    const { dispatch } = this.props;
+    const keyStore = getKeyStore();
+    if (selectedRows.length < 1) return;
+    const datap = selectedRows.map(row => (row.voted ? `-${row.publicKey}` : `+${row.publicKey}`));
+    const trs = await DdnJS.vote.createVote(datap, keyStore.phaseKey, password);
+    const payload = { transaction: trs };
+    dispatch({
+      type: 'vote/voting',
+      payload,
+      callback: response => {
+        console.log('callback starting. ', response);
+        this.setState({
+          selectedRows: [],
+        });
+      },
+    });
+  };
+
+  handlePassword = async password => {
+    const { selectedRows } = this.state;
+    await this.submit(password, selectedRows);
+    this.setState({
+      open: false,
+    });
+  };
+
+  open = selectedRows => {
+    this.setState({
+      open: true,
+      selectedRows,
+    });
+  };
+
   render() {
     const { delegates, standbyDelegates, loading } = this.props;
     const {
@@ -178,6 +215,7 @@ class DelegatesList extends PureComponent {
       selectedStandbyRowKeys,
       visibleDelegate,
       curDelegate,
+      open,
     } = this.state;
     const rowSelection = {
       selectedRowKeys,
@@ -186,7 +224,7 @@ class DelegatesList extends PureComponent {
         disabled: record.voted,
       }),
     };
-
+    const { haveSecondSign } = getUser();
     const standbyRowSelection = {
       selectedRowKeys: selectedStandbyRowKeys,
       onChange: this.handleSelectStandbyRows,
@@ -216,7 +254,7 @@ class DelegatesList extends PureComponent {
                         <VoteModal
                           selectedRows={selectedRows}
                           deVote={false}
-                          handleVoteDelegate={this.handleVoteDelegate}
+                          handleVoteDelegate={haveSecondSign ? this.open : this.handleVoteDelegate}
                         />
                       )}
                     </div>
@@ -293,6 +331,7 @@ class DelegatesList extends PureComponent {
         >
           <DelegateModal curDelegate={curDelegate} deVote={false} />
         </Modal>
+        <PasswordModal open={open} handlePassword={this.handlePassword} />
       </div>
     );
   }

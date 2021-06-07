@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Button, Modal, Input, message } from 'antd';
-import { getKeyStore } from '@/utils/authority';
+import { getKeyStore, getUser } from '@/utils/authority';
 import { connect } from 'dva';
+import PasswordModal from '@/components/PasswordModal';
 // import { formatMessage } from 'umi/locale';
 
 const { TextArea } = Input;
@@ -18,6 +19,7 @@ class DappRegister extends PureComponent {
       // inputError: '',
       currentStep: 1,
       dappInfo: {},
+      open: false,
     };
   }
 
@@ -47,23 +49,24 @@ class DappRegister extends PureComponent {
   };
 
   handleRegisterDelegate = async () => {
-    const { delegateName } = this.state;
-    const { dispatch } = this.props;
-    const keyStore = getKeyStore();
-    const trs = await DdnJS.delegate.createDelegate(delegateName, keyStore.phaseKey, null);
-    const payload = { transaction: trs };
-    dispatch({
-      type: 'dapp/postReigster',
-      payload,
-      callback: response => {
-        if (response.success) {
-          this.handleCloseModal();
-        } else {
-          // this.setState({ inputError: response.error });
-          message.error(response.error);
-        }
-      },
-    });
+    this.submit();
+    // const { delegateName } = this.state;
+    // const { dispatch } = this.props;
+    // const keyStore = getKeyStore();
+    // const trs = await DdnJS.delegate.createDelegate(delegateName, keyStore.phaseKey, null);
+    // const payload = { transaction: trs };
+    // dispatch({
+    //   type: 'dapp/postReigster',
+    //   payload,
+    //   callback: response => {
+    //     if (response.success) {
+    //       this.handleCloseModal();
+    //     } else {
+    //       // this.setState({ inputError: response.error });
+    //       message.error(response.error);
+    //     }
+    //   },
+    // });
   };
 
   next = () => {
@@ -72,7 +75,13 @@ class DappRegister extends PureComponent {
       return;
     }
     if (currentStep === 4) {
-      this.handleRegisterDelegate();
+      const { haveSecondSign } = getUser();
+      // this.handleRegisterDelegate();
+      if (haveSecondSign) {
+        this.open();
+      } else {
+        this.handleRegisterDelegate();
+      }
       this.done();
     } else {
       this.setState({ currentStep: currentStep + 1 });
@@ -204,8 +213,41 @@ class DappRegister extends PureComponent {
     }
   };
 
+  handlePassword = async password => {
+    await this.submit(password);
+    this.setState({
+      open: false,
+    });
+  };
+
+  submit = async (password = null) => {
+    const { delegateName } = this.state;
+    const { dispatch } = this.props;
+    const keyStore = getKeyStore();
+    const trs = await DdnJS.delegate.createDelegate(delegateName, keyStore.phaseKey, password);
+    const payload = { transaction: trs };
+    dispatch({
+      type: 'dapp/postReigster',
+      payload,
+      callback: response => {
+        if (response.success) {
+          this.handleCloseModal();
+        } else {
+          // this.setState({ inputError: response.error });
+          message.error(response.error);
+        }
+      },
+    });
+  };
+
+  open = () => {
+    this.setState({
+      open: true,
+    });
+  };
+
   render() {
-    const { visible, currentStep } = this.state;
+    const { visible, currentStep, open } = this.state;
     return (
       <div>
         <Button type="primary" onClick={this.handleOpenModal}>
@@ -232,6 +274,7 @@ class DappRegister extends PureComponent {
           </div>
           <div style={{ minHeight: 300, padding: 10 }}>{this.getStepContent(currentStep)}</div>
         </Modal>
+        <PasswordModal open={open} handlePassword={this.handlePassword} />
       </div>
     );
   }

@@ -11,7 +11,8 @@ import { connect } from 'dva';
 import { Steps, Button, Icon, Input, Slider, List, message, Alert } from 'antd';
 // // import DdnJS from '@/utils/ddn-js';
 import { formatMessage } from 'umi/locale';
-import { getKeyStore } from '@/utils/authority';
+import PasswordModal from '@/components/PasswordModal';
+import { getKeyStore, getUser } from '@/utils/authority';
 
 const { Step } = Steps;
 const { Search } = Input;
@@ -59,6 +60,7 @@ class CreateMultiAccount extends PureComponent {
       searchText: '',
       searchError: '',
       submitError: '',
+      open: '',
     };
     this.keyStore = getKeyStore();
   }
@@ -286,6 +288,37 @@ class CreateMultiAccount extends PureComponent {
   };
 
   handleSummit = async () => {
+    // const { comfirmNumber, groups } = this.state;
+    // const { dispatch } = this.props;
+    // const keysgroup = groups.map(group => `+${group.publicKey}`);
+    // const transaction = await DdnJS.multisignature.createMultisignature(
+    //   keysgroup,
+    //   24,
+    //   comfirmNumber,
+    //   this.keyStore.phaseKey,
+    //   password
+    // );
+    // // console.log('transaction 。。。。。。。。。', transaction);
+    // // console.log('DdnJS.config 。。。。。。。。。', DdnJS.constants);
+    // dispatch({
+    //   type: 'multi/createMultiTansactions',
+    //   payload: { transaction },
+    //   callback: response => {
+    //     // console.log('response', response);
+    //     if (response.success) {
+    //       message.success(formatMessage({ id: 'app.multi.created-success' }));
+    //       const { cancel } = this.props;
+    //       cancel();
+    //     } else {
+    //       this.setState({ submitError: response.error });
+    //     }
+    //   },
+    // });
+    await this.submit();
+  };
+
+  // 提交交易体
+  submit = async (password = null) => {
     const { comfirmNumber, groups } = this.state;
     const { dispatch } = this.props;
     const keysgroup = groups.map(group => `+${group.publicKey}`);
@@ -294,7 +327,7 @@ class CreateMultiAccount extends PureComponent {
       24,
       comfirmNumber,
       this.keyStore.phaseKey,
-      null
+      password
     );
     // console.log('transaction 。。。。。。。。。', transaction);
     // console.log('DdnJS.config 。。。。。。。。。', DdnJS.constants);
@@ -314,8 +347,24 @@ class CreateMultiAccount extends PureComponent {
     });
   };
 
+  // 输入密码
+  handlePassword = async password => {
+    await this.submit(password);
+    this.setState({
+      open: false,
+    });
+  };
+
+  // 打开密码的输入modal
+  open = async () => {
+    this.setState({
+      open: true,
+    });
+  };
+
   render() {
-    const { currentStep, groups } = this.state;
+    const { currentStep, groups, open } = this.state;
+    const { haveSecondSign } = getUser();
     return (
       <div>
         <Steps current={currentStep}>
@@ -341,10 +390,11 @@ class CreateMultiAccount extends PureComponent {
             </Button>
           )}
           {currentStep === steps.length - 1 && (
-            <Button type="primary" onClick={this.handleSummit} key={2}>
+            <Button type="primary" onClick={haveSecondSign ? this.open : this.handleSummit} key={2}>
               {formatMessage({ id: 'app.multi.enter' })}
             </Button>
           )}
+          <PasswordModal open={open} handlePassword={this.handlePassword} />
         </div>
       </div>
     );
