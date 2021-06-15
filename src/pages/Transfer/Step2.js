@@ -30,7 +30,7 @@ class Step2 extends React.PureComponent {
     const { data, dispatch } = this.props;
     const keystore = getKeyStore();
     const { receiverAccount, amount, remark } = data;
-    const pureAmount = parseInt(amount * 100000000, 10);
+    const pureAmount = parseInt(amount, 10);
     const { phaseKey } = keystore;
 
     const transaction = await DdnJS.transaction.createTransaction(
@@ -39,7 +39,8 @@ class Step2 extends React.PureComponent {
       remark,
       phaseKey
     );
-    // console.log('trs', transaction);
+
+    console.log('trs', transaction);
 
     dispatch({
       type: 'transfer/submitTransfer',

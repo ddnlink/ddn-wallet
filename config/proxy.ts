@@ -14,6 +14,11 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
+    '/peer/': {
+      target: DDN_UI_SERVER_HOST || "http://localhost:8001",
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
+    },
   },
   test: {
     '/api/': {

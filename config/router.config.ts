@@ -57,20 +57,17 @@ export default [
             path: '/transfer/result',
             name: 'result',
             component: './Transfer/Step3',
-          },
+          }
         ],
       },
+
       {
         name: 'signature',
         path: '/signature',
         icon: 'audit',
         component: './Signature',
       },
-      // {
-      //   name: 'empty',
-      //   path: '/emptypage',
-      //   component: './EmptyPageTwo',
-      // },
+
       // MutiSignature
       {
         path: '/multi-signature',
@@ -104,7 +101,6 @@ export default [
             name: 'forging',
             component: './Vote/Forging',
           },
-
         ],
       }, // assets
       // {
@@ -127,7 +123,6 @@ export default [
         name: 'block',
         icon: 'global',
       },
-
       {
         name: 'result',
         icon: 'check-circle-o',
@@ -177,7 +172,6 @@ export default [
           },
         ],
       },
-
       {
         component: '404',
       },

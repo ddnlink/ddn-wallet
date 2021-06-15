@@ -9,6 +9,7 @@ import classNames from 'classnames';
 import pathToRegexp from 'path-to-regexp';
 import { enquireScreen, unenquireScreen } from 'enquire-js';
 import { formatMessage } from 'umi';
+
 import SiderMenu from '@/components/SiderMenu';
 import Authorized from '@/utils/Authorized';
 import SettingDrawer from '@/components/SettingDrawer';
@@ -228,7 +229,9 @@ class BasicLayout extends React.PureComponent {
       layout: PropsLayout,
       children,
       location: { pathname },
+      currentUser,
     } = this.props;
+
     const { isMobile } = this.state;
     const isTop = PropsLayout === 'topmenu';
     const menuData = this.getMenuData();

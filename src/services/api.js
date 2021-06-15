@@ -52,12 +52,10 @@ export async function postTransaction(params) {
   return request('/peer/transactions/', {
     method: 'POST',
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
       nethash: DdnJS.constants.nethash,
       version: '',
     },
-    body: {
+    data: {
       ...params,
     },
   });
@@ -82,12 +80,10 @@ export async function multiSign(params) {
   return request('/api/multisignatures/sign', {
     method: 'POST',
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
       nethash: DdnJS.constants.nethash,
       version: '',
     },
-    body: {
+    data: {
       ...params,
     },
   });

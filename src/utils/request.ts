@@ -68,15 +68,15 @@ const interceptorHeader = async (url, options) => {
     options.method === 'delete' ||
     options.method === 'get'
   ) {
-    const headers = {
-      // 'Content-Type': 'application/json', 这里千万不要设置，否则上传文件等操作将出错
-      'Access-Control-Allow-Origin': '*',
-      Accept: '*',
-      Authorization: currentUser ? `Bearer ${  currentUser.token}` : '',
-    };
+    // const headers = {
+    //   // 'Content-Type': 'application/json', 这里千万不要设置，否则上传文件等操作将出错
+    //   'Access-Control-Allow-Origin': '*',
+    //   Accept: '*',
+    //   // Authorization: currentUser ? `Bearer ${  currentUser.token}` : '',
+    // };
     return {
       url,
-      options: { ...options, headers },
+      options: { ...options },
     };
   }
 };
