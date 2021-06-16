@@ -135,6 +135,7 @@ export default {
   'app.register.info':
     'Make sure you have saved the phasekey safely, next step you need it to validate.',
   'app.register.misswords': 'Input the missing word',
+  'app.home.undefined': 'undefined',
   'app.home.introduce': 'introduce',
   'app.home.trans-record': 'Transaction records',
   'app.home.trans.id': 'Transaction ID',

@@ -2,9 +2,7 @@ import React, { PureComponent } from 'react';
 import { Modal, List } from 'antd';
 import { formatMessage } from 'umi/locale';
 
-
 class MultiMember extends PureComponent {
-
   handleCancel = () => {
     const { closeMember } = this.props;
     closeMember();
@@ -27,7 +25,7 @@ class MultiMember extends PureComponent {
         <List
           bordered
           dataSource={multiAccounts}
-          renderItem={item => (<List.Item>{item}</List.Item>)}
+          renderItem={item => <List.Item>{item}</List.Item>}
         />
       </Modal>
     );

@@ -105,7 +105,7 @@ export default [
       // },
       // block explorer
       {
-        path: 'http://mainnet.ddn.link',
+        path: 'http://mainnet.ddn.net',
         target: '_blank',
         name: 'block',
         icon: 'global',

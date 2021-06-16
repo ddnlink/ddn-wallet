@@ -35,6 +35,7 @@ functions/mock
 # umi
 .umi
 .umi-production
+src/pages/.umi
 
 # screenshot
 screenshot

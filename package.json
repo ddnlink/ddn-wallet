@@ -1,6 +1,6 @@
 {
   "name": "ddn-wallet",
-  "version": "2.2.0",
+  "version": "2.2.3",
   "description": "A wallet for managing ddn assets",
   "private": true,
   "main": "main.js",
@@ -26,6 +26,7 @@
   "dependencies": {
     "@antv/data-set": "^0.9.6",
     "@babel/runtime": "^7.0.0",
+    "@ddn/js-sdk": "^1.0.8",
     "antd": "^3.9.2",
     "bip39": "^2.5.0",
     "bizcharts": "^3.2.2",

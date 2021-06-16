@@ -4,7 +4,7 @@
  */
 export default {
   development: {
-    requestUrl: 'http://116.62.219.11:8000',
+    requestUrl: 'http://localhost:8001',
     // requestUrl: 'http://106.15.227.133:8001',
   },
   test: {

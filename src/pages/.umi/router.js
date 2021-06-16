@@ -239,33 +239,7 @@ const routes = [
         ],
       },
       {
-        path: '/assets',
-        name: 'assets',
-        icon: 'bank',
-        component: __IS_BROWSER
-          ? _dvaDynamic({
-              component: () => import('../Assets/Assets'),
-              LoadingComponent: require('/Users/imfly/projects/DDN/ddn-wallet/src/components/PageLoading/index')
-                .default,
-            })
-          : require('../Assets/Assets').default,
-        exact: true,
-      },
-      {
-        path: '/dapp',
-        name: 'application',
-        icon: 'appstore',
-        component: __IS_BROWSER
-          ? _dvaDynamic({
-              component: () => import('../Dapp/Dapp'),
-              LoadingComponent: require('/Users/imfly/projects/DDN/ddn-wallet/src/components/PageLoading/index')
-                .default,
-            })
-          : require('../Dapp/Dapp').default,
-        exact: true,
-      },
-      {
-        path: 'http://mainnet.ddn.link',
+        path: 'http://mainnet.ddn.net',
         target: '_blank',
         name: 'block',
         icon: 'global',

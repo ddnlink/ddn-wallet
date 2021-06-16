@@ -4,12 +4,12 @@ const initialState = {
   currentAccount: {},
   latestBlock: {},
   version: {},
-}
+};
 
 export default {
   namespace: 'user',
 
-  state: {...initialState},
+  state: { ...initialState },
 
   effects: {
     *fetchAccount({ payload }, { call, put }) {
@@ -20,10 +20,10 @@ export default {
       });
     },
     *fetchLock({ payload, callback }, { call }) {
-      console.log('payload', payload);
+      // console.log('payload', payload);
       const response = yield call(postTransaction, payload);
-      console.log('response', response);
-      callback(response)
+      // console.log('response', response);
+      callback(response);
     },
   },
   subscriptions: {

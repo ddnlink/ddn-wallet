@@ -4,7 +4,7 @@ import { Form, Button, Alert, Divider, message } from 'antd';
 import router from 'umi/router';
 // import { digitUppercase } from '@/utils/utils';
 import { formatMessage } from 'umi/locale';
-// import DdnJS from '@/utils/ddn-js';
+import DdnJS from '@ddn/js-sdk';
 import { getKeyStore } from '@/utils/authority';
 import styles from './style.less';
 
@@ -28,7 +28,7 @@ class Step2 extends React.PureComponent {
     const { data, dispatch } = this.props;
     const keystore = getKeyStore();
     const { receiverAccount, amount, remark } = data;
-    const pureAmount = parseInt(amount * 100000000, 10);
+    const pureAmount = parseInt(amount, 10);
     const { phaseKey } = keystore;
 
     const transaction = await DdnJS.transaction.createTransaction(

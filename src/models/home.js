@@ -57,7 +57,7 @@ export default {
     peerState(state, { payload }) {
       return {
         ...state,
-        peer: payload,
+        peer: payload.version,
       };
     },
   },

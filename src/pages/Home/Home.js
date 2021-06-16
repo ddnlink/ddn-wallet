@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Row, Col, Card, Table, Radio, Icon } from 'antd';
 import moment from 'moment';
 import { formatMessage } from 'umi/locale';
-// import DdnJS from '@ddn/js-sdk'
+import DdnJS from '@ddn/js-sdk';
 import { ChartCard } from '@/components/Charts';
 import { getKeyStore } from '@/utils/authority';
 import styles from './Home.less';
@@ -162,7 +162,7 @@ class Home extends PureComponent {
 
   render() {
     const { role } = this.state;
-    const { transData, account, latestBlock, version, loading, transLoading, peer } = this.props;
+    const { transData, account, latestBlock, version, loading, transLoading } = this.props;
 
     const topColResponsiveProps = {
       xs: 24,

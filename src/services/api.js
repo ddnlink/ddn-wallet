@@ -1,5 +1,5 @@
 import { stringify } from 'qs';
-// import DdnJS from '@/utils/ddn-js';
+import DdnJS from '@ddn/js-sdk';
 import request from '../utils/request';
 
 // --------------------------- login ------------------------ //

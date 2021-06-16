@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { Modal } from 'antd';
 import { formatMessage } from 'umi/locale';
 import CreateMultiAccount from './CreateMultiAccount';
-
 class OpenMultiModal extends PureComponent {
   handleCancel = () => {
     const { close } = this.props;

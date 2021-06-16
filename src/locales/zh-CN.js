@@ -135,6 +135,7 @@ export default {
   'app.register.regenerate': '重新创建',
   'app.register.info': '请确定您已经安全保存了主密码，待会将会要求您重复输入以确认密码.',
   'app.register.misswords': '请输入丢失的单词',
+  'app.home.undefined': '未定义',
   'app.home.introduce': '介绍',
   'app.home.trans-record': '交易记录',
   'app.home.trans.id': '交易 ID',
