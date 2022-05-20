@@ -49,7 +49,7 @@ export async function queryTrans(params) {
 // --------------------------- Transaction ------------------------ //
 // 提交交易（转账、AoB创建等各种交易都可以使用本接口）
 export async function postTransaction(params) {
-  return request('/peer/transactions/', {
+  return request('/api/transactions/', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -160,4 +160,29 @@ export async function getAobTransaction(params) {
     `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||
       10}&offset=${params.offset || 0}`
   );
+}
+
+/** ***********************************中心化服务器接口******************************************************** */
+
+// 获取账户余额
+export async function queryAccountBalance(params) {
+  return request(`/upgrade/transfer/getBanlance?${stringify(params)}`);
+}
+// 获取交易
+export async function queryTransaction(params) {
+  return request(`/upgrade/transfer/transaction?${stringify(params)}`);
+}
+
+// 上传交易
+export async function postTrs(params) {
+  return request(`/upgrade/transfer/postTransaction`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: {
+      ...params,
+    },
+  });
 }

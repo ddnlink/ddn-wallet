@@ -5,6 +5,7 @@
 export default {
   development: {
     requestUrl: 'http://localhost:8001',
+    centerHost: 'http://localhost:7001',
     // requestUrl: 'http://106.15.227.133:8001',
   },
   test: {
@@ -13,4 +14,5 @@ export default {
   production: {
     requestUrl: 'http://106.15.227.133:8001',
   },
+  address: 'DFy6P2sN1KLDNtppnqLBPWcnH8GTJRouGj',
 };

@@ -104,6 +104,13 @@ export default {
   'menu.account.trigger': 'Trigger Error',
   'menu.account.lock': 'Lock',
   'menu.account.logout': 'Logout',
+  // contact us
+  'menu.contactUs': 'Contact us',
+  'app.contact.introdction': 'Introduction',
+  // 'app.contact.info':'尊敬的用户您好，日前我们DDN社区对主网进行了升级，如果您是我们的老用户根据指引升级后钱包余额和升级提示中的余额保持一致，请联系我们！',
+  'app.contact.info': 'If you have any questions, please contact us!',
+  'app.contact.emai': 'Email：1056941326@qq.com',
+  'app.contact.phone': 'Phone：18322442903',
   'app.login.tab-login-credentials': 'Credentials',
   'app.login.tab-login-mobile': 'Mobile number',
   'app.login.remember-me': 'Remember me',
@@ -428,4 +435,25 @@ export default {
   'app.setting.copyinfo': 'copy success，please replace defaultSettings in src/models/setting.js',
   'app.setting.production.hint':
     'Setting panel shows in development environment only, please manually modify',
+
+  // upgrade
+  'app.transfer.sender-address': 'Old network address',
+  'app.transfer.receiver-address': 'New network address',
+  'app.transfer.confirm':
+    'Please ensure that the private key is correct. This operation cannot be undone',
+  'app.transfer.transfer-in-wallet': 'Enter the wallet',
+  'app.transfer.transfer-loading-info': 'Waiting for transaction confirmation:',
+  'app.transfer.transfer-message-err-tip': 'Transfer error, please contact DDN staff',
+  'app.transfer.secret': 'secret',
+  'app.upgrade.introction': 'Main network upgrade description',
+  'app.upgrade.begin': 'Begin upgrade',
+  'app.upgrade.info':
+    'Dear users, our DDN community has upgraded the main network a few days ago. The system detects that you have not upgraded to the latest network. Please upgrade according to the following guidance',
+  'app.upgrade.function1':
+    '1. Optimize the encryption algorithm of the main network and use more advanced and stable encryption algorithms',
+  'app.upgrade.function2': '2. Optimize DAPP',
+  'app.upgrade.function3': '3. Optimize smart contract function',
+  'app.upgrade.time': 'Time: March 31, 2022 to March 31, 2024',
+  'app.upgrade.tip':
+    'TThe system will create a wallet address for you in the new DDN network, which is the same as your original wallet address. Please be sure to keep your private key',
 };

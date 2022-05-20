@@ -105,6 +105,14 @@ export default {
   'menu.account.trigger': '触发报错',
   'menu.account.lock': '锁仓',
   'menu.account.logout': '退出登录',
+  // contact us
+  'menu.contactUs': '联系我们',
+  'app.contact.introdction': '说明',
+  // 'app.contact.info':'尊敬的用户您好，日前我们DDN社区对主网进行了升级，如果您是我们的老用户根据指引升级后钱包余额和升级提示中的余额保持一致，请联系我们！',
+  'app.contact.info': '如果您有疑问，请联系我们！',
+  'app.contact.emai': '邮箱：1056941326@qq.com',
+  'app.contact.phone': '手机号：18322442903',
+
   'app.login.tab-login-credentials': '账户密码登录',
   'app.login.tab-login-mobile': '手机号登录',
   'app.login.remember-me': '自动登录',
@@ -277,6 +285,7 @@ export default {
   'app.multi.nextstep': '下一步',
   'app.multi.verify': '验证',
   'app.multi.enter': '确定',
+
   'app.analysis.test': '工专路 {no} 号店',
   'app.analysis.introduce': '指标说明',
   'app.analysis.total-sales': '总销售额',
@@ -419,4 +428,22 @@ export default {
   'app.setting.copyinfo': '拷贝成功，请到 src/defaultSettings.js 中替换默认配置',
   'app.setting.production.hint':
     '配置栏只在开发环境用于预览，生产环境不会展现，请拷贝后手动修改配置文件',
+  // uograde
+  'app.transfer.sender-address': '旧网转出地址',
+  'app.transfer.receiver-address': '新网接收地址',
+  'app.transfer.secret': '私钥',
+  'app.transfer.confirm': '请确保私钥正确, 该操作不可撤销',
+  'app.transfer.transfer-in-wallet': '进入钱包',
+  'app.transfer.transfer-loading-info': '等待交易确认：',
+  'app.transfer.transfer-message-err-tip': '转账出错，请联系DDN工作人员',
+  'app.upgrade.introction': '主网升级说明',
+  'app.upgrade.begin': '开始升级',
+  'app.upgrade.info':
+    '尊敬的用户您好，日前我们DDN社区对主网进行了升级，系统检测到您未升级到最新网络，请您根据下面的引导进行升级',
+  'app.upgrade.function1': '1. 优化主网加密算法，使用更加先进稳定的加密算法',
+  'app.upgrade.function2': '2. 优化DApp',
+  'app.upgrade.function3': '3. 优化智能合约功能',
+  'app.upgrade.time': '时间：2022-03-31 至 2024-03-31',
+  'app.upgrade.tip':
+    '系统会为您在新的DDN网络中创建一个钱包地址，该地址和您原有的钱包地址相同，请您务必保管好您的私钥',
 };

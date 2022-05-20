@@ -3,8 +3,8 @@ import { connect } from 'dva';
 import { Form, Input, Button, Select, Divider } from 'antd';
 import router from 'umi/router';
 import { formatMessage } from 'umi/locale';
+import DdnJS from '@ddn/js-sdk';
 import styles from './style.less';
-// import logo from '../../assets/hbllogo_light.jpg';
 import logo from '../../assets/logo.svg';
 
 const { Option } = Select;
@@ -31,7 +31,7 @@ class Step1 extends React.PureComponent {
       callback(formatMessage({ id: 'app.transfer.address-format-error' }));
     }
     callback();
-  }
+  };
 
   validateBalance = (rule, value, callback) => {
     const { account } = this.props;
@@ -105,7 +105,8 @@ class Step1 extends React.PureComponent {
               )}
               <Select defaultValue={DdnJS.constants.tokenName} style={{ width: 100 }}>
                 <Option value={DdnJS.constants.tokenName}>
-                  <img src={logo} alt={DdnJS.constants.tokenName} className={styles.logo} /> {DdnJS.constants.tokenName}
+                  <img src={logo} alt={DdnJS.constants.tokenName} className={styles.logo} />{' '}
+                  {DdnJS.constants.tokenName}
                 </Option>
               </Select>
             </Input.Group>

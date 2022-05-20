@@ -35,7 +35,7 @@ defaultAntd = defaultAntd.default || defaultAntd;
 const localeInfo = {
   'en-US': {
     messages: {
-      ...((locale) => locale.__esModule ? locale.default : locale)(require('/Users/imfly/projects/DDN/ddn-wallet/src/locales/en-US.js')),
+      ...((locale) => locale.__esModule ? locale.default : locale)(require('/Users/mac/Desktop/ddn-wallet/src/locales/en-US.js')),
     },
     locale: 'en-US',
     antd: require('antd/es/locale-provider/en_US'),
@@ -44,7 +44,7 @@ const localeInfo = {
   },
   'pt-BR': {
     messages: {
-      ...((locale) => locale.__esModule ? locale.default : locale)(require('/Users/imfly/projects/DDN/ddn-wallet/src/locales/pt-BR.js')),
+      ...((locale) => locale.__esModule ? locale.default : locale)(require('/Users/mac/Desktop/ddn-wallet/src/locales/pt-BR.js')),
     },
     locale: 'pt-BR',
     antd: require('antd/es/locale-provider/pt_BR'),
@@ -53,7 +53,7 @@ const localeInfo = {
   },
   'zh-CN': {
     messages: {
-      ...((locale) => locale.__esModule ? locale.default : locale)(require('/Users/imfly/projects/DDN/ddn-wallet/src/locales/zh-CN.js')),
+      ...((locale) => locale.__esModule ? locale.default : locale)(require('/Users/mac/Desktop/ddn-wallet/src/locales/zh-CN.js')),
     },
     locale: 'zh-CN',
     antd: require('antd/es/locale-provider/zh_CN'),

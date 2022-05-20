@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi/locale';
 import { Checkbox, Alert } from 'antd';
-// import DdnJS from '@ddn/js-sdk'
+import DdnJS from '@ddn/js-sdk';
 import Login from '@/components/Login';
 import styles from './Login.less';
 import Register from './Register';
+
+DdnJS.init('0ab796cd');
 
 const { Wallet, Submit } = Login;
 
@@ -26,27 +28,30 @@ class LoginPage extends Component {
   handleSubmit = (err, values) => {
     if (err) return;
     const { dispatch } = this.props;
-    const keyPair = DdnJS.crypto.getKeys(values.phaseKey.trim());
+    try {
+      const keyPair = DdnJS.crypto.getKeys(values.phaseKey.trim());
+      const curAddress = DdnJS.crypto.generateAddress(keyPair.publicKey, 'D');
 
-    const curAddress = DdnJS.crypto.generateAddress(keyPair.publicKey);
+      const keyStore = {
+        address: curAddress,
+        phaseKey: values.phaseKey,
+        publicKey: keyPair.publicKey,
+      };
 
-    const keyStore = {
-      address: curAddress,
-      phaseKey: values.phaseKey,
-      publicKey: keyPair.publicKey,
-    };
+      console.log('curAddress', keyStore);
 
-    // console.log('curAddress', keyStore);
-
-    dispatch({
-      type: 'login/login',
-      payload: {
-        status: 'ok',
-        type: 'account',
-        currentAuthority: 'address',
-        keyStore,
-      },
-    });
+      dispatch({
+        type: 'login/login',
+        payload: {
+          status: 'ok',
+          type: 'account',
+          currentAuthority: 'address',
+          keyStore,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   changeAutoLogin = e => {

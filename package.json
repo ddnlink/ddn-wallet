@@ -26,7 +26,7 @@
   "dependencies": {
     "@antv/data-set": "^0.9.6",
     "@babel/runtime": "^7.0.0",
-    "@ddn/js-sdk": "^1.0.8",
+    "@ddn/js-sdk": "^2.2.0",
     "antd": "^3.9.2",
     "bip39": "^2.5.0",
     "bizcharts": "^3.2.2",

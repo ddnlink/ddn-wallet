@@ -8,6 +8,36 @@ export default [
       { path: '/user/login', component: './User/Login' },
     ],
   },
+  {
+    path: '/upgrade',
+    name: 'upgrade',
+    icon: 'retweet',
+    // component: './Upgrade',
+    component: '../layouts/UserLayout',
+    hideChildrenInMenu: true,
+    routes: [
+      {
+        path: '/upgrade',
+        name: 'stepform',
+        redirect: '/Upgrade/fill',
+      },
+      {
+        path: '/upgrade/fill',
+        name: 'fill',
+        component: './Upgrade/Step1',
+      },
+      {
+        path: '/upgrade/confirm',
+        name: 'confirm',
+        component: './Upgrade/Step2',
+      },
+      {
+        path: '/upgrade/result',
+        name: 'result',
+        component: './Upgrade/Step3',
+      },
+    ],
+  },
   // app
   {
     path: '/',
@@ -109,6 +139,12 @@ export default [
         target: '_blank',
         name: 'block',
         icon: 'global',
+      },
+      {
+        path: '/contact-us',
+        name: 'contactUs',
+        icon: 'phone',
+        component: './Contact/Contact',
       },
       {
         name: 'result',

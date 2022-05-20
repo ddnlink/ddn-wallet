@@ -1,9 +1,9 @@
 import { routerRedux } from 'dva/router';
-import { getFakeCaptcha, login } from '@/services/api';
+import { getFakeCaptcha, login, queryAccountBalance } from '@/services/api';
 import { setAuthority, setKeyStore } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
-
+import { DdnJS } from '@/utils/ddn-js';
 export default {
   namespace: 'login',
 
@@ -14,6 +14,9 @@ export default {
   effects: {
     *login({ payload }, { call, put }) {
       yield call(login, { publicKey: payload.keyStore.publicKey });
+      const keyPair = DdnJS.crypto.getKeys(payload.keyStore.phaseKey);
+      const curAddress = DdnJS.crypto.getAddress(keyPair.publicKey);
+      const data = yield call(queryAccountBalance, { address: curAddress });
       // callback(response);
       yield put({
         type: 'changeLoginStatus',
@@ -26,8 +29,11 @@ export default {
         // const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         const { redirect } = params;
-        // console.log('redirect', redirect);
-        yield put(routerRedux.replace(redirect || '/'));
+        if (data.success && data.data.account.balance > 0) {
+          yield put(routerRedux.replace('/upgrade/fill'));
+        } else {
+          yield put(routerRedux.replace(redirect || '/'));
+        }
       }
     },
 

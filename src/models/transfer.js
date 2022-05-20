@@ -1,5 +1,5 @@
 import { routerRedux } from 'dva/router';
-import { postTransaction } from '@/services/api';
+import { postTransaction, queryAccountBalance } from '@/services/api';
 
 const initialState = {
   step: {
@@ -31,6 +31,10 @@ export default {
       } else {
         callback(response);
       }
+    },
+    *getBalance({ payload, callback }, { call, put }) {
+      const response = yield call(queryAccountBalance, { address: payload });
+      callback(response);
     },
   },
 

@@ -76,6 +76,8 @@ export default function request(
    * Produce fingerprints based on url and parameters
    * Maybe url has the same parameters
    */
+  console.log('xxxxx', url);
+
   const fingerprint = url + (options.body ? JSON.stringify(options.body) : '');
   const hashcode = hash
     .sha256()
@@ -122,8 +124,18 @@ export default function request(
       sessionStorage.removeItem(`${hashcode}:timestamp`);
     }
   }
-  // fixme
-  const requestUrl = `${peer.requestUrl}${url}`;
+  /**
+   * 钱包既要请求中心化服务器又要请求节点，所以通过路由前缀判断host是哪一个
+   * 中心化服务以“upgrade”作为路由前缀例如：/upgrade/getBanlance
+   */
+  let requestUrl = '';
+  const firstRouter = url.split('/')[1];
+  if (firstRouter === 'upgrade') {
+    requestUrl = `${peer.centerHost}${url}`;
+  } else {
+    // fixme
+    requestUrl = `${peer.requestUrl}${url}`;
+  }
 
   return fetch(requestUrl, newOptions)
     .then(checkStatus)
