@@ -7,7 +7,7 @@ import Login from '@/components/Login';
 import styles from './Login.less';
 import Register from './Register';
 
-DdnJS.init('0ab796cd');
+DdnJS.init('m66gcvle');
 
 const { Wallet, Submit } = Login;
 

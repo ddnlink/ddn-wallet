@@ -15,8 +15,12 @@ export default {
     *login({ payload }, { call, put }) {
       yield call(login, { publicKey: payload.keyStore.publicKey });
       const keyPair = DdnJS.crypto.getKeys(payload.keyStore.phaseKey);
-      const curAddress = DdnJS.crypto.getAddress(keyPair.publicKey);
-      const data = yield call(queryAccountBalance, { address: curAddress });
+      const curAddress = DdnJS.crypto.getAddress(keyPair.publicKey); // 主网的ddn-js有这个方法
+      // const curAddress = DdnJS.crypto.generateAddress(keyPair.publicKey);// 测试网的ddn-js有这个方法
+      // console.log(curAddress)
+      // return
+      let data = yield call(queryAccountBalance, { address: curAddress });
+      data = data ? data : {};
       // callback(response);
       yield put({
         type: 'changeLoginStatus',

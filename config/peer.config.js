@@ -4,15 +4,17 @@
  */
 export default {
   development: {
-    requestUrl: 'http://localhost:8001',
-    centerHost: 'http://localhost:7001',
+    requestUrl: 'http://47.94.144.216:8000',
+    centerHost: 'http://localhost:7009',
     // requestUrl: 'http://106.15.227.133:8001',
   },
   test: {
     requestUrl: 'http://localhost:8001',
   },
   production: {
-    requestUrl: 'http://106.15.227.133:8001',
+    // requestUrl: 'http://106.15.227.133:8001',
+    requestUrl: 'http://47.94.144.216:8000',
+    // centerHost: 'http://47.244.25.145:7009',
   },
-  address: 'DFy6P2sN1KLDNtppnqLBPWcnH8GTJRouGj',
+  address: 'DFy6P2sN1KLDNtppnqLBPWcnH8GTJRouGj', // 这个字段用户和后端验证是否统一，没有其他的作用
 };

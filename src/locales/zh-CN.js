@@ -110,8 +110,8 @@ export default {
   'app.contact.introdction': '说明',
   // 'app.contact.info':'尊敬的用户您好，日前我们DDN社区对主网进行了升级，如果您是我们的老用户根据指引升级后钱包余额和升级提示中的余额保持一致，请联系我们！',
   'app.contact.info': '如果您有疑问，请联系我们！',
-  'app.contact.emai': '邮箱：1056941326@qq.com',
-  'app.contact.phone': '手机号：18322442903',
+  'app.contact.emai': '邮箱：',
+  'app.contact.phone': '手机号：',
 
   'app.login.tab-login-credentials': '账户密码登录',
   'app.login.tab-login-mobile': '手机号登录',

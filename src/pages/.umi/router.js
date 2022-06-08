@@ -8,7 +8,7 @@ import {
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/lib/renderRoutes';
 import history from '@@/history';
-import RendererWrapper0 from '/Users/mac/Desktop/ddn-wallet/src/pages/.umi/LocaleWrapper.jsx';
+import RendererWrapper0 from '/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/pages/.umi/LocaleWrapper.jsx';
 import _dvaDynamic from 'dva/dynamic';
 
 const Router = require('dva/router').routerRedux.ConnectedRouter;
@@ -46,7 +46,7 @@ const routes = [
     component: __IS_BROWSER
       ? _dvaDynamic({
           component: () => import('../../layouts/UserLayout'),
-          LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+          LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
             .default,
         })
       : require('../../layouts/UserLayout').default,
@@ -57,14 +57,14 @@ const routes = [
           ? _dvaDynamic({
               app: require('@tmp/dva').getApp(),
               models: () => [
-                import('/Users/mac/Desktop/ddn-wallet/src/pages/User/models/register.js').then(
+                import('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/pages/User/models/register.js').then(
                   m => {
                     return { namespace: 'register', ...m.default };
                   },
                 ),
               ],
               component: () => import('../User/Login'),
-              LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                 .default,
             })
           : require('../User/Login').default,
@@ -73,7 +73,7 @@ const routes = [
       {
         component: () =>
           React.createElement(
-            require('/Users/mac/Desktop/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+            require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
               .default,
             { pagesPath: 'src/pages', hasRoutesInConfig: true },
           ),
@@ -87,7 +87,7 @@ const routes = [
     component: __IS_BROWSER
       ? _dvaDynamic({
           component: () => import('../../layouts/UserLayout'),
-          LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+          LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
             .default,
         })
       : require('../../layouts/UserLayout').default,
@@ -99,7 +99,7 @@ const routes = [
         component: __IS_BROWSER
           ? _dvaDynamic({
               component: () => import('../Upgrade/Step1'),
-              LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                 .default,
             })
           : require('../Upgrade/Step1').default,
@@ -111,7 +111,7 @@ const routes = [
         component: __IS_BROWSER
           ? _dvaDynamic({
               component: () => import('../Upgrade/Step2'),
-              LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                 .default,
             })
           : require('../Upgrade/Step2').default,
@@ -123,7 +123,7 @@ const routes = [
         component: __IS_BROWSER
           ? _dvaDynamic({
               component: () => import('../Upgrade/Step3'),
-              LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                 .default,
             })
           : require('../Upgrade/Step3').default,
@@ -132,7 +132,7 @@ const routes = [
       {
         component: () =>
           React.createElement(
-            require('/Users/mac/Desktop/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+            require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
               .default,
             { pagesPath: 'src/pages', hasRoutesInConfig: true },
           ),
@@ -144,7 +144,7 @@ const routes = [
     component: __IS_BROWSER
       ? _dvaDynamic({
           component: () => import('../../layouts/BasicLayout'),
-          LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+          LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
             .default,
         })
       : require('../../layouts/BasicLayout').default,
@@ -158,7 +158,7 @@ const routes = [
         component: __IS_BROWSER
           ? _dvaDynamic({
               component: () => import('../Home/Home'),
-              LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                 .default,
             })
           : require('../Home/Home').default,
@@ -171,7 +171,7 @@ const routes = [
         component: __IS_BROWSER
           ? _dvaDynamic({
               component: () => import('../Transfer'),
-              LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                 .default,
             })
           : require('../Transfer').default,
@@ -183,7 +183,7 @@ const routes = [
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () => import('../Transfer/Step1'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Transfer/Step1').default,
@@ -195,7 +195,7 @@ const routes = [
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () => import('../Transfer/Step2'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Transfer/Step2').default,
@@ -207,7 +207,7 @@ const routes = [
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () => import('../Transfer/Step3'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Transfer/Step3').default,
@@ -216,7 +216,7 @@ const routes = [
           {
             component: () =>
               React.createElement(
-                require('/Users/mac/Desktop/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+                require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
                   .default,
                 { pagesPath: 'src/pages', hasRoutesInConfig: true },
               ),
@@ -231,14 +231,14 @@ const routes = [
           ? _dvaDynamic({
               app: require('@tmp/dva').getApp(),
               models: () => [
-                import('/Users/mac/Desktop/ddn-wallet/src/pages/Multi/models/multi.js').then(
+                import('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/pages/Multi/models/multi.js').then(
                   m => {
                     return { namespace: 'multi', ...m.default };
                   },
                 ),
               ],
               component: () => import('../Multi/MultiSignature'),
-              LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                 .default,
             })
           : require('../Multi/MultiSignature').default,
@@ -251,7 +251,7 @@ const routes = [
         component: __IS_BROWSER
           ? _dvaDynamic({
               component: () => import('../Vote/Vote'),
-              LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                 .default,
             })
           : require('../Vote/Vote').default,
@@ -263,7 +263,7 @@ const routes = [
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () => import('../Vote/DelegatesList'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Vote/DelegatesList').default,
@@ -275,7 +275,7 @@ const routes = [
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () => import('../Vote/VoteList'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Vote/VoteList').default,
@@ -287,7 +287,7 @@ const routes = [
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () => import('../Vote/Forging'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Vote/Forging').default,
@@ -296,7 +296,7 @@ const routes = [
           {
             component: () =>
               React.createElement(
-                require('/Users/mac/Desktop/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+                require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
                   .default,
                 { pagesPath: 'src/pages', hasRoutesInConfig: true },
               ),
@@ -311,19 +311,6 @@ const routes = [
         exact: true,
       },
       {
-        path: '/contact-us',
-        name: 'contactUs',
-        icon: 'phone',
-        component: __IS_BROWSER
-          ? _dvaDynamic({
-              component: () => import('../Contact/Contact'),
-              LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
-                .default,
-            })
-          : require('../Contact/Contact').default,
-        exact: true,
-      },
-      {
         name: 'result',
         icon: 'check-circle-o',
         path: '/result',
@@ -335,7 +322,7 @@ const routes = [
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () => import('../Result/Success'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Result/Success').default,
@@ -347,7 +334,7 @@ const routes = [
             component: __IS_BROWSER
               ? _dvaDynamic({
                   component: () => import('../Result/Error'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Result/Error').default,
@@ -356,7 +343,7 @@ const routes = [
           {
             component: () =>
               React.createElement(
-                require('/Users/mac/Desktop/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+                require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
                   .default,
                 { pagesPath: 'src/pages', hasRoutesInConfig: true },
               ),
@@ -376,14 +363,14 @@ const routes = [
               ? _dvaDynamic({
                   app: require('@tmp/dva').getApp(),
                   models: () => [
-                    import('/Users/mac/Desktop/ddn-wallet/src/pages/Exception/models/error.js').then(
+                    import('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/pages/Exception/models/error.js').then(
                       m => {
                         return { namespace: 'error', ...m.default };
                       },
                     ),
                   ],
                   component: () => import('../Exception/403'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Exception/403').default,
@@ -396,14 +383,14 @@ const routes = [
               ? _dvaDynamic({
                   app: require('@tmp/dva').getApp(),
                   models: () => [
-                    import('/Users/mac/Desktop/ddn-wallet/src/pages/Exception/models/error.js').then(
+                    import('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/pages/Exception/models/error.js').then(
                       m => {
                         return { namespace: 'error', ...m.default };
                       },
                     ),
                   ],
                   component: () => import('../Exception/404'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Exception/404').default,
@@ -416,14 +403,14 @@ const routes = [
               ? _dvaDynamic({
                   app: require('@tmp/dva').getApp(),
                   models: () => [
-                    import('/Users/mac/Desktop/ddn-wallet/src/pages/Exception/models/error.js').then(
+                    import('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/pages/Exception/models/error.js').then(
                       m => {
                         return { namespace: 'error', ...m.default };
                       },
                     ),
                   ],
                   component: () => import('../Exception/500'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Exception/500').default,
@@ -437,14 +424,14 @@ const routes = [
               ? _dvaDynamic({
                   app: require('@tmp/dva').getApp(),
                   models: () => [
-                    import('/Users/mac/Desktop/ddn-wallet/src/pages/Exception/models/error.js').then(
+                    import('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/pages/Exception/models/error.js').then(
                       m => {
                         return { namespace: 'error', ...m.default };
                       },
                     ),
                   ],
                   component: () => import('../Exception/TriggerException'),
-                  LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+                  LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                     .default,
                 })
               : require('../Exception/TriggerException').default,
@@ -453,7 +440,7 @@ const routes = [
           {
             component: () =>
               React.createElement(
-                require('/Users/mac/Desktop/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+                require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
                   .default,
                 { pagesPath: 'src/pages', hasRoutesInConfig: true },
               ),
@@ -464,7 +451,7 @@ const routes = [
         component: __IS_BROWSER
           ? _dvaDynamic({
               component: () => import('../404'),
-              LoadingComponent: require('/Users/mac/Desktop/ddn-wallet/src/components/PageLoading/index')
+              LoadingComponent: require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/components/PageLoading/index')
                 .default,
             })
           : require('../404').default,
@@ -473,7 +460,7 @@ const routes = [
       {
         component: () =>
           React.createElement(
-            require('/Users/mac/Desktop/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+            require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
               .default,
             { pagesPath: 'src/pages', hasRoutesInConfig: true },
           ),
@@ -483,7 +470,7 @@ const routes = [
   {
     component: () =>
       React.createElement(
-        require('/Users/mac/Desktop/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+        require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
           .default,
         { pagesPath: 'src/pages', hasRoutesInConfig: true },
       ),

@@ -71,18 +71,17 @@ class Step1 extends React.PureComponent {
         const { phaseKey } = keystore;
         if (!err) {
           try {
-            console.log('ssss');
             const keyPair = DdnJS.crypto.getKeys(phaseKey);
+            // const curAddress = DdnJS.crypto.generateAddress(keyPair.publicKey);
             const curAddress = DdnJS.crypto.getAddress(keyPair.publicKey);
             const newKeyPair = newDdnJS.crypto.getKeys(phaseKey);
             const newCurAddress = newDdnJS.crypto.generateAddress(newKeyPair.publicKey, 'D');
-            console.log('ssssd', curAddress, newCurAddress);
             dispatch({
               type: 'upgrade/getBalance',
               payload: curAddress,
               callback: res => {
                 if (res.success) {
-                  values.amount = String(1);
+                  values.amount = String(res.data.account.balance); //String(1);
                   values.senderAddress = curAddress;
                   values.receiverAddress = newCurAddress;
                   values.secret = phaseKey;

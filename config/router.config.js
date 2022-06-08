@@ -140,12 +140,12 @@ export default [
         name: 'block',
         icon: 'global',
       },
-      {
-        path: '/contact-us',
-        name: 'contactUs',
-        icon: 'phone',
-        component: './Contact/Contact',
-      },
+      // {
+      //   path: '/contact-us',
+      //   name: 'contactUs',
+      //   icon: 'phone',
+      //   component: './Contact/Contact',
+      // },
       {
         name: 'result',
         icon: 'check-circle-o',
