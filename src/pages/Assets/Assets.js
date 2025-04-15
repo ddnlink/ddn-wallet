@@ -97,7 +97,7 @@ class Assets extends PureComponent {
 
   render() {
     const { issuer, myAob, myIssueAob, loading } = this.props;
-    console.log('issuer', issuer, 'myAob123', myAob, 'myIssueAob', myIssueAob, 'loading', loading);
+    // console.log('issuer', issuer, 'myAob123', myAob, 'myIssueAob', myIssueAob, 'loading', loading);
     const pageTitle = (
       <div style={{ display: 'flex' }}>
         <div style={{ flex: '1' }}>

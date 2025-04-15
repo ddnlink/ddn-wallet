@@ -1,7 +1,4 @@
 import { queryPeerInfo, queryTrans } from '@/services/api';
-import DdnJS from '@ddn/js-sdk';
-
-DdnJS.init('m66gcvle');
 
 const initialState = {
   peer: {},

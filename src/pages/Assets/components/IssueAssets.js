@@ -47,6 +47,22 @@ class IssueAssets extends PureComponent {
           if (response.success) {
             this.setState({ visible: false });
             message.success('发行成功');
+
+            // 刷新资产列表数据
+            const issuer = this.props.assets.issuer;
+            if (issuer && issuer.name) {
+              // 刷新我发行的资产列表
+              dispatch({
+                type: 'assets/fetchMyAssets',
+                payload: issuer.name,
+              });
+
+              // 刷新我的资产余额列表
+              dispatch({
+                type: 'assets/getAobList',
+                payload: { address: keystore.address },
+              });
+            }
           } else {
             this.setState({ errorMessage: response.error });
           }

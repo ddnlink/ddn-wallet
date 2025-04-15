@@ -1,5 +1,13 @@
-// 必须初始化
-console.log(window.DdnJS);
-// window.DdnJS.init('0ab796cd', 'testnet');
+import DdnJS from '@ddn/js-sdk';
 
-export const DdnJS = window.DdnJS;
+// const { config } = window.DdnJS;
+// process.env.DDN_ENV = 'mainnet';
+
+const setup = DdnJS.setup({
+  net: 'mainnet',
+});
+
+console.log('config', setup.config);
+console.log('constants', setup.constants);
+
+export default { config: setup.config, constants: setup.constants, jsSdk: DdnJS };

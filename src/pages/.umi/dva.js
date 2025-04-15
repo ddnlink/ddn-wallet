@@ -20,15 +20,15 @@ export function _onCreate() {
     app.use(plugin);
   });
   
-  app.model({ namespace: 'assets', ...(require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/models/assets.js').default) });
-app.model({ namespace: 'global', ...(require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/models/global.js').default) });
-app.model({ namespace: 'home', ...(require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/models/home.js').default) });
-app.model({ namespace: 'login', ...(require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/models/login.js').default) });
-app.model({ namespace: 'setting', ...(require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/models/setting.js').default) });
-app.model({ namespace: 'transfer', ...(require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/models/transfer.js').default) });
-app.model({ namespace: 'upgrade', ...(require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/models/upgrade.js').default) });
-app.model({ namespace: 'user', ...(require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/models/user.js').default) });
-app.model({ namespace: 'vote', ...(require('/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/src/models/vote.js').default) });
+  app.model({ namespace: 'assets', ...(require('/Users/imfly/Documents/projects/DDN/ddn-wallet-u2/src/models/assets.js').default) });
+app.model({ namespace: 'global', ...(require('/Users/imfly/Documents/projects/DDN/ddn-wallet-u2/src/models/global.js').default) });
+app.model({ namespace: 'home', ...(require('/Users/imfly/Documents/projects/DDN/ddn-wallet-u2/src/models/home.js').default) });
+app.model({ namespace: 'login', ...(require('/Users/imfly/Documents/projects/DDN/ddn-wallet-u2/src/models/login.js').default) });
+app.model({ namespace: 'setting', ...(require('/Users/imfly/Documents/projects/DDN/ddn-wallet-u2/src/models/setting.js').default) });
+app.model({ namespace: 'transfer', ...(require('/Users/imfly/Documents/projects/DDN/ddn-wallet-u2/src/models/transfer.js').default) });
+app.model({ namespace: 'upgrade', ...(require('/Users/imfly/Documents/projects/DDN/ddn-wallet-u2/src/models/upgrade.js').default) });
+app.model({ namespace: 'user', ...(require('/Users/imfly/Documents/projects/DDN/ddn-wallet-u2/src/models/user.js').default) });
+app.model({ namespace: 'vote', ...(require('/Users/imfly/Documents/projects/DDN/ddn-wallet-u2/src/models/vote.js').default) });
   return app;
 }
 

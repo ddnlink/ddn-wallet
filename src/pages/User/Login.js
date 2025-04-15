@@ -7,8 +7,6 @@ import Login from '@/components/Login';
 import styles from './Login.less';
 import Register from './Register';
 
-DdnJS.init('m66gcvle');
-
 const { Wallet, Submit } = Login;
 
 @connect(({ login, loading }) => ({
@@ -38,7 +36,7 @@ class LoginPage extends Component {
         publicKey: keyPair.publicKey,
       };
 
-      console.log('curAddress', keyStore);
+      // console.log('curAddress', keyStore);
 
       dispatch({
         type: 'login/login',

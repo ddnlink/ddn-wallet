@@ -3,7 +3,6 @@ import { Card, Steps, Icon } from 'antd';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import { formatMessage } from 'umi/locale';
 import styles from './style.less';
-// import { DdnJS } from '@/utils/ddn-js';
 
 const { Step } = Steps;
 

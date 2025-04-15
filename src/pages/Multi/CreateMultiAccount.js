@@ -10,6 +10,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Steps, Button, Icon, Input, Slider, List, message, Alert } from 'antd';
 import DdnJS from '@ddn/js-sdk';
+import DdnSetup from '@/utils/ddn-js';
 import { formatMessage } from 'umi/locale';
 import { getKeyStore } from '@/utils/authority';
 
@@ -67,7 +68,7 @@ class CreateMultiAccount extends PureComponent {
     if (typeof address !== 'string') {
       return false;
     }
-    if ([DdnJS.constants.tokenPrefix].indexOf(address[0]) === -1) {
+    if ([DdnSetup.constants.tokenPrefix].indexOf(address[0]) === -1) {
       return false;
     }
     return true;
@@ -297,7 +298,7 @@ class CreateMultiAccount extends PureComponent {
       null
     );
     // console.log('transaction 。。。。。。。。。', transaction);
-    // console.log('DdnJS.config 。。。。。。。。。', DdnJS.constants);
+    // console.log('DdnSetup.config 。。。。。。。。。', DdnSetup.constants);
     dispatch({
       type: 'multi/createMultiTansactions',
       payload: { transaction },

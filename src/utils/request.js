@@ -26,7 +26,6 @@ const codeMessage = {
 };
 
 const checkStatus = response => {
-  console.log(response);
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
@@ -77,7 +76,6 @@ export default function request(
    * Produce fingerprints based on url and parameters
    * Maybe url has the same parameters
    */
-  console.log('xxxxx', url);
 
   const fingerprint = url + (options.body ? JSON.stringify(options.body) : '');
   const hashcode = hash
@@ -130,13 +128,16 @@ export default function request(
    * 中心化服务以“upgrade”作为路由前缀例如：/upgrade/getBanlance
    */
   let requestUrl = '';
-  const firstRouter = url.split('/')[1];
-  if (firstRouter === 'upgrade') {
-    requestUrl = `${peer.centerHost}${url}`;
-  } else {
-    // fixme
-    requestUrl = `${peer.requestUrl}${url}`;
-  }
+  // const firstRouter = url.split('/')[1];
+  // if (firstRouter === 'upgrade') {
+  //   requestUrl = `${peer.centerHost}${url}`;
+  // } else {
+  // fixme
+  requestUrl = `${peer.requestUrl}${url}`;
+  // }
+
+  // console.log('peer', peer);
+  // console.log('requestUrl', requestUrl);
 
   return fetch(requestUrl, newOptions)
     .then(checkStatus)

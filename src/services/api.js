@@ -1,6 +1,8 @@
 import { stringify } from 'qs';
-import DdnJS from '@ddn/js-sdk';
 import request from '../utils/request';
+import DdnJS from '../utils/ddn-js';
+
+// console.log('config', DdnJS.config);
 
 // --------------------------- login ------------------------ //
 export async function login(params) {
@@ -9,7 +11,7 @@ export async function login(params) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      nethash: DdnJS.constants.nethash,
+      nethash: DdnJS.config.nethash,
       version: '',
     },
     body: {
@@ -54,7 +56,7 @@ export async function postTransaction(params) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      nethash: DdnJS.constants.nethash,
+      nethash: DdnJS.config.nethash,
       version: '',
     },
     body: {
@@ -84,7 +86,7 @@ export async function multiSign(params) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      nethash: DdnJS.constants.nethash,
+      nethash: DdnJS.config.nethash,
       version: '',
     },
     body: {
@@ -139,7 +141,7 @@ export async function getAobList(params) {
 
 // 获取指定账户所有aob的余额
 export async function getAobBalances(params) {
-  // console.log('getAobBalances params', params);
+  console.log('getAobBalances params', params);
 
   return request(`/api/aob/assets/balances/${params}`);
 }
@@ -151,10 +153,10 @@ export async function getAobBalance(params) {
 
 // 获取指定账户指定资产转账记录
 export async function getAobTransaction(params) {
-  console.log(
-    `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||
-      10}&offset=${params.offset || 0}`
-  );
+  // console.log(
+  //   `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||
+  //     10}&offset=${params.offset || 0}`
+  // );
 
   return request(
     `/api/aob/transfers/my/${params.address}/${params.currency}?limit=${params.limit ||

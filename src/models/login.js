@@ -3,7 +3,8 @@ import { getFakeCaptcha, login, queryAccountBalance } from '@/services/api';
 import { setAuthority, setKeyStore } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 import { reloadAuthorized } from '@/utils/Authorized';
-import { DdnJS } from '@/utils/ddn-js';
+import DdnJS from '@ddn/js-sdk';
+import DdnSetup from '@/utils/ddn-js';
 export default {
   namespace: 'login',
 
@@ -15,7 +16,10 @@ export default {
     *login({ payload }, { call, put }) {
       yield call(login, { publicKey: payload.keyStore.publicKey });
       const keyPair = DdnJS.crypto.getKeys(payload.keyStore.phaseKey);
-      const curAddress = DdnJS.crypto.getAddress(keyPair.publicKey); // 主网的ddn-js有这个方法
+      const curAddress = DdnJS.crypto.generateAddress(
+        keyPair.publicKey,
+        DdnSetup.constants.tokenPrefix
+      ); // 主网的ddn-js有这个方法
       // const curAddress = DdnJS.crypto.generateAddress(keyPair.publicKey);// 测试网的ddn-js有这个方法
       // console.log(curAddress)
       // return

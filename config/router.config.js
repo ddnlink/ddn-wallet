@@ -120,12 +120,12 @@ export default [
         ],
       },
       // assets
-      // {
-      //   path: '/assets',
-      //   name: 'assets',
-      //   icon: 'bank',
-      //   component: './Assets/Assets',
-      // },
+      {
+        path: '/assets',
+        name: 'assets',
+        icon: 'bank',
+        component: './Assets/Assets',
+      },
       // Decentrelize application
       // {
       //   path: '/dapp',

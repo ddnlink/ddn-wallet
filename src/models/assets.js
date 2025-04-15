@@ -45,7 +45,7 @@ export default {
     },
     *getAobList({ payload }, { call, put }) {
       const response = yield call(getAobBalances, payload.address);
-      // console.log('getAobList response', response);
+      console.log('getAobList response', response);
 
       if (response.success) {
         yield put({
@@ -56,7 +56,7 @@ export default {
     },
     *getAobTransfers({ payload }, { call, put }) {
       const response = yield call(getAobTransaction, payload);
-      console.log('getAobTransfers payload', payload);
+      // console.log('getAobTransfers payload', payload);
 
       yield put({
         type: 'saveAoBTransfers',
@@ -88,7 +88,7 @@ export default {
       };
     },
     saveAoBTransfers(state, { payload }) {
-      console.log('trans payload', payload);
+      // console.log('trans payload', payload);
       return {
         ...state,
         transactions: payload.result.rows,

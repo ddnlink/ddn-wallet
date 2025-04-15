@@ -3,7 +3,9 @@ import { connect } from 'dva';
 import { getKeyStore } from '@/utils/authority';
 import { Button, Modal, Form, Input, Alert, message } from 'antd';
 import { formatMessage } from 'umi/locale';
-// import DdnJS from '@ddn/js-sdk';
+import DdnJS from '@ddn/js-sdk';
+
+DdnJS.init();
 
 const FormItem = Form.Item;
 
@@ -31,12 +33,12 @@ class RegisteredAsset extends PureComponent {
   handleCreate = e => {
     e.preventDefault();
     const { issuer, dispatch, form } = this.props;
-    // console.log('issuer', issuer);
+    console.log('issuer', issuer);
     form.validateFields(async (err, values) => {
       if (err) {
         return;
       }
-      // console.log('values', values);
+      console.log('values', values);
       // 获取到表单中的数据，并转化格式，发送请求
       const strategy = values.strategy ? values.strategy : '';
       const precision = Number(values.precision);
@@ -59,7 +61,7 @@ class RegisteredAsset extends PureComponent {
         0,
         phaseKey
       );
-      // console.log('transaction', transaction);
+      console.log('transaction', transaction);
 
       dispatch({
         type: 'assets/postTrans',
@@ -67,7 +69,10 @@ class RegisteredAsset extends PureComponent {
           transaction,
         },
         callback: responese => {
-          // console.log('responese', responese);
+          console.log('responese error:', responese.error);
+          if (responese.error && typeof responese === 'object') {
+            console.log('error details:', JSON.stringify(responese.error, null, 3));
+          }
           if (responese.success) {
             form.resetFields();
             this.setState({ visible: false });

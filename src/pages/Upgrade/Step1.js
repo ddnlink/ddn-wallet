@@ -44,7 +44,10 @@ class Step1 extends React.PureComponent {
   generateAddress = (rule, value, callback) => {
     try {
       const keyPair = DdnJS.crypto.getKeys(value);
-      const curAddress = DdnJS.crypto.getAddress(keyPair.publicKey);
+      const curAddress = DdnJS.crypto.generateAddress(
+        keyPair.publicKey,
+        DdnJS.constants.tokenPrefix
+      );
       const { dispatch } = this.props;
       dispatch({
         type: 'upgrade/getBalance',
@@ -73,7 +76,10 @@ class Step1 extends React.PureComponent {
           try {
             const keyPair = DdnJS.crypto.getKeys(phaseKey);
             // const curAddress = DdnJS.crypto.generateAddress(keyPair.publicKey);
-            const curAddress = DdnJS.crypto.getAddress(keyPair.publicKey);
+            const curAddress = DdnJS.crypto.generateAddress(
+              keyPair.publicKey,
+              DdnJS.constants.tokenPrefix
+            );
             const newKeyPair = newDdnJS.crypto.getKeys(phaseKey);
             const newCurAddress = newDdnJS.crypto.generateAddress(newKeyPair.publicKey, 'D');
             dispatch({

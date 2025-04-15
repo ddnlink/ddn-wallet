@@ -3,6 +3,9 @@ import { connect } from 'dva';
 import { getKeyStore } from '@/utils/authority';
 import { Button, Modal, Form, Input, Alert, message } from 'antd';
 import { formatMessage } from 'umi/locale';
+import DdnJS from '@ddn/js-sdk';
+
+DdnJS.init();
 
 const FormItem = Form.Item;
 
@@ -27,12 +30,12 @@ class registeredAssetDealerForm extends PureComponent {
       if (!err) {
         console.log('Received values of form: ', values);
       }
+      console.log('values', values);
       // 获取到表单中的数据，并转化格式，发送请求
       const { dispatch } = this.props;
       const keystore = getKeyStore();
       const { phaseKey } = keystore;
       const transaction = await DdnJS.aob.createIssuer(values.name, values.des, phaseKey);
-      console.log('trs', transaction);
 
       dispatch({
         type: 'assets/postTrans',

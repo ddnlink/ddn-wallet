@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'dva';
 import { Form, Button, Alert, Divider, message } from 'antd';
 import router from 'umi/router';
-// import { digitUppercase } from '@/utils/utils';
 import { formatMessage } from 'umi/locale';
 import DdnJS from '@ddn/js-sdk';
 import { getKeyStore } from '@/utils/authority';
@@ -30,6 +29,8 @@ class Step2 extends React.PureComponent {
     const { receiverAccount, amount, remark } = data;
     const pureAmount = parseInt(amount, 10);
     const { phaseKey } = keystore;
+
+    console.log('DdnJS', DdnJS);
 
     const transaction = await DdnJS.transaction.createTransaction(
       receiverAccount,

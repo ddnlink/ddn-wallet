@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Form, Input, Button, Select, Divider } from 'antd';
 import router from 'umi/router';
 import { formatMessage } from 'umi/locale';
-import DdnJS from '@ddn/js-sdk';
+import DdnJS from '@/utils/ddn-js';
 import styles from './style.less';
 import logo from '../../assets/logo.svg';
 

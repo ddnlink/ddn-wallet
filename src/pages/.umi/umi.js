@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import findRoute, {
   getUrlQuery,
-} from '/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet/node_modules/umi-build-dev/lib/findRoute.js';
+} from '/Users/imfly/Documents/projects/DDN/ddn-wallet-u2/node_modules/.pnpm/umi-build-dev@1.18.9_@babel+core@7.4.5_@typescript-eslint+eslint-plugin@1.13.0_@typescr_1ab3fe4d8a3bbe9b54f6fdaf4014760a/node_modules/umi-build-dev/lib/findRoute.js';
 
 // runtime plugins
 const plugins = require('umi/_runtimePlugin');
@@ -23,7 +23,9 @@ plugins.init({
     'locale',
   ],
 });
-plugins.use(require('../../../node_modules/umi-plugin-dva/lib/runtime'));
+plugins.use(
+  require('../../../node_modules/.pnpm/umi-plugin-dva@1.11.4_react-dom@16.14.0_react@16.14.0__react-router@5.1.2_react@16.14.0_c9672844ce12825db521ca815af12347/node_modules/umi-plugin-dva/lib/runtime'),
+);
 
 const app = require('@tmp/dva')._onCreate();
 window.g_app = app;
@@ -220,12 +222,14 @@ export default (__IS_BROWSER ? null : serverRender);
     if (isIE) return;
 
     // Umi UI Bubble
-    require('../../../node_modules/umi-plugin-ui/lib/bubble').default({
-      port: 3000,
-      path: '/Users/mac/Desktop/project/ddnUpgradeCenterServer/ddn-wallet',
-      currentProject: '',
-      isBigfish: undefined,
-    });
+    require('../../../node_modules/.pnpm/umi-plugin-ui@1.5.3_@babel+core@7.4.5_react-dom@16.14.0_react@16.14.0__react@16.14.0/node_modules/umi-plugin-ui/lib/bubble').default(
+      {
+        port: 3000,
+        path: '/Users/imfly/Documents/projects/DDN/ddn-wallet-u2',
+        currentProject: '',
+        isBigfish: undefined,
+      },
+    );
   } catch (e) {
     console.warn('Umi UI render error:', e);
   }
@@ -233,7 +237,7 @@ export default (__IS_BROWSER ? null : serverRender);
 
 (() => {
   // Runtime block add component
-  window.GUmiUIFlag = require('../../../node_modules/umi-build-dev/lib/plugins/commands/block/sdk/flagBabelPlugin/GUmiUIFlag.js').default;
+  window.GUmiUIFlag = require('../../../node_modules/.pnpm/umi-build-dev@1.18.9_@babel+core@7.4.5_@typescript-eslint+eslint-plugin@1.13.0_@typescr_1ab3fe4d8a3bbe9b54f6fdaf4014760a/node_modules/umi-build-dev/lib/plugins/commands/block/sdk/flagBabelPlugin/GUmiUIFlag.js').default;
 
   // Enable/Disable block add edit mode
   window.addEventListener(
