@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+  background: #f0f2f5;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0;
+}
+
+.registerButton {
+  width: 400px;
+}
+
+.loginLink {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.register {
+  padding: 27px;
+  :global {
+    .ant-steps-item-process > .ant-steps-item-tail:after{
+      height: 0;
+      border: 1px dashed #ccc;
+      background: #fff;
+    }
+    .ant-steps-item-finish > .ant-steps-item-tail:after{
+      height: 0;
+      border: 1px dashed #4865FE;
+      background: #fff;
+    }
+  }
+}
+
+.phaseKeyCon {
+  background-color: #ebebeb;
+  border: 1px dashed #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  height: 80px;
+  line-height: 30px;
+  padding: 10px;
+}
+
+.missInput {
+  border: none;
+  border-bottom: 1px solid #888;
+  border-radius: 0;
+  width: 300px;
+  margin-left: 20px;
+  &:focus {
+    box-shadow: none;
+  }
+}

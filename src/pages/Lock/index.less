@@ -1,0 +1,99 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.card {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  position: relative;
+  padding: 40px 24px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  color: #fff;
+}
+
+.headerBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #4865FE 0%, #2b3fe6 100%);
+  z-index: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../assets/tech-pattern.svg');
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: 2;
+  }
+}
+
+.headerContent {
+  position: relative;
+  z-index: 3;
+
+  h2 {
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+    max-width: 600px;
+  }
+
+  :global {
+    .ant-typography {
+      color: #fff;
+    }
+  }
+}
+
+.content {
+  padding: 24px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .header {
+    padding: 24px 16px;
+  }
+
+  .content {
+    padding: 16px;
+  }
+}

@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+  background: #f0f2f5;
+}
+
+.content {
+  padding: 10px 0;
+  display: flex;
+
+  .left {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    /* 使用flex布局 */
+    flex-direction: column;
+    /* 垂直方向排列 */
+    justify-content: center;
+
+    .leftimg {
+      width: 100%;
+      min-width: 480px;
+      height: 500px;
+      background-image: url('../../assets/login-img.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+  }
+
+  .right {
+    flex: 1;
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  color: #f0f2f5;
+}
+
+@media (min-width: 768px) {
+  .container {
+    background-image: url('../../assets/login-bg.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
+// .ant-card-body {
+//   height: 80vh;
+
+//   .right {
+//     height: 60vh;
+//     overflow: auto;
+//   }
+
+//   .content {
+//     padding: 10px 0;
+//     display: flex;
+
+//     .left {
+//       height: 60vh;
+//       display: flex;
+//       /* 使用flex布局 */
+//       flex-direction: column;
+//       /* 垂直方向排列 */
+//       justify-content: center;
+//       /* 垂直居中 */
+
+//       .leftimg {
+//         display: block;
+//         max-width: 100%;
+//         max-height: 80%;
+//         /* 限制最大高度，防止溢出 */
+//         margin: 0 auto;
+//         /* 水平居中 */
+//       }
+//     }
+//   }
+// }

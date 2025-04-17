@@ -1,0 +1,33 @@
+.votePage {
+  padding: 24px;
+  
+  .selectedDelegates {
+    display: flex;
+    margin-bottom: 16px;
+    padding: 12px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    
+    .selectedTitle {
+      font-weight: 500;
+      margin-right: 8px;
+      white-space: nowrap;
+    }
+    
+    .selectedTags {
+      flex: 1;
+      
+      :global {
+        .ant-tag {
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+}

@@ -1,0 +1,41 @@
+.dappPage {
+  padding: 24px;
+  
+  .dappCover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+  }
+  
+  .dappTitle {
+    cursor: pointer;
+    font-weight: 500;
+    
+    &:hover {
+      color: #4865FE;
+    }
+  }
+  
+  .dappDescription {
+    height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 8px;
+  }
+  
+  .dappTags {
+    margin-top: 8px;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+}
