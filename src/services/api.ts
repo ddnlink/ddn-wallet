@@ -24,6 +24,10 @@ export async function queryTrans(params: any) {
 export async function createTransaction(data: any) {
   return request<API.Response<any>>('/api/transactions', {
     method: 'POST',
+    headers: {
+      'nethash': '0ab796cd',
+      'version': '0',
+    },
     data,
   });
 }
@@ -74,6 +78,14 @@ export async function queryVoters(params: { publicKey: string }) {
   });
 }
 
+// 获取我的投票列表
+export async function queryVotes(params: { address: string }) {
+  return request<API.Response<{ delegates: API.DelegateInfo[] }>>('/api/votes', {
+    method: 'GET',
+    params,
+  });
+}
+
 // 资产相关 API
 export async function queryAssets(params: any) {
   return request<API.Response<{ assets: API.AssetInfo[] }>>('/api/aob/assets', {
@@ -119,7 +131,67 @@ export async function getAobTransfers(currency: string, params?: { limit?: numbe
 
 // 多重签名相关 API
 export async function queryMultiSignatureAccounts(params: { publicKey: string }) {
-  return request<API.Response<{ accounts: API.MultiSignatureAccount[] }>>('/api/multisignatures/accounts', {
+  return request<{ success: boolean, data: { accounts: any[] } }>('/api/multisignatures/accounts', {
+    method: 'GET',
+    params,
+  });
+}
+
+// 获取多重签名待处理交易
+export async function queryPendingMultiSignatures(params: { publicKey: string }) {
+  // 根据实际返回的数据结构调整类型
+  return request<{ success: boolean, transactions: any[] }>('/api/multisignatures/pending', {
+    method: 'GET',
+    params,
+  });
+}
+
+// 获取用户已签名的交易
+export async function querySignedTransactions(params: { publicKey: string }) {
+  return request<{ success: boolean, transactions: any[] }>('/api/multisignatures/signatures', {
+    method: 'GET',
+    params,
+  });
+}
+
+// 检查账户是否可以创建多重签名
+export async function checkMultiSignatureEligibility(params: { address: string }) {
+  return request<{
+    success: boolean,
+    eligible: boolean,
+    reason?: string,
+    details?: {
+      currentMultisignature?: {
+        min: number,
+        lifetime: number,
+        keysgroup: string[]
+      },
+      pendingTransactions?: any[]
+    }
+  }>('/api/multisignatures/checkEligibility', {
+    method: 'GET',
+    params,
+  });
+}
+
+// 获取交易的签名进度
+export async function getSignatureProgress(params: { transactionId: string }) {
+  return request<{
+    success: boolean,
+    transaction: {
+      id: string,
+      type: number,
+      senderId: string,
+      requiredSignatures: number,
+      currentSignatures: number,
+      signers: Array<{publicKey: string, address: string}>,
+      pendingSigners: Array<{publicKey: string, address: string}>,
+      progress: number,
+      isReady: boolean,
+      expirationTime: number,
+      isExpired: boolean
+    }
+  }>('/api/multisignatures/signatureProgress', {
     method: 'GET',
     params,
   });
@@ -127,15 +199,15 @@ export async function queryMultiSignatureAccounts(params: { publicKey: string })
 
 // 创建多重签名账户
 export async function createMultiSignatureAccount(data: any) {
-  return request<API.Response<any>>('/api/multisignatures', {
-    method: 'POST',
+  return request<{ success: boolean, transactionId: string }>('/api/multisignatures', {
+    method: 'PUT', // 根据文档，应该使用 PUT 方法
     data,
   });
 }
 
 // 签名交易
 export async function signTransaction(data: any) {
-  return request<API.Response<any>>('/api/multisignatures/sign', {
+  return request<{ success: boolean }>('/api/multisignatures/sign', {
     method: 'POST',
     data,
   });

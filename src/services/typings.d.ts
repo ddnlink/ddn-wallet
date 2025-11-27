@@ -200,7 +200,7 @@ declare namespace API {
   };
 
   type ErrorResponse = {
-    success: boolean;
+    success: false;
     error: string;
   };
 
@@ -210,4 +210,103 @@ declare namespace API {
   };
 
   type Response<T> = SuccessResponse<T> | ErrorResponse;
+
+  // 智能合约列表
+  type ContractList = {
+    rows: ContractInfo[];
+    totalCount: number;
+  };
+
+  // 智能合约信息
+  type ContractInfo = {
+    id: string;
+    name: string;
+    type: string;
+    description?: string;
+    timestamp: number;
+    senderId: string;
+    senderPublicKey: string;
+    creatorId: string;
+    version: string;
+    vmVersion: string;
+  };
+
+  // 智能合约元数据
+  type ContractMeta = {
+    name: string;
+    version: string;
+    author: string;
+    description?: string;
+    methods?: ContractMethod[];
+    events?: ContractEvent[];
+  };
+
+  // 智能合约方法
+  type ContractMethod = {
+    name: string;
+    description?: string;
+    params?: ContractMethodParam[];
+    returns?: {
+      type: string;
+      description?: string;
+    };
+  };
+
+  // 智能合约方法参数
+  type ContractMethodParam = {
+    name: string;
+    type: string;
+    description?: string;
+  };
+
+  // 智能合约事件
+  type ContractEvent = {
+    name: string;
+    description?: string;
+    params?: ContractEventParam[];
+  };
+
+  // 智能合约事件参数
+  type ContractEventParam = {
+    name: string;
+    type: string;
+    description?: string;
+    indexed?: boolean;
+  };
+
+  // 智能合约执行结果列表
+  type ContractResultList = {
+    rows: ContractResult[];
+    count: number;
+  };
+
+  // 智能合约执行结果
+  type ContractResult = {
+    transactionId: string;
+    contractId: string;
+    result: any;
+    logs?: string[];
+    status: 'success' | 'failure';
+    gasUsed?: number;
+    error?: string;
+    timestamp: number;
+  };
+
+  // 智能合约转账列表
+  type ContractTransferList = {
+    rows: ContractTransfer[];
+    count: number;
+  };
+
+  // 智能合约转账
+  type ContractTransfer = {
+    id: string;
+    contractId: string;
+    senderId: string;
+    recipientId: string;
+    amount: number;
+    timestamp: number;
+    height: number;
+    transactionId: string;
+  };
 }

@@ -1,0 +1,78 @@
+.editorCard {
+  margin-bottom: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+}
+
+.editorContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.editorWrapper {
+  flex: 1;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.templateSelector {
+  width: 200px;
+  padding: 0 8px;
+  
+  h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+.editorToolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.helpContent {
+  padding: 0 16px;
+  
+  h3 {
+    margin-top: 0;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  h4 {
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  ul {
+    margin-bottom: 16px;
+  }
+  
+  a {
+    color: #1890ff;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .editorContainer {
+    flex-direction: column;
+  }
+  
+  .templateSelector {
+    width: 100%;
+    margin-top: 16px;
+  }
+}

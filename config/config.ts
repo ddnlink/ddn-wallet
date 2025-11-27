@@ -1,3 +1,5 @@
+// https://umijs.org/config/
+import { join } from 'path';
 import { defineConfig } from '@umijs/max';
 import routes from './routes';
 import proxy from './proxy';
@@ -33,5 +35,33 @@ export default defineConfig({
     title: true,
     baseNavigator: true,
     useLocalStorage: true,
+  },
+
+  // from ddn-explorer
+  favicons: [
+    // 完整地址
+    // 'https://domain.com/favicon.ico',
+    // 此时将指向 `/favicon.png` ，确保你的项目含有 `public/favicon.png`
+    '/favicon.png'
+  ],
+  theme: { 
+    'primary-color': '#1DA57A', 
+    'logo-bg-color': '#013A6A',
+    'light-primary-color': '#5bc5f4',
+    'transparent-primary-color': '#5bc5f4',
+    'dark-primary-color': '#013A6A',
+    'card-actions-background': '#f5f8fa',
+    'font-size-base': '16px',
+    'font-size-secondary': '14px',
+    'text-color': 'rgba(0, 0, 0, 0.65)',
+    'text-color-secondary': 'rgba(0, 0, 0, .45)',
+  },
+  plugins: ['@umijs/max-plugin-openapi'],
+  openAPI: {
+    requestLibPath: "import { request } from 'umi'",
+    // 或者使用在线的版本
+    // schemaPath: "https://gw.alipayobjects.com/os/antfincdn/M%24jrzTTYJN/oneapi.json",
+    schemaPath: join(__dirname, 'oneapi.json'),
+    mock: false,
   }
 });

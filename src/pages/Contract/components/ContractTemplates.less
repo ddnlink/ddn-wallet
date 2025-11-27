@@ -1,0 +1,65 @@
+.templatesCard {
+  margin-bottom: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.templateList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.templateItem {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 8px;
+
+  &:hover {
+    background-color: #f0f5ff;
+  }
+}
+
+.templateIcon {
+  font-size: 24px;
+  color: #1890ff;
+  margin-right: 16px;
+}
+
+.templateInfo {
+  display: flex;
+  flex-direction: column;
+
+  :global {
+    .ant-typography {
+      margin-bottom: 4px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.templateFooter {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .templateList {
+    flex-direction: column;
+  }
+
+  .templateItem {
+    width: 100%;
+  }
+}

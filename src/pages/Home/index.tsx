@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Card, Table, Radio, Space, Tooltip, message } from 'antd';
-import { PieChartFilled, BarChartOutlined, RadarChartOutlined, ClockCircleOutlined, CopyOutlined } from '@ant-design/icons';
+import { Row, Col, Card, Table, Radio, Space, Tooltip, message, Statistic, Progress } from 'antd';
+import { PieChartFilled, BarChartOutlined, RadarChartOutlined, ClockCircleOutlined, CopyOutlined, BlockOutlined } from '@ant-design/icons';
 import { useIntl, useModel, useRequest } from '@umijs/max';
 import { ChartCard } from '@/components/Charts';
 import { queryAccount, queryPeerInfo, queryTrans } from '@/services/api';
@@ -13,6 +13,10 @@ const HomePage: React.FC = () => {
   const [role, setRole] = useState<string>('all');
   const [address, setAddress] = useState<string>('');
   const [latestBlock, setLatestBlock] = useState<any>({});
+  const [blockInfo, setBlockInfo] = useState({
+    height: 0,
+    timestamp: 0,
+  });
   const [accountData, setAccountData] = useState<any>({});
   const [transData, setTransData] = useState<API.TransactionList>({
     list: [],
@@ -28,7 +32,7 @@ const HomePage: React.FC = () => {
 
   const { initialState } = useModel('@@initialState');
 
-  
+
   // 获取账户信息
   const { data: fetchAccount, loading: accountLoading, run: fetchAccountData } = useRequest(
     () => queryAccount({ address: initialState?.currentUser?.address || '' }),
@@ -38,7 +42,7 @@ const HomePage: React.FC = () => {
         if (res.success) {
           setAccountData(res.account)
           setLatestBlock(res.latestBlock)
-          
+
           // 将账户余额信息写入 initialState
           if (initialState?.setInitialState && res.account) {
             initialState.setInitialState({
@@ -55,14 +59,46 @@ const HomePage: React.FC = () => {
       }
     }
   );
-  
+
   // 在组件挂载和地址变化时获取账户数据
   useEffect(() => {
     if (initialState?.currentUser?.address) {
       fetchAccountData();
     }
   }, [initialState?.currentUser?.address]);
-  
+
+  // 模拟区块信息更新
+  useEffect(() => {
+    // 初始化区块信息
+    if (latestBlock?.height) {
+      setBlockInfo({
+        height: parseInt(latestBlock.height) || 0,
+        timestamp: Date.now(),
+      });
+    }
+
+    // 每10秒更新一次区块高度，模拟出块
+    const blockTimer = setInterval(() => {
+      setBlockInfo(prevInfo => ({
+        height: prevInfo.height + 1,
+        timestamp: Date.now(),
+      }));
+    }, 10000);
+
+    // 每秒更新一次进度条，强制重新渲染
+    const progressTimer = setInterval(() => {
+      setBlockInfo(prevInfo => ({
+        ...prevInfo,
+        timestamp: prevInfo.timestamp,
+      }));
+    }, 1000);
+
+    return () => {
+      clearInterval(blockTimer);
+      clearInterval(progressTimer);
+    };
+  }, [latestBlock?.height]);
+
   // 设置定时刷新账户数据
   useEffect(() => {
     const timer = setInterval(() => {
@@ -70,7 +106,7 @@ const HomePage: React.FC = () => {
         fetchAccountData();
       }
     }, 10000); // 每10秒刷新一次
-    
+
     return () => clearInterval(timer);
   }, [initialState?.currentUser?.address]);
 
@@ -84,7 +120,7 @@ const HomePage: React.FC = () => {
     (params: any) => {
       // 保存当前请求参数到一个闭包变量中
       const currentParams = { ...params };
-      
+
       return queryTrans(params).then(res => {
         if (res.success) {
           setTransData({
@@ -96,7 +132,7 @@ const HomePage: React.FC = () => {
             },
           });
         }
-        
+
         return res;
       });
     },
@@ -108,7 +144,7 @@ const HomePage: React.FC = () => {
       }
     }
   );
-  
+
   // 初始化数据
   useEffect(() => {
     const keyStore = getKeyStore();
@@ -125,7 +161,7 @@ const HomePage: React.FC = () => {
       console.log('Address changed, fetching transaction data:', address);
       try {
         getTransData();
-        
+
       } catch (error) {
         console.error('Error fetching transaction data:', error);
       }
@@ -298,7 +334,7 @@ const HomePage: React.FC = () => {
         // const realTime = DdnJS.utils.slots.getRealTime(Number(text));
         return (
           <span>
-            { formatBlockTime(text) }
+            {formatBlockTime(text)}
           </span>
         );
       },
@@ -347,7 +383,7 @@ const HomePage: React.FC = () => {
             action={
               <span>
                 <span>{intl.formatMessage({ id: 'pages.home.unit' })}: </span>
-                <span>{ TokenName }</span>
+                <span>{TokenName}</span>
               </span>
             }
             loading={accountLoading}
@@ -360,49 +396,58 @@ const HomePage: React.FC = () => {
           />
         </Col>
         <Col {...topColResponsiveProps}>
-          <ChartCard
-            title={
-              <div style={{ fontSize: '20px' }}>
-                <BarChartOutlined />
-                <span style={{ marginLeft: '10px' }}>
-                  {intl.formatMessage({ id: 'pages.home.block-height' })}
+            <ChartCard
+              title={
+                <div style={{ fontSize: '20px' }}>
+                  <BarChartOutlined />
+                  <span style={{ marginLeft: '10px' }}>
+                    {intl.formatMessage({ id: 'pages.home.block-height' })}
+                  </span>
+                </div>
+              }
+              loading={accountLoading}
+              total={() => <div style={{ marginTop: '5px' }}>{blockInfo.height.toLocaleString() || 0}</div>}
+              footer={
+                <div className={styles.blockProgress}>
+                  <Progress
+                    percent={((Date.now() / 1000) % 10) * 10}
+                    size="small"
+                    showInfo={false}
+                    strokeColor="#4865FE"
+                    trailColor="rgba(0,0,0,0.05)"
+                  />
+                  <div className={styles.blockProgressText}>
+                    {intl.formatMessage({ id: 'pages.home.next-block' })}: {Math.floor(10 - ((Date.now() / 1000) % 10))}s
+                  </div>
+                </div>
+              }
+            />
+          </Col>
+          <Col {...topColResponsiveProps}>
+            <ChartCard
+              title={
+                <div style={{ fontSize: '20px' }}>
+                  <RadarChartOutlined />
+                  <span style={{ marginLeft: '10px' }}>
+                    {intl.formatMessage({ id: `pages.home.${peer?.net || NETWORKS.TESTNET}` })}
+                  </span>
+                </div>
+              }
+              action={
+                <span>
+                  <span>{intl.formatMessage({ id: 'pages.home.peer' })}: </span>
+                  <span>Peer0</span>
                 </span>
-              </div>
-            }
-            loading={accountLoading}
-            total={() => <div style={{ marginTop: '5px' }}>{latestBlock?.height || 0}</div>}
-            footer={
-              <div>
-                {intl.formatMessage({ id: 'blockchain.runtime' }, { time: timeElapsed })}
-              </div>
-            }
-          />
-        </Col>
-        <Col {...topColResponsiveProps}>
-          <ChartCard
-            title={
-              <div style={{ fontSize: '20px' }}>
-                <RadarChartOutlined />
-                <span style={{ marginLeft: '10px' }}>
-                  {intl.formatMessage({ id: `pages.home.${peer?.net || NETWORKS.TESTNET}` })}
-                </span>
-              </div>
-            }
-            action={
-              <span>
-                <span>{intl.formatMessage({ id: 'pages.home.peer' })}: </span>
-                <span>Peer0</span>
-              </span>
-            }
-            loading={peerLoading}
-            total={() => <div style={{ marginTop: '5px' }}>v{peer?.version || '0.0.0'}</div>}
-            footer={
-              <div>
-                {intl.formatMessage({ id: 'pages.home.peer-build-time' })}: {peer?.build || ''}
-              </div>
-            }
-          />
-        </Col>
+              }
+              loading={peerLoading}
+              total={() => <div style={{ marginTop: '5px' }}>v{peer?.version || '0.0.0'}</div>}
+              footer={
+                <div>
+                  {intl.formatMessage({ id: 'blockchain.runtime' }, { time: timeElapsed })}
+                </div>
+              }
+            />
+          </Col>
       </Row>
       <Row gutter={24} style={{ marginTop: 20 }}>
         <Col span={24}>

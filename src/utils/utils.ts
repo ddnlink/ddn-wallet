@@ -45,8 +45,12 @@ export function getTransactionTypeName(type: number): string {
       return '注册受托人';
     case TRANS_TYPES.VOTE:
       return '投票';
-    case TRANS_TYPES.MULTI:
+    case TRANS_TYPES.MULTISIGNATURE:
       return '多重签名';
+    case TRANS_TYPES.CONTRACT:
+      return '智能合约';
+    case TRANS_TYPES.CONTRACT_TRANSFER:
+      return '合约交易';
     case TRANS_TYPES.DAPP:
       return '应用';
     case TRANS_TYPES.IN_TRANSFER:
@@ -68,7 +72,7 @@ export function getTransactionTypeName(type: number): string {
       return 'DAO 确认';
 
     // // Coupon
-    // case TRANS_TYPES.COUPON_ISSUER_AUDITOR_BUY: 
+    // case TRANS_TYPES.COUPON_ISSUER_AUDITOR_BUY:
     // return '注册资产发行商';
     // case TRANS_TYPES.COUPON_ISSUER_APPLY: 50,
     // case TRANS_TYPES.COUPON_ISSUER_CHECK: 51,
@@ -192,7 +196,7 @@ export function convertBlockTimestamp(timestamp: number = Date.now()): number {
   const d = new Date(beginDate); // 可根据实际创世时间调整
   const beginEpochTime = d.getTime();
   const t = Math.floor(beginEpochTime / 1000);
-  
+
   // 将区块链时间戳转换为实际时间戳（毫秒）
   return (timestamp + t) * 1000;
 }
@@ -209,6 +213,30 @@ export function formatBlockTime(timestamp: number, format: string = 'YYYY-MM-DD 
 }
 
 /**
+ * 格式化时间戳为可读日期时间
+ * @param timestamp 时间戳（毫秒）
+ * @returns 格式化后的日期时间字符串
+ */
+export function formatTime(timestamp: number): string {
+  if (!timestamp) return '-';
+
+  // 判断是否为区块链时间戳（通常区块链时间戳小于当前时间的一个数量级）
+  const now = Date.now();
+  const isBlockchainTimestamp = timestamp < now / 1000 / 10;
+
+  if (isBlockchainTimestamp) {
+    return formatBlockTime(timestamp);
+  } else {
+    // 如果是毫秒时间戳
+    if (timestamp > 10000000000) {
+      return formatDateTime(timestamp);
+    }
+    // 如果是秒时间戳
+    return formatDateTime(timestamp * 1000);
+  }
+}
+
+/**
  * 计算从区块链创世时间到现在已经过去的时间
  * @param useI18n 是否使用国际化，默认为 true
  * @returns 格式化后的时间差字符串
@@ -218,7 +246,7 @@ export function getTimeElapsed(useI18n: boolean = true): string {
   const genesisTime = new Date(beginDate).getTime();
   const now = Date.now();
   const diffMs = now - genesisTime;
-  
+
   // 计算时间差的各个部分
   const msPerSecond = 1000;
   const msPerMinute = msPerSecond * 60;
@@ -226,28 +254,28 @@ export function getTimeElapsed(useI18n: boolean = true): string {
   const msPerDay = msPerHour * 24;
   const msPerMonth = msPerDay * 30; // 近似值
   const msPerYear = msPerDay * 365; // 近似值
-  
+
   // 计算年、月、日、时
   const years = Math.floor(diffMs / msPerYear);
   const months = Math.floor((diffMs % msPerYear) / msPerMonth);
   const days = Math.floor((diffMs % msPerMonth) / msPerDay);
   const hours = Math.floor((diffMs % msPerDay) / msPerHour);
-  
+
   if (useI18n) {
     const intl = getIntl();
-    
+
     // 构建结果字符串（国际化版本）
     let result = '';
     if (years > 0) result += intl.formatMessage({ id: 'time.years' }, { value: years });
     if (months > 0) result += intl.formatMessage({ id: 'time.months' }, { value: months });
     if (days > 0) result += intl.formatMessage({ id: 'time.days' }, { value: days });
     if (hours > 0) result += intl.formatMessage({ id: 'time.hours' }, { value: hours });
-    
+
     // 如果时间差小于1小时，至少显示"1时"
     if (result === '') {
       result = intl.formatMessage({ id: 'time.hours' }, { value: 1 });
     }
-    
+
     return result;
   } else {
     // 构建结果字符串（非国际化版本）
@@ -256,12 +284,12 @@ export function getTimeElapsed(useI18n: boolean = true): string {
     if (months > 0) result += `${months}月`;
     if (days > 0) result += `${days}天`;
     if (hours > 0) result += `${hours}个小时`;
-    
+
     // 如果时间差小于1小时，至少显示"1时"
     if (result === '') {
       result = '1个小时';
     }
-    
+
     return result;
   }
 }

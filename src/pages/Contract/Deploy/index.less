@@ -1,0 +1,53 @@
+.container {
+  padding: 0;
+  background: transparent;
+
+  .deployCard {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+    background: #fff;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .deployAlert {
+    margin-bottom: 24px;
+  }
+
+  .deployForm {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .codeTextarea {
+    font-family: 'Courier New', Courier, monospace;
+    height: 400px !important; /* 增加高度以匹配模板列表高度 */
+  }
+
+  .deployWarning {
+    margin: 16px 0 24px;
+  }
+
+  .deployNotes {
+    margin: 8px 0 0 24px;
+    padding: 0;
+
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+  }
+
+  :global {
+    .ant-form-item-label {
+      font-weight: 500;
+    }
+
+    .ant-divider {
+      margin: 24px 0;
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: 500;
+    }
+  }
+}

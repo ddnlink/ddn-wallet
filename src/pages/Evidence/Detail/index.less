@@ -1,0 +1,113 @@
+.container {
+  padding: 0;
+  background: transparent;
+
+  .detailCard {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .header {
+    position: relative;
+    height: 160px;
+    margin: -24px -24px 24px;
+    overflow: hidden;
+  }
+
+  .headerBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      opacity: 0.2;
+      z-index: 0;
+    }
+  }
+
+  .headerContent {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 24px;
+    color: white;
+  }
+
+  .titleSection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .titleIcon {
+    font-size: 32px;
+    margin-right: 12px;
+  }
+
+  .subtitleSection {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .descriptions {
+    margin-bottom: 24px;
+  }
+
+  .copyIcon {
+    cursor: pointer;
+    color: #1890ff;
+    
+    &:hover {
+      color: #40a9ff;
+    }
+  }
+
+  .metadataContent {
+    max-height: 200px;
+    overflow: auto;
+    background-color: #f5f5f5;
+    padding: 8px;
+    border-radius: 4px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  .emptyCard {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+    background: #fff;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .emptyContent {
+    text-align: center;
+    padding: 48px 0;
+  }
+}

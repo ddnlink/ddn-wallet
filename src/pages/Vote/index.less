@@ -1,22 +1,22 @@
 .votePage {
-  padding: 24px;
-  
+  padding: 0 24px 24px;
+
   .selectedDelegates {
     display: flex;
     margin-bottom: 16px;
     padding: 12px;
     background-color: #f5f5f5;
     border-radius: 4px;
-    
+
     .selectedTitle {
       font-weight: 500;
       margin-right: 8px;
       white-space: nowrap;
     }
-    
+
     .selectedTags {
       flex: 1;
-      
+
       :global {
         .ant-tag {
           margin-bottom: 8px;
@@ -24,10 +24,98 @@
       }
     }
   }
-  
+
   .buttonContainer {
     display: flex;
     justify-content: center;
     margin-top: 24px;
+  }
+
+  .headerDecoration {
+    position: relative;
+    height: 180px;
+    margin: 0 -24px 24px;
+    background: linear-gradient(135deg, #1890ff 0%, #722ed1 100%);
+    overflow: hidden;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTQ0MCAxMDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PGcgb3BhY2l0eT0iLjIiIGZpbGwtcnVsZT0ibm9uemVybyI+PHBhdGggZD0iTTAgMGgxNDQwdjEwMjRIMHoiLz48cGF0aCBkPSJNMTQ0MCA3MjBsLTMyMCAxOTIgMTkyIDMyMEg2NDBsLTMyMC0xOTIgMzIwLTE5MiAxOTItMzIwIDMyMCAxOTJ6IiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTAgMGwzMjAgMTkyIDE5MiAzMjAtMzIwIDE5MkgweiIgZmlsbD0iI2ZmZiIvPjwvZz48L2c+PC9zdmc+');
+      background-size: cover;
+      opacity: 0.1;
+    }
+
+    .headerContent {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 0 48px;
+      color: #fff;
+
+      h1 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #fff;
+      }
+
+      p {
+        font-size: 16px;
+        max-width: 600px;
+        margin: 0 0 16px;
+        opacity: 0.8;
+      }
+
+      .delegateStatus {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 8px;
+
+        :global {
+          .anticon {
+            margin-right: 6px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .statsCard {
+    margin-bottom: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    :global {
+      .ant-card-body {
+        padding: 24px;
+      }
+    }
+
+    .progressWrapper {
+      margin-top: 8px;
+
+      .progressLabel {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        color: rgba(0, 0, 0, 0.65);
+      }
+    }
   }
 }

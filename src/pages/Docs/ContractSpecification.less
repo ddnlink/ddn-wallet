@@ -1,0 +1,145 @@
+.container {
+  padding: 0;
+  background: transparent;
+}
+
+.breadcrumb {
+  margin-bottom: 16px;
+}
+
+.docCard {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  background: #fff;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 0;
+  
+  .loadingText {
+    margin-top: 16px;
+    color: rgba(0, 0, 0, 0.45);
+  }
+}
+
+.markdownContainer {
+  padding: 8px;
+  
+  .markdown {
+    font-size: 16px;
+    line-height: 1.6;
+    
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eaecef;
+    }
+    
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eaecef;
+    }
+    
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    
+    p {
+      margin-bottom: 16px;
+    }
+    
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+    
+    li {
+      margin-bottom: 8px;
+    }
+    
+    code {
+      background-color: rgba(27, 31, 35, 0.05);
+      border-radius: 3px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 85%;
+      padding: 0.2em 0.4em;
+    }
+    
+    pre {
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 85%;
+      line-height: 1.45;
+      overflow: auto;
+      padding: 16px;
+      margin-bottom: 16px;
+      
+      code {
+        background-color: transparent;
+        padding: 0;
+      }
+    }
+    
+    table {
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      width: 100%;
+      
+      th, td {
+        border: 1px solid #dfe2e5;
+        padding: 8px 12px;
+      }
+      
+      th {
+        background-color: #f6f8fa;
+        font-weight: 600;
+      }
+      
+      tr:nth-child(2n) {
+        background-color: #f6f8fa;
+      }
+    }
+    
+    blockquote {
+      border-left: 4px solid #dfe2e5;
+      color: #6a737d;
+      margin-bottom: 16px;
+      padding: 0 16px;
+    }
+    
+    hr {
+      background-color: #e1e4e8;
+      border: 0;
+      height: 1px;
+      margin: 24px 0;
+      padding: 0;
+    }
+    
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+  }
+}
