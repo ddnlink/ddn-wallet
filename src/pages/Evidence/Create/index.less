@@ -1,0 +1,122 @@
+.container {
+  padding: 24px;
+
+  .decorativeBg {
+    position: relative;
+    height: 160px;
+    margin-bottom: 24px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      opacity: 0.5;
+      z-index: 0;
+    }
+  }
+
+  .decorativeContent {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .pageHeader {
+    text-align: center;
+    color: white;
+  }
+
+  .pageTitle {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: white;
+  }
+
+  .pageSubtitle {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .formCard {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .uploadSection {
+    margin-bottom: 24px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px dashed #d9d9d9;
+  }
+
+  /* 文件信息区域样式 */
+  .fileInfoSection {
+    margin-top: 16px;
+    padding: 16px;
+    background-color: #f9fafb;
+    border-radius: 8px;
+  }
+
+  .uploader {
+    margin-bottom: 16px;
+  }
+
+  .formRow {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 0;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+
+  .formColumn {
+    flex: 1;
+  }
+
+  .formActions {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  .uploadButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    border: 1px dashed #d9d9d9;
+    border-radius: 4px;
+    background-color: #fafafa;
+    transition: border-color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #1890ff;
+    }
+  }
+
+  .uploadIcon {
+    font-size: 32px;
+    color: #999;
+    margin-bottom: 8px;
+  }
+}

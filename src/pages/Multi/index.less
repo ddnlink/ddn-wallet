@@ -1,0 +1,307 @@
+.multiPage {
+  padding: 24px;
+
+  // 账户多重签名状态指示器样式
+  .accountStatusContainer {
+    margin-bottom: 24px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #d9d9d9;
+    background-color: white;
+  }
+
+  .accountStatusHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .accountStatusTitle {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .accountStatusIcon {
+    margin-right: 8px;
+    font-size: 18px;
+    color: #1890ff;
+  }
+
+  .accountStatusContent {
+    padding: 16px;
+  }
+
+  .statusEnabled, .statusPending, .statusDisabled {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .statusIcon {
+    font-size: 24px;
+    margin-right: 12px;
+    margin-top: 2px;
+  }
+
+  .statusEnabled .statusIcon {
+    color: #52c41a;
+  }
+
+  .statusPending .statusIcon {
+    color: #faad14;
+  }
+
+  .statusDisabled .statusIcon {
+    color: #1890ff;
+  }
+
+  .statusInfo {
+    flex: 1;
+  }
+
+  .statusTitle {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+  }
+
+  .statusDetails {
+    color: #666;
+    line-height: 1.5;
+  }
+
+  // 多重签名使用指南样式
+  .guideContainer {
+    margin-bottom: 24px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f7ff 100%);
+    border: 1px solid #91caff;
+  }
+
+  .guideHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, #1890ff 0%, #096dd9 100%);
+    color: white;
+  }
+
+  .guideTitle {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .guideIcon {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+
+  .guideContent {
+    padding: 16px;
+  }
+
+  .guideSection {
+    margin-bottom: 16px;
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: #1890ff;
+      font-size: 16px;
+    }
+
+    p {
+      margin-bottom: 0;
+      line-height: 1.6;
+      color: #333;
+    }
+  }
+
+  .guideColumns {
+    display: flex;
+    margin: 16px 0;
+    gap: 24px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .guideColumn {
+    flex: 1;
+  }
+
+  .guideStep {
+    display: flex;
+    margin-bottom: 16px;
+  }
+
+  .guideStepIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #1890ff;
+    color: white;
+    font-weight: bold;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .guideStepContent {
+    flex: 1;
+
+    h4 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: #333;
+    }
+
+    p {
+      margin-bottom: 0;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+  }
+
+  .guideWarning {
+    display: flex;
+    padding: 16px;
+    background-color: #fff7e6;
+    border-radius: 4px;
+    border-left: 4px solid #ffa940;
+    margin-top: 16px;
+
+    .guideWarningIcon {
+      color: #fa8c16;
+      font-size: 18px;
+      margin-right: 12px;
+      margin-top: 2px;
+    }
+
+    p {
+      margin: 8px 0 0;
+      color: #666;
+      line-height: 1.5;
+    }
+  }
+
+  // 原有样式
+  .keysgroup {
+    max-width: 300px;
+
+    :global {
+      .ant-tag {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  .keysgroupInput {
+    display: flex;
+    margin-bottom: 16px;
+
+    :global {
+      .ant-input {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .keysgroupList {
+    margin-bottom: 16px;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 8px;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    background-color: #fafafa;
+
+    :global {
+      .ant-tag {
+        margin-bottom: 8px;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  :global {
+    .ant-table-row {
+      &.highlight {
+        background-color: #e6f7ff;
+      }
+    }
+
+    .ant-progress-text {
+      font-size: 12px;
+    }
+
+    .ant-tabs-tab {
+      padding: 8px 16px;
+    }
+
+    .ant-form-item-extra {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .ant-alert {
+      margin-bottom: 16px;
+    }
+
+    // 卡片样式优化
+    .ant-card {
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+      .ant-card-head {
+        border-bottom: 1px solid #f0f0f0;
+      }
+    }
+
+    // 表格样式优化
+    .ant-table {
+      border-radius: 8px;
+      overflow: hidden;
+
+      .ant-table-thead > tr > th {
+        background-color: #f5f7fa;
+      }
+    }
+
+    // 警告提示样式优化
+    .ant-alert-warning {
+      border-color: #ffe58f;
+    }
+
+    // 信息提示样式优化
+    .ant-alert-info {
+      border-color: #91caff;
+    }
+  }
+}

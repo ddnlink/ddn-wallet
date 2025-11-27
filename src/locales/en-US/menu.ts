@@ -1,0 +1,18 @@
+export default {
+  'menu.home': 'Home',
+  'menu.contract': 'Smart Contract',
+  'menu.dao': 'DAO Community',
+  'menu.assets': 'Smart Assets',
+  'menu.evidence': 'Digital Evidence',
+  'menu.multi': 'Multi-Signature',
+  'menu.account': 'Accounts',
+  'menu.others': 'More',
+  'menu.others.transfer': 'Transfer',
+  'menu.others.vote': 'Vote',
+  'menu.others.lock': 'Lock',
+  'menu.others.dapp': 'Applications',
+  'menu.transfer': 'Transfer',
+  'menu.vote': 'Vote',
+  'menu.dapp': 'Applications',
+  'menu.lock': 'Lock',
+};

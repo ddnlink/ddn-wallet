@@ -1,0 +1,103 @@
+.resultContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.result {
+  padding: 0;
+  margin-bottom: 32px;
+  
+  :global {
+    .ant-result-title {
+      font-size: 24px;
+      color: #4865FE;
+    }
+    
+    .ant-result-subtitle {
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+  }
+}
+
+.successIcon {
+  color: #4865FE;
+  font-size: 72px;
+}
+
+.statsContainer {
+  margin-bottom: 32px;
+  
+  :global {
+    .ant-col {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.statsCard {
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+  border: 1px solid #e6e9ff;
+  height: 100%;
+  
+  :global {
+    .ant-card-body {
+      padding: 24px;
+    }
+    
+    .ant-statistic-title {
+      font-size: 16px;
+      color: #4865FE;
+      margin-bottom: 8px;
+    }
+    
+    .ant-statistic-content {
+      font-size: 28px;
+    }
+  }
+}
+
+.infoContainer {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 32px;
+}
+
+.infoParagraph {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.noteBox {
+  background: rgba(72, 101, 254, 0.05);
+  border-left: 4px solid #4865FE;
+  padding: 12px 16px;
+  border-radius: 0 4px 4px 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  height: 48px;
+  font-size: 16px;
+  padding: 0 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4865FE 0%, #2b3fe6 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(72, 101, 254, 0.3);
+  
+  &:hover {
+    background: linear-gradient(135deg, #5a75ff 0%, #3c4ff7 100%);
+    box-shadow: 0 6px 16px rgba(72, 101, 254, 0.4);
+  }
+}

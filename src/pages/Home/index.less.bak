@@ -1,0 +1,108 @@
+.home {
+  padding: 24px;
+
+  :global {
+    .ant-card-head {
+      border-bottom: none;
+    }
+  }
+
+  .blockInfoCard {
+    padding: 0 8px;
+
+    .blockInfoHeader {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 14px;
+
+      .blockIcon {
+        margin-right: 8px;
+        color: #4865FE;
+        font-size: 16px;
+      }
+    }
+
+    .blockHeight {
+      font-size: 24px;
+      font-weight: 600;
+      color: #4865FE;
+      margin-bottom: 8px;
+    }
+
+    .blockTime {
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.45);
+      margin-bottom: 16px;
+    }
+
+    .blockProgress {
+      margin-top: 8px;
+
+      .blockProgressText {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.45);
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .extraContent {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .listCard {
+    margin-bottom: 24px;
+  }
+
+  .tableList {
+    .tableListOperator {
+      margin-bottom: 16px;
+      button {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .tableListForm {
+    :global {
+      .ant-form-item {
+        margin-bottom: 24px;
+        margin-right: 0;
+        display: flex;
+        > .ant-form-item-label {
+          width: auto;
+          line-height: 32px;
+          padding-right: 8px;
+        }
+        .ant-form-item-control {
+          line-height: 32px;
+        }
+      }
+      .ant-form-item-control-wrapper {
+        flex: 1;
+      }
+    }
+    .submitButtons {
+      display: block;
+      white-space: nowrap;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .tableListForm :global(.ant-form-item) {
+    margin-right: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tableListForm :global(.ant-form-item) {
+    margin-right: 8px;
+  }
+}

@@ -1,0 +1,351 @@
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.main {
+  margin: 0 auto;
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(240, 249, 255, 0.95), rgba(229, 239, 255, 0.95));
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg') no-repeat center center;
+    background-size: 100%;
+    opacity: 0.1;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(66, 103, 255, 0.05), rgba(66, 147, 255, 0.05), rgba(77, 208, 225, 0.05));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    z-index: 0;
+  }
+
+  // 添加科技感装饰元素
+  .decorationCircle1 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(72, 101, 254, 0.1), rgba(110, 143, 255, 0.1));
+    top: -100px;
+    left: -100px;
+    z-index: 0;
+  }
+
+  .decorationCircle2 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(77, 208, 225, 0.1), rgba(72, 101, 254, 0.1));
+    bottom: -50px;
+    right: -50px;
+    z-index: 0;
+  }
+
+  .decorationDot1 {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(72, 101, 254, 0.5);
+    top: 20%;
+    left: 10%;
+    z-index: 0;
+    box-shadow: 0 0 10px rgba(72, 101, 254, 0.5);
+  }
+
+  .decorationDot2 {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(77, 208, 225, 0.5);
+    top: 30%;
+    right: 20%;
+    z-index: 0;
+    box-shadow: 0 0 15px rgba(77, 208, 225, 0.5);
+  }
+
+  .decorationDot3 {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(110, 143, 255, 0.5);
+    bottom: 15%;
+    left: 20%;
+    z-index: 0;
+    box-shadow: 0 0 8px rgba(110, 143, 255, 0.5);
+  }
+
+  .decorationLine1 {
+    position: absolute;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(72, 101, 254, 0.3), transparent);
+    top: 25%;
+    left: 5%;
+    z-index: 0;
+    transform: rotate(45deg);
+  }
+
+  .decorationLine2 {
+    position: absolute;
+    width: 150px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(77, 208, 225, 0.3), transparent);
+    bottom: 20%;
+    right: 10%;
+    z-index: 0;
+    transform: rotate(-30deg);
+  }
+}
+
+.loginContainer {
+  position: relative;
+  z-index: 1;
+  width: 400px;
+  max-height: 66vh;
+  /* 限制最大高度为视口高度的三分之二 */
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  /* 如果内容超出，允许滚动 */
+}
+
+.top {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header {
+  height: 44px;
+  line-height: 44px;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.title {
+  font-size: 32px;
+  background: linear-gradient(90deg, #4865FE, #6E8FFF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  position: relative;
+  letter-spacing: 1px;
+}
+
+.desc {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+  margin-top: 8px;
+  margin-bottom: 15px;
+}
+
+.form {
+  .formTitle {
+    margin: 5px 0 15px;
+    color: #4865FE;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .input {
+    background-color: rgba(245, 245, 245, 0.6);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 10px;
+    transition: all 0.3s;
+
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 0 2px rgba(72, 101, 254, 0.2);
+    }
+  }
+
+  .button {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #4865FE, #6E8FFF);
+    border: none;
+    box-shadow: 0 4px 12px rgba(72, 101, 254, 0.2);
+    transition: all 0.3s;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(72, 101, 254, 0.3);
+    }
+  }
+}
+
+.footer {
+  margin-top: 16px;
+  text-align: center;
+  color: #fff;
+}
+
+.registerLink {
+  padding: 0;
+  font-size: 16px;
+  color: #4865FE;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s;
+
+  &:hover {
+    color: #6E8FFF;
+    text-decoration: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #4865FE, #6E8FFF);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+
+:global {
+  .ant-steps-item-process>.ant-steps-item-tail:after {
+    height: 0;
+    border: 1px dashed #ccc;
+    background: #fff;
+  }
+
+  .ant-steps-item-finish>.ant-steps-item-tail:after {
+    height: 0;
+    border: 1px dashed #4865FE;
+    background: #fff;
+  }
+
+  .ant-steps-item-icon {
+    background: linear-gradient(90deg, #4865FE, #6E8FFF);
+    border-color: transparent;
+  }
+
+  .ant-steps-item-title {
+    font-weight: 500;
+  }
+
+  .ant-modal {
+    .ant-modal-body {
+      padding: 16px;
+    }
+
+    .ant-modal-footer {
+      padding: 10px 16px;
+      margin-top: 30px;
+      /* 增加底部按钮区域与内容之间的间距 */
+    }
+
+    .ant-modal-header {
+      padding: 16px;
+    }
+  }
+}
+
+.phaseKeyCon {
+  background-color: rgba(245, 245, 245, 0.6);
+  border: 1px dashed #4865FE;
+  border-radius: 8px;
+  font-size: 16px;
+  height: 80px;
+  line-height: 30px;
+  padding: 15px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+  position: relative;
+  /* 添加相对定位，以便放置拷贝按钮 */
+
+  &:hover {
+    background-color: rgba(245, 245, 245, 0.8);
+  }
+}
+
+.missInput {
+  border: none;
+  border-bottom: 2px solid #4865FE;
+  border-radius: 0;
+  width: 300px;
+  margin-left: 20px;
+  padding: 8px 0;
+  font-size: 16px;
+  transition: all 0.3s;
+
+  &:focus {
+    box-shadow: none;
+    border-color: #6E8FFF;
+  }
+}
+
+.copyButton {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  color: #4865FE;
+  opacity: 0.7;
+  transition: all 0.3s;
+  padding: 4px;
+  height: auto;
+  width: auto;
+
+  &:hover {
+    opacity: 1;
+    color: #6E8FFF;
+    background-color: rgba(72, 101, 254, 0.1);
+  }
+}

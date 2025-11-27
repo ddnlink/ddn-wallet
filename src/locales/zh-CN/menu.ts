@@ -1,0 +1,18 @@
+export default {
+  'menu.home': '首页',
+  'menu.contract': '智能合约',
+  'menu.dao': 'DAO社区',
+  'menu.assets': '智能资产',
+  'menu.evidence': '数字存证',
+  'menu.multi': '多重签名',
+  'menu.account': '账户',
+  'menu.others': '更多',
+  'menu.others.transfer': '转账',
+  'menu.others.vote': '投票',
+  'menu.others.lock': '锁仓',
+  'menu.others.dapp': '应用',
+  'menu.transfer': '转账',
+  'menu.vote': '投票',
+  'menu.dapp': '应用',
+  'menu.lock': '锁仓',
+};

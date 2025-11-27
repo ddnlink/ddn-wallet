@@ -1,0 +1,233 @@
+.accountPage,
+.accountDetailPage {
+  padding: 0;
+
+  .pageHeader {
+    position: relative;
+    padding: 40px 24px 60px;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #4865FE 0%, #013A6A 100%);
+    color: white;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB4PSIwIiB5PSIwIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSgzMCkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjxjaXJjbGUgY3g9IjgwJSIgY3k9IjIwJSIgcj0iMTAwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiLz48Y2lyY2xlIGN4PSIyMCUiIGN5PSI4MCUiIHI9IjYwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDcpIi8+PC9zdmc+');
+      opacity: 0.8;
+      z-index: 0;
+    }
+
+    .headerContent {
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      margin-bottom: 8px;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-weight: 600;
+    }
+
+    :global .ant-typography-secondary {
+      color: rgba(255, 255, 255, 0.95) !important;
+      text-shadow: 0 1px 2px rgba(158, 136, 136, 0.3);
+      font-weight: 500;
+      background: rgba(80, 78, 78, 0.2);
+      padding: 4px 12px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .searchContainer {
+      max-width: 600px;
+      margin: 24px auto 0;
+
+      .ant-input-search {
+        .ant-input {
+          height: 48px;
+          border-radius: 24px;
+          padding-left: 20px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+          border: 2px solid rgba(255, 255, 255, 0.2);
+          background: rgba(255, 255, 255, 0.95);
+
+          &:focus {
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+          }
+        }
+
+        .ant-input-search-button {
+          height: 48px;
+          border-radius: 0 24px 24px 0 !important;
+          width: 60px;
+          background: #4865FE;
+          border-color: #4865FE;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+          &:hover {
+            background: #5875FF;
+            border-color: #5875FF;
+          }
+        }
+      }
+    }
+  }
+
+  .contentContainer {
+    padding: 0 24px 24px;
+  }
+
+  .statisticsRow {
+    margin-bottom: 24px;
+    margin-top: -40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .statisticCard {
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+    .sortButton {
+      margin-top: 8px;
+    }
+
+    .blockInfoCard {
+      padding: 0 8px;
+
+      .blockInfoHeader {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        color: rgba(0, 0, 0, 0.65);
+        font-size: 14px;
+
+        .blockIcon {
+          margin-right: 8px;
+          color: #4865FE;
+          font-size: 16px;
+        }
+      }
+
+      .blockHeight {
+        font-size: 24px;
+        font-weight: 600;
+        color: #4865FE;
+        margin-bottom: 8px;
+      }
+
+      .blockTime {
+        font-size: 13px;
+        color: rgba(0, 0, 0, 0.45);
+        margin-bottom: 16px;
+      }
+
+      .blockProgress {
+        margin-top: 8px;
+
+        .blockProgressText {
+          display: flex;
+          justify-content: space-between;
+          font-size: 12px;
+          color: rgba(0, 0, 0, 0.45);
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+
+  .accountListCard {
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  :global {
+    .ant-table {
+      border-radius: 8px;
+      overflow: hidden;
+
+      .ant-table-thead > tr > th {
+        background-color: #f5f7fa;
+      }
+    }
+
+    .ant-statistic-title {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+
+    .ant-card-head {
+      border-bottom: 1px solid #f0f0f0;
+    }
+  }
+}
+
+.accountDetailPage {
+  .headerActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    width: 100%;
+
+    .backButton {
+      color: white;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+    }
+  }
+
+  .accountInfoCard {
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .qrCodeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 16px;
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    text-align: center;
+
+    .qrCode {
+      width: 180px;
+      height: 180px;
+      margin-bottom: 16px;
+    }
+
+    .qrCodeActions {
+      margin-top: 16px;
+    }
+  }
+
+  .transactionsCard {
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  :global {
+    .ant-descriptions-title {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .ant-descriptions-item-label {
+      font-weight: 500;
+    }
+  }
+}

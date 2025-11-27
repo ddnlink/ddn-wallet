@@ -1,0 +1,156 @@
+.transferPage {
+  margin: 24px;
+
+  .headerDecoration {
+    position: relative;
+    height: 120px;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, #1890ff 0%, #722ed1 100%);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: 30%;
+      width: 150px;
+      height: 150px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .decorationContent {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+
+      .decorationTitle {
+        color: #fff;
+        font-size: 28px;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .decorationIcon {
+        position: absolute;
+        right: 40px;
+        font-size: 60px;
+        color: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .stepsContainer {
+    max-width: 700px;
+    margin: 0 auto 40px; // 增加底部间距
+  }
+
+  .confirmContainer {
+    max-width: 700px;
+    margin: 0 auto;
+    padding-top: 20px; // 增加顶部间距
+  }
+
+  .resultContainer {
+    max-width: 700px;
+    margin: 24px auto;
+  }
+
+  .buttonContainer {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .desc {
+    max-width: 700px;
+    margin: 0 auto;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  .tokenLogo {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+}
+
+// 步骤条样式
+.steps {
+  max-width: 750px;
+  margin: 0 auto 40px;
+}
+
+// 自定义步骤条样式
+:global {
+  .ant-steps-item-title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .ant-steps-item-icon {
+    background: #fff;
+    border-color: #1890ff;
+
+    .ant-steps-icon {
+      color: #1890ff;
+      font-weight: bold;
+    }
+  }
+
+  .ant-steps-item-active .ant-steps-item-icon {
+    background: #1890ff;
+
+    .ant-steps-icon {
+      color: #fff;
+    }
+  }
+
+  .ant-steps-item-finish .ant-steps-item-icon {
+    background: #fff;
+    border-color: #52c41a;
+
+    .ant-steps-icon {
+      color: #52c41a;
+    }
+  }
+
+  .ant-steps-item-finish .ant-steps-item-tail::after {
+    background-color: #52c41a;
+  }
+
+  .ant-card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+  }
+}
